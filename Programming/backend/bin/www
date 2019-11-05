@@ -17,11 +17,12 @@ app.set("port", port);
  */
 
 const server = http.createServer(app);
-const io = require("socket.io")(server);
-io.on("connection", socket => {
+
+const serverSocket = require("socket.io")(server);
+serverSocket.on("connection", socket => {
     socket.on("join", async room => {
         socket.join(room);
-        io.emit("roomJoined", room);
+        serverSocket.emit("roomJoined", room);
     });
 
     socket.on("message", async data => {
@@ -35,7 +36,7 @@ io.on("connection", socket => {
             author,
             message: message,
         });
-        io.emit("newMessage", chatMessage);
+        serverSocket.emit("newMessage", chatMessage);
     });
 });
 

@@ -1,0 +1,10 @@
+Programming/backend/.env
+Programming/frontend/.env
+Programming/backend/.vscode/
+Programming/frontend/.vscode/
+Programming/backend/.idea/
+Programming/frontend/.idea/
+Programming/.idea/
+Programming/frontend/node_modules
+Programming/backend/node_modules
+.idea/
