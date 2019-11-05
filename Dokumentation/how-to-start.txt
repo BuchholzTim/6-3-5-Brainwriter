@@ -1,9 +1,0 @@
-- Node (10.x.x) & Npm (6.x.x) installieren
-- Postgres installieren
-- In ../Programming/Frontend & ../Programming/Frontend jeweils 'npm install' ausführen, um die spezifizierten node_modules aus der package.json zu installieren
-- Kopie von ../Programming/Frontend/.env.bkup machen und in '.env' umbennen und die Parameter richtig setzen
-- Kopie von ../Programming/Backend/.env.bkup machen und in '.env' umbennen und die Parameter richtig setzen
-- In Postgres eine Datenbank anlegen, wie in 'CREATE DATABASE'.txt beschrieben
-
-- In ../Programming/Frontend && ../Programming/Backend jeweils 'npm start' ausführen, um das korrespondierende Skript in der package.json zu starten
-- Eventuell, sofern der letzte Schritt nicht funktioniert, noch 'nodemon' manuell über 'npm install -g nodemon' installieren
