@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
 const app = require("../app");
 const debug = require("debug")("backend:server");
 const http = require("http");
@@ -30,7 +26,7 @@ io.on("connection", socket => {
 
     socket.on("message", async data => {
         const {chatRoomName, author, message} = data;
-        const chatRoom = await models.ChatRoom.findAll({
+        const chatRoom = await models.Room.findAll({
             where: {name: chatRoomName},
         });
         const chatRoomId = chatRoom[0].id;

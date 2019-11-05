@@ -3,20 +3,20 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-
+const cors = require("cors");
 const db = require('./config/config')
+
+const app = express();
 
 // Test DB
 db.authenticate()
     .then(() => console.log('Database connected!'))
     .catch(err => console.log(err));
 
+// Define Router
 const indexRouter = require("./routes/index");
 const moderatorRouter = require("./routes/moderators");
 const roomRouter = require("./routes/rooms");
-
-const app = express();
-const cors = require("cors");
 
 
 // view engine setup
