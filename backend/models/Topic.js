@@ -4,9 +4,10 @@ const DataTypes = Sequelize.DataTypes;
 
 const Topic = db.define('Topic', {
     moderatorID: DataTypes.INTEGER,
-    topic: DataTypes.STRING,
+    topicName: DataTypes.STRING,
     joinCode: DataTypes.STRING,
-    timePerRound: DataTypes.INTEGER
+    timePerRound: DataTypes.INTEGER,
+    playerCount: DataTypes.INTEGER
 }, {});
 Topic.associate = function (models) {
     // associations can be defined here
