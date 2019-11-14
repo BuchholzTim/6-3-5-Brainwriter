@@ -1,54 +1,50 @@
 import React, { Component } from "react";
 import CreateRoundModerator from "./CreateRoundModerator";
+import JoinRound from "./JoinRound";
+import Dozentenzugang from "./Dozentenzugang";
 
 export class Home extends Component {
   state = {
-    page: 1
+    page: ""
   };
 
-  switchPage = (e) => {
-      const newpage = e.target.value;
-      //const { page } = this.state;
+  onClick = event => {
     this.setState({
-      page: newpage
+      page: event.target.value
     });
   };
 
-  render() {
-      const {page} = this.state
-      console.log(page)
+  renderPage(page) {
     switch (page) {
-      case 1:
+      case "1":
+        return <CreateRoundModerator />;
+      case "2":
+        return <JoinRound />;
+      case "3":
+        return <Dozentenzugang />;
+      default:
         return (
           <div>
-            <button value="2" onClick={this.switchPage}>
+            <button value="1" onClick={this.onClick}>
               Schnelle Runde erstellen
             </button>
             <br />
-            <button value="6" onClick={this.switchPage}>
+            <button value="2" onClick={this.onClick}>
               Runde beitreten
             </button>
             <br />
-            <button value="9" onClick={this.switchPage}>
+            <button value="3" onClick={this.onClick}>
               Dozentenzugang
             </button>
             <br />
           </div>
-        )
-      case 2:
-        return (
-        <h1>Hallo Welt 2</h1>
-        )
-      case 9:
-        return (<h1>Hallo Welt 9</h1>);
-      default:
-        return <h1>default</h1>;
+        );
     }
+  }
 
-    // Used to switch the page
-    //function switchPage(e) {
-    //    console.log(e.target.value)
-    //}
+  render() {
+    const { page } = this.state;
+    return this.renderPage(page);
   }
 }
 
