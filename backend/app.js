@@ -1,6 +1,6 @@
 const createError = require("http-errors");
 const express = require("express");
-const db = require('./config/config')
+const db = require("./config/config")
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const path = require("path");
@@ -10,11 +10,11 @@ const app = express();
 
 // Test DB-Connection
 db.authenticate()
-    .then(() => console.log('Database connected!'))
+    .then(() => console.log("Database connected!"))
     .catch(err => console.log(err));
 
 
-// view engine setup - we don't need that, as we render everything in the frontend with react
+// view engine setup - we don"t need that, as we render everything in the frontend with react
 /*app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");*/
 
@@ -30,8 +30,8 @@ app.use(express.urlencoded({extended: false})); // Enable native parsing of URL-
 
 
 // Define Router
-const topicsRouter = require('./routes/topicsRoute');
-const chatMessagesRouter = require('./routes/chatMessagesRoute');
+const topicsRouter = require("./routes/topicsRoute");
+const chatMessagesRouter = require("./routes/chatMessagesRoute");
 
 // Setup Routers to use
 app.use("/topics", topicsRouter);

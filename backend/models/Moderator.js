@@ -1,8 +1,8 @@
-const Sequelize = require('sequelize');
-const db = require('../config/config');
+const Sequelize = require("sequelize");
+const db = require("../config/config");
 const DataTypes = Sequelize.DataTypes;
 
-const Moderator = db.define('Moderator', {
+const Moderator = db.define("Moderator", {
     username: DataTypes.STRING,
     pwHash: DataTypes.STRING
 }, {});

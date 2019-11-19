@@ -22,7 +22,7 @@ module.exports = function configSocket(io) {
             socket.broadcast.to(second_to_last_id).emit("message", "from broadcast");
         }
 
-        socket.on('disconnect', (socket) => {
+        socket.on("disconnect", (socket) => {
             console.log(`Client with ID ${socket.id} disconnected`);
         });
     });

@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const db = require('../config/config');
+const Sequelize = require("sequelize");
+const db = require("../config/config");
 
 const Author = db.define("Author", {
     name: Sequelize.DataTypes.STRING,
@@ -8,8 +8,8 @@ const Author = db.define("Author", {
 Author.associate = function (models) {
     // associations can be defined here
     Author.belongsTo(models.Topic, {
-        foreignKey: 'topicID',
-        targetKey: 'id'
+        foreignKey: "topicID",
+        targetKey: "id"
     });
 };
 
