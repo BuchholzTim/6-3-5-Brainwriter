@@ -1,13 +1,22 @@
-import React from 'react';
+import React from "react";
 import './App.css';
-import Home from './components/Home';
+import { Box, Heading, Grommet } from "grommet";
+import Home from "./components/Home";
 
 function App() {
   return (
-    <div className="App">
-      <h1>6-3-5 Brainwriter</h1>
-      <Home/>
-    </div>
+    <Grommet className="App">
+      <Box
+        direction="column"
+        border={{ color: "brand", size: "large" }}
+        pad="medium"
+        align="center"
+        alignContent="center"
+      >
+      <Heading textAlign="center">Brainwriter</Heading>
+      <Home />
+      </Box>
+    </Grommet>
   );
 }
 
