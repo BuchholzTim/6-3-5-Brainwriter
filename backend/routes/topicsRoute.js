@@ -5,84 +5,120 @@ const router = express.Router();
 
 router.post("/createTopic", async function (req, res, next) {
 
-    // Get User-Specified Parameters from Body
     const topicName = req.body.topicName;
     const timePerRound = req.body.timePerRound;
 
-    console.log(timePerRound);
+    let joinCode = tools.generateCode(6);
 
-    // Default PlayerCount - This has to be updated, once the game starts
-    const playerCount = 6;
-
-    // Generate Unique Join-Code for Topic
-    const codeLength = 6;
-    let joinCode = tools.generateCode(codeLength);
-
-    // Check if the generated Code already exists
-    let existingTopics = await models.Topic.findAll( {
-        where: {
-            joinCode: joinCode
-        }
-    });
+    let existingTopic = getTopic(joinCode);
 
     // If a Topic with this exact code is found, generate a new one.
-    while (existingTopics[0]) {
+    while (existingTopic) {
         joinCode = tools.generateCode(codeLength);
-        existingTopics = await models.Topic.findAll( {
-            where: {
-                joinCode: joinCode
-            }
-        });
+        existingTopic = getTopic(joinCode);
     }
 
     // Create Topic in Database, then send response containing the generated Topic
-    models.Topic.create({
+    const topic = {
         topicName: topicName,
         timePerRound: timePerRound,
         joinCode: joinCode
-    }).then((topic) => res.json(topic));
+    };
+
+    models.Topic.create(topic).then((topic) => res.json(topic));
 });
 
 router.post("/updatePlayerCount", async function (req, res, next) {
     const joinCode = req.body.joinCode;
     const playerCount = req.body.playerCount;
 
-    // Search Topic with exact joinCode
-    let topic = await models.Topic.findOne({
-        where: {
-            joinCode: joinCode
-        }     
-    });
+    let topic = getTopic(joinCode);
 
-    if(topic) {
+    if (topic) {
         topic.update({
             playerCount: playerCount
         })
-        .then(() => {
-            res.json(topic);
-        });
+            .then(() => {
+                res.json(topic);
+            });
     } else {
         res.status(400);
         res.end();
     }
-
 });
 
-// Looks for a Topic the specified Code
 router.get("/getTopic", async function (req, res, next) {
 
     const joinCode = req.body.joinCode;
+    const topic = getTopic(joinCode);
+
+    if (topic) {
+        res.json(topic);
+    } else {
+        res.status(400);
+        res.end();
+    }
+});
+
+router.post("/joinTopic", async function (req, res, next) {
+
+    const joinCode = req.body.joinCode;
+    const username = req.body.name + "_" + tools.generateCode(4);
+
+    // Find existing Topic
+    let topic = getTopic(joinCode);
+
+    // If topic is null or undefined
+    if (!topic) {
+        res.status(400);
+        res.end();
+        return;
+    }
+
+    const author = {
+        name: username,
+        topicID: topic.id
+    };
+
+    models.Author.create(author).then((author) => res.json(author));
+});
+
+router.get("/getPlayers", async function (req, res, next) {
+    const joinCode = req.body.joinCode;
+    const topic = getTopic(joinCode);
+
+    if (topic) {
+        const topicID = topic.id;
+        const players = await models.Author.findAll({
+            where: {
+                topicID: topicID
+            }
+        });
+
+        if (tools.checkExistence(players)) {
+            res.json(players);
+        } else {
+            res.status(400);
+            res.end();
+        }
+    } else {
+        res.status(400);
+        res.end();
+    }
+});
+
+async function getTopic(joinCode) {
     const topic = await models.Topic.findOne({
         where: {
             joinCode: joinCode
         }
     });
 
-    if(topic) {
-        res.json(topic);
+    if (tools.checkExistence(topic)) {
+        return topic;
     } else {
-        res.status(400);
+        return false;
     }
-});
+}
 
 module.exports = router;

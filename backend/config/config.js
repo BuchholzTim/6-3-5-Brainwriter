@@ -1,4 +1,7 @@
 require("dotenv").config();
+const pg = require("pg");
+pg.defaults.poolIdleTimeout = 3000;
+
 const dbHost = process.env.DB_HOST;
 const dbName = process.env.DB_NAME;
 const dbUsername = process.env.DB_USERNAME;
