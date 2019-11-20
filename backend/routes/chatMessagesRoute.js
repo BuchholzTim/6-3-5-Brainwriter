@@ -22,8 +22,8 @@ router.post("/sendMessages/", async function (req, res, next) {
 });
 
 router.get("/getMessages", async function (req, res, next) {
-    const authorID = req.body.authorID;
-    const roomID = req.body.roomID;
+    const authorID = req.query.authorID;
+    const roomID = req.query.roomID;
     const messages = getMessages(authorID, roomID);
 
     if (tools.checkExistence(messages)) {

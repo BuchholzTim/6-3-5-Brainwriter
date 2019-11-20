@@ -48,7 +48,7 @@ router.post("/updatePlayerCount", async function (req, res, next) {
 
 router.get("/getTopic", async function (req, res, next) {
 
-    const joinCode = req.body.joinCode;
+    const joinCode = req.query.joinCode;
     const topic = getTopic(joinCode);
 
     if (topic) {
@@ -84,7 +84,7 @@ router.post("/joinTopic", async function (req, res, next) {
 });
 
 router.get("/getPlayers", async function (req, res, next) {
-    const joinCode = req.body.joinCode;
+    const joinCode = req.query.joinCode;
     const topic = getTopic(joinCode);
 
     if (topic) {
@@ -120,5 +120,16 @@ async function getTopic(joinCode) {
         return false;
     }
 }
+
+
+router.get("/axiosGet", function (req, res, next) {
+    console.log(req.query.id);
+    res.send(req.query);
+});
+
+router.post("/axiosPost", function (req, res, next) {
+    console.log(req.body);
+    res.send("ok");
+});
 
 module.exports = router;
