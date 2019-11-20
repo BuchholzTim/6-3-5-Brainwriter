@@ -4,7 +4,6 @@ const models = require("../models/models");
 const router = express.Router();
 
 router.post("/createTopic", async function (req, res, next) {
-
     const topicName = req.body.topicName;
     const timePerRound = req.body.timePerRound;
 
@@ -61,9 +60,9 @@ router.get("/getTopic", async function (req, res, next) {
 });
 
 router.post("/joinTopic", async function (req, res, next) {
-
     const joinCode = req.body.joinCode;
-    const username = req.body.name + "_" + tools.generateCode(4);
+    const username = req.body.username + "_" + tools.generateCode(4);
+    const socketID = req.body.socketID;
 
     // Find existing Topic
     let topic = getTopic(joinCode);
@@ -77,7 +76,8 @@ router.post("/joinTopic", async function (req, res, next) {
 
     const author = {
         name: username,
-        topicID: topic.id
+        topicID: topic.id,
+        socketID: socketID
     };
 
     models.Author.create(author).then((author) => res.json(author));

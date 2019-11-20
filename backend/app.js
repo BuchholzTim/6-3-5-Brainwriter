@@ -13,7 +13,6 @@ db.authenticate()
     .then(() => console.log("Database connected!"))
     .catch(err => console.log(err));
 
-
 // view engine setup - we don"t need that, as we render everything in the frontend with react
 /*app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");*/
