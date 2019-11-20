@@ -9,3 +9,15 @@ socket.on("message", (message) => {
     console.log(message);
     console.log(`My ID: ${socket.id}`);
 });
+
+socket.on("start", () => {
+    console.log(`My ID: ${socket.id}`);
+});
+
+socket.on("pause", () => {
+    console.log(`My ID: ${socket.id}`);
+});
+
+socket.on("resume", () => {
+    console.log(`My ID: ${socket.id}`);
+});
