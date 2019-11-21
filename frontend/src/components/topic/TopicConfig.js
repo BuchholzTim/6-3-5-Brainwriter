@@ -4,8 +4,7 @@ import { TextArea, Form, TextInput, Button, FormField } from "grommet";
 
 export class CreateRoundModerator1 extends Component {
   state = {
-    question: "",
-    time: ""
+    page:""
   };
 
   createRound = () => {

@@ -1,16 +1,37 @@
-import React, { Component } from 'react'
-import TopicConfig from './TopicConfig'
+import React, {Component} from "react";
+import TopicConfig from "./TopicConfig"
+//import {Button, Grommet} from 'grommet';
 
-export class Create_Round_Moderator extends Component {
-  state = {
-    page: ""
-  };
+export class Topic extends Component {
+    state = {
+        page: "",
+        question: "",
+        time: ""
+    };
+
+    switchPage = event => {
+        this.setState({
+            page: event.target.value
+        });
+    };
+
+    renderPage(page) {
+        switch (page) {
+            case "1":
+                return <h1>case1</h1>
+            case "2":
+                return <h1>case2</h1>;
+            default:
+                return (
+                   <TopicConfig currentPage={page}/>
+                );
+        }
+    }
 
     render() {
-        return (
-            <TopicConfig/>
-        )
+        const page = this.state.page;
+        return this.renderPage(page);
     }
 }
 
-export default Create_Round_Moderator
+export default Topic;
