@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CreateRoundModerator1 from './CreateRoundModerator1'
+import TopicConfig from './TopicConfig'
 
 export class Create_Round_Moderator extends Component {
   state = {
@@ -8,7 +8,7 @@ export class Create_Round_Moderator extends Component {
 
     render() {
         return (
-            <CreateRoundModerator1/>
+            <TopicConfig/>
         )
     }
 }

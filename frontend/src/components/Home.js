@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Button, Grommet} from 'grommet';
-import CreateRoundModerator from "./CreateRoundModerator";
+import Topic from "./topic/Topic";
 import JoinRound from "./JoinRound";
 import {socket} from "../socket/socket";
 
@@ -21,7 +21,7 @@ export class Home extends Component {
         switch (page) {
             case "1":
                 socket.emit("test");
-                return <CreateRoundModerator/>;
+                return <Topic/>;
             case "2":
                 socket.emit("joinTopic", {
                     joinCode: "testRoom"
