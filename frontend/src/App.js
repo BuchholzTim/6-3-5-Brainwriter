@@ -1,29 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css'
-import {socket} from './socket/socket'
+import React from "react";
+import './App.css';
+import { Box, Heading, Grommet } from "grommet";
+import Home from "./components/Home";
 
 function App() {
-    socket.connect();
-
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
-    );
+  return (
+    <Grommet className="App">
+      <Box
+        direction="column"
+        border={{ color: "brand", size: "large" }}
+        pad="medium"
+        align="center"
+        alignContent="center"
+      >
+      <Heading textAlign="center">Brainwriter</Heading>
+      <Home />
+      </Box>
+    </Grommet>
+  );
 }
 
 export default App;
