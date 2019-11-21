@@ -3,13 +3,12 @@
 const app = require("../app");
 const debug = require("debug")("backend:server");
 const http = require("http");
-const models = require("../models/models");
-
+const configSocket = require("../socket/socket");
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(process.env.SERVER_PORT || "3000");
 app.set("port", port);
 
 /**
@@ -18,27 +17,9 @@ app.set("port", port);
 
 const server = http.createServer(app);
 
-const serverSocket = require("socket.io")(server);
-serverSocket.on("connection", socket => {
-    socket.on("join", async room => {
-        socket.join(room);
-        serverSocket.emit("roomJoined", room);
-    });
-
-    socket.on("message", async data => {
-        const {chatRoomName, author, message} = data;
-        const chatRoom = await models.Room.findAll({
-            where: {name: chatRoomName},
-        });
-        const chatRoomId = chatRoom[0].id;
-        const chatMessage = await models.ChatMessage.create({
-            chatRoomId,
-            author,
-            message: message,
-        });
-        serverSocket.emit("newMessage", chatMessage);
-    });
-});
+// Socket definition
+const io = require("socket.io")(server);
+configSocket(io);
 
 /**
  * Listen on provided port, on all network interfaces.

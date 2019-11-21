@@ -1,17 +1,19 @@
-const Sequelize = require('sequelize');
-const db = require('../config/config');
+const Sequelize = require("sequelize");
+const db = require("../config/config");
 const DataTypes = Sequelize.DataTypes;
 
-const Topic = db.define('Topic', {
+const Topic = db.define("Topic", {
     moderatorID: DataTypes.INTEGER,
-    topic: DataTypes.STRING,
-    joinCode: DataTypes.STRING
+    topicName: DataTypes.STRING,
+    joinCode: DataTypes.STRING,
+    timePerRound: DataTypes.INTEGER,
+    playerCount: DataTypes.INTEGER
 }, {});
 Topic.associate = function (models) {
     // associations can be defined here
     Topic.belongsTo(models.Moderator, {
-        foreignKey: 'moderatorID',
-        targetKey: 'id'
+        foreignKey: "moderatorID",
+        targetKey: "id"
     });
 };
 
