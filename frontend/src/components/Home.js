@@ -6,7 +6,9 @@ import {socket} from "../socket/socket";
 
 export class Home extends Component {
     state = {
-        page: ""
+        page: "",
+        question: "",
+        time: ""
     };
 
     switchPage = event => {
