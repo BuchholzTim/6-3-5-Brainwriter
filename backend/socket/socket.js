@@ -9,6 +9,11 @@ module.exports = function configSocket(io) {
         // Put Socket in Room for his Topic
         socket.on("joinTopic", function (data) {
             socket.join(`${data.joinCode}`);
+            console.log(socket.rooms);
+        });
+
+        socket.on("test", function () {
+            io.to("testRoom").emit("testResponse", "Only this room shall see this");
         });
 
         // Game-Controls

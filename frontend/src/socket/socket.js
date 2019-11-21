@@ -18,6 +18,10 @@ socket.on("pause", () => {
     console.log(`My ID: ${socket.id}`);
 });
 
+socket.on("testResponse", (message) => {
+    console.log(message);
+});
+
 socket.on("resume", () => {
     console.log(`My ID: ${socket.id}`);
 });
