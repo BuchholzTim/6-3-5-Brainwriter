@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TopicConfig from "./TopicConfig";
+import JoinTopic from "./JoinTopic";
 //import {Button, Grommet} from 'grommet';
 
 export class PlayerView extends Component {
@@ -20,7 +20,7 @@ export class PlayerView extends Component {
       case "2":
         return <h1>case2</h1>;
       default:
-        return <TopicConfig currentPage={page} />;
+        return <JoinTopic />;
     }
   }
 

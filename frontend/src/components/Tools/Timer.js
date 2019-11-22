@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import { Meter, Grommet, Stack, Box, Text } from "grommet";
 
 export class Timer extends Component {
-  state = {
-    startTime: 10,
-    remainingTime: 10,
-    meterValue: 100,
-    timeAsText: ""
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      meterValue: 100,
+      timeAsText: "",
+      roundTime: this.props.roundTime,
+      remainingTime: this.props.roundTime
+    };
+  }
 
   convertSecondsToTime = timeInSeconds => {
     const seconds = timeInSeconds % 60;
@@ -17,10 +21,10 @@ export class Timer extends Component {
   };
 
   refreshTimer = () => {
-    const { startTime } = this.state;
+    const { roundTime } = this.state;
     const remainingTime = this.state.remainingTime - 1;
     const timeAsText = this.convertSecondsToTime(remainingTime);
-    const meterValue = (remainingTime / startTime) * 100;
+    const meterValue = (remainingTime / roundTime) * 100;
 
     this.setState({
       remainingTime: remainingTime,

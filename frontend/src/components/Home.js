@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Grommet } from "grommet";
-import Topic from "./Topic/Topic";
+import Topic from "./topic/Topic";
+import PlayerView from "./playerView/PlayerView";
 import { socket } from "../socket/socket";
 
 export class Home extends Component {
@@ -19,7 +20,7 @@ export class Home extends Component {
       case "1":
         return <Topic />;
       case "2":
-        return;
+        return <PlayerView />;
       default:
         return (
           <Grommet>
