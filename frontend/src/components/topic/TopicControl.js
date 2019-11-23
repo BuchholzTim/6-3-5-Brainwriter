@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Box, List, Text, Button } from "grommet";
+import PlayerList from "../tools/PlayerList";
 
 export class TopicControl extends Component {
   state = {
@@ -22,17 +23,7 @@ export class TopicControl extends Component {
         <Box direction="row" gap="xlarge">
           <Box direction="column">
           <Text weight="bold">Teilnehmer:</Text>
-          <List
-            title="Test"
-            primaryKey="name"
-            secondaryKey="percent"
-            data={[
-              { name: "Alan"},
-              { name: "Bryan"},
-              { name: "Chris"},
-              { name: "Eric"}
-            ]}
-          />
+          <PlayerList/>
           </Box>
 
           <Box direction="column" gap="large">
