@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Box, Heading, Grommet, Button } from "grommet";
-import { FormPreviousLink } from "grommet-icons"
+import { FormPreviousLink } from "grommet-icons";
 import Home from "./components/Home";
 import { socket } from "./socket/socket";
 
@@ -20,12 +20,14 @@ function App() {
         style={{ zIndex: "1000" }}
       >
         <Button icon={<FormPreviousLink size="large" color="white" />}></Button>
-        <Heading level={3} margin="none" color="white">6-3-5 Brainwriter</Heading>
+        <Heading level={3} margin="none" color="white">
+          6-3-5 Brainwriter
+        </Heading>
       </Box>
       <Box
         direction="column"
-        border={{ color: "brand", size: "large" }}
-        pad={{ vertical: "medium"}}
+        border={{ color: "brand", size: "medium" }}
+        pad={{ vertical: "small" }}
         align="center"
       >
         <Home />
