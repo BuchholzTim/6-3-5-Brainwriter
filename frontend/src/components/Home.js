@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Grommet} from 'grommet';
+import {Button, Box} from 'grommet';
 import Topic from "./topic/Topic";
 import JoinRound from "./JoinRound";
 import {socket} from "../socket/socket";
@@ -27,12 +27,12 @@ export class Home extends Component {
                 return <JoinRound/>;
             default:
                 return (
-                    <Grommet>
+                    <Box direction="column">
                         <Button color="brand" label="Schnelle Runde erstellen" value="1" onClick={this.switchPage}/>
                         <br/>
                         <Button label="Runde beitreten" value="2" onClick={this.switchPage}/>
                         <br/>
-                    </Grommet>
+                    </Box>
                 );
         }
     }
