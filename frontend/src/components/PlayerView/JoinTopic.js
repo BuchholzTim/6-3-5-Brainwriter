@@ -22,6 +22,7 @@ export class JoinTopic extends Component {
   submitSuck = () => {
     console.log(this.state.userName);
     console.log(this.state.joinCode);
+    this.props.setPage("1");
   };
 
   render() {

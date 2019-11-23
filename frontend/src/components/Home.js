@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button, Box } from "grommet";
-import { Group, Login} from "grommet-icons"
+import { Group, Login } from "grommet-icons";
 import Topic from "./topic/Topic";
-import JoinRound from "./JoinRound";
+import PlayerView from "./playerView/PlayerView";
 import { socket } from "../socket/socket";
 
 export class Home extends Component {
@@ -25,7 +25,17 @@ export class Home extends Component {
         socket.emit("joinTopic", {
           joinCode: "testRoom"
         });
-        return <JoinRound />;
+        return (
+          <Box
+            direction="row-responsive"
+            justify="center"
+            align="center"
+            pad="xlarge"
+            gap="medium"
+          >
+            <PlayerView />
+          </Box>
+        );
       default:
         return (
           <Box
@@ -43,7 +53,12 @@ export class Home extends Component {
               gap="small"
             >
               <Group size="large" color="dark-2" />
-              <Button primary label="Schnelle Runde erstellen" value="1" onClick={this.switchPage} />
+              <Button
+                primary
+                label="Schnelle Runde erstellen"
+                value="1"
+                onClick={this.switchPage}
+              />
             </Box>
 
             <Box
@@ -54,16 +69,14 @@ export class Home extends Component {
               gap="small"
             >
               <Login size="large" color="dark-2" />
-              <Button primary label="Runde beitreten" value="2" onClick={this.switchPage} />
+              <Button
+                primary
+                label="Runde beitreten"
+                value="2"
+                onClick={this.switchPage}
+              />
             </Box>
           </Box>
-
-          /*<Box direction="column">
-                        <Button color="brand" label="Schnelle Runde erstellen" value="1" onClick={this.switchPage}/>
-                        <br/>
-                        <Button label="Runde beitreten" value="2" onClick={this.switchPage}/>
-                        <br/>
-                    </Box>*/
         );
     }
   }

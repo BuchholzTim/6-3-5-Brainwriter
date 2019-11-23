@@ -42,9 +42,10 @@ export class Timer extends Component {
   }
 
   render() {
+    const gridArea = this.props.gridArea;
     return (
       <Grommet>
-        <Box align="center" pad="large">
+        <Box gridArea={gridArea} align="center" pad="large">
           <Stack anchor="center">
             <Meter
               type="circle"
