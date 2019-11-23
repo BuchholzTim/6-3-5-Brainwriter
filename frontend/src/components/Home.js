@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Button, Grommet } from "grommet";
+import { Button, Box } from "grommet";
+import { Group, Login} from "grommet-icons"
 import Topic from "./topic/Topic";
-import PlayerView from "./playerView/PlayerView";
+import JoinRound from "./JoinRound";
 import { socket } from "../socket/socket";
 
 export class Home extends Component {
@@ -18,26 +19,51 @@ export class Home extends Component {
   renderPage(page) {
     switch (page) {
       case "1":
+        socket.emit("test");
         return <Topic />;
       case "2":
-        return <PlayerView />;
+        socket.emit("joinTopic", {
+          joinCode: "testRoom"
+        });
+        return <JoinRound />;
       default:
         return (
-          <Grommet>
-            <Button
-              color="brand"
-              label="Schnelle Runde erstellen"
-              value="1"
-              onClick={this.switchPage}
-            />
-            <br />
-            <Button
-              label="Runde beitreten"
-              value="2"
-              onClick={this.switchPage}
-            />
-            <br />
-          </Grommet>
+          <Box
+            direction="row-responsive"
+            justify="center"
+            align="center"
+            pad="xlarge"
+            gap="medium"
+          >
+            <Box
+              pad="large"
+              align="center"
+              background={{ color: "light-6", opacity: "strong" }}
+              round
+              gap="small"
+            >
+              <Group size="large" color="dark-2" />
+              <Button primary label="Schnelle Runde erstellen" value="1" onClick={this.switchPage} />
+            </Box>
+
+            <Box
+              pad="large"
+              align="center"
+              background="light-6"
+              round
+              gap="small"
+            >
+              <Login size="large" color="dark-2" />
+              <Button primary label="Runde beitreten" value="2" onClick={this.switchPage} />
+            </Box>
+          </Box>
+
+          /*<Box direction="column">
+                        <Button color="brand" label="Schnelle Runde erstellen" value="1" onClick={this.switchPage}/>
+                        <br/>
+                        <Button label="Runde beitreten" value="2" onClick={this.switchPage}/>
+                        <br/>
+                    </Box>*/
         );
     }
   }

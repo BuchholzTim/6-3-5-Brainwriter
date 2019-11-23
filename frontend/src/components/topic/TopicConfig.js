@@ -1,64 +1,68 @@
 import React, { Component } from "react";
-import { TextArea, Form, TextInput, Button, FormField } from "grommet";
-//import CreateRoundModerator2 from "./CreateRoundModerator2";
+import { TextArea, Form, TextInput, Button, FormField, Box } from "grommet";
 
 export class CreateRoundModerator1 extends Component {
   state = {
-    page:""
+    question: "",
+    time: ""
   };
 
   createRound = () => {
     const { question } = this.state;
-    console.log(question);
     const { time } = this.state;
-    console.log(time);
+    this.props.setQuestion(question);
+    this.props.setTime(time);
+    this.setPage("1");
   };
 
-  setQuestion = event => {
-    this.setState({
-      question: event
-    });
+  setQuestion = question => {
+    this.setState({ question: question });
   };
 
-  setTime = event => {
-    this.setState({
-      time: event
-    });
+  setTime = time => {
+    this.setState({ time: time });
+  };
+
+  setPage = page => {
+    this.props.setPage(page);
   };
 
   render() {
     const { question } = this.state;
     const { time } = this.state;
     return (
-      <Form onSubmit={this.createRound}>
-        <FormField
-          label="Thema"
-          placeholder="Warum ist die Banane krumm?"
-          name="topic"
-          component={TextArea}
-          value={question}
-          onChange={event => this.setQuestion(event.target.value)}
-          resize={false}
-          required
-        />
+      <Box fill align="center" justify="center">
+        <Form onSubmit={this.createRound}>
+          <FormField
+            label="Thema"
+            placeholder="Warum ist die Banane krumm?"
+            name="topic"
+            component={TextArea}
+            value={question}
+            onChange={event => this.setQuestion(event.target.value)}
+            resize={false}
+            required
+          />
 
-        <FormField
-          label="Timer in Sekunden"
-          placeholder="180s"
-          name="time-per-round"
-          component={TextInput}
-          value={time}
-          onChange={event => this.setTime(event.target.value)}
-          required
-          validate={{ regexp: /^\d*(s)$/, message: "Wert muss mit s enden und zwischen X und Y liegen" }}
-        />
+          <FormField
+            label="Timer in Sekunden"
+            placeholder="180s"
+            name="time-per-round"
+            component={TextInput}
+            value={time}
+            onChange={event => this.setTime(event.target.value)}
+            required
+            validate={{
+              regexp: /^\d*(s)$/,
+              message: "Wert muss folgendes erfüllen"
+            }}
+          />
 
-        
-        <Button type="submit" primary label="Runde erstellen" />
-      </Form>
+          <Button type="submit" primary label="Runde erstellen" />
+        </Form>
+        </Box>
     );
   }
 }
 
-//<TextInput placeholder="type here" value={value} onChange={event => setValue(event.target.value)}/>
 export default CreateRoundModerator1;

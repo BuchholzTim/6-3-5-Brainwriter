@@ -1,5 +1,7 @@
 import React, {Component} from "react";
-import TopicConfig from "./TopicConfig"
+import TopicConfig from "./TopicConfig";
+import TopicControl from "./TopicControl";
+import TopicWaitingRoom from "./TopicWaitingRoom"
 //import {Button, Grommet} from 'grommet';
 
 export class Topic extends Component {
@@ -9,7 +11,20 @@ export class Topic extends Component {
         time: ""
     };
 
-    switchPage = event => {
+
+    setPage = (page) => {
+        this.setState({page: page})
+    };
+
+    setQuestion = (question) => {
+        this.setState({question: question})
+    };
+
+    setTime = (time) => {
+        this.setState({time: time})
+    };
+
+    switchPage = (event) => {
         this.setState({
             page: event.target.value
         });
@@ -18,19 +33,28 @@ export class Topic extends Component {
     renderPage(page) {
         switch (page) {
             case "1":
-                return <h1>case1</h1>
+                    return <TopicControl setPage={this.setPage}/>
             case "2":
-                return <h1>case2</h1>;
+                return <TopicWaitingRoom/>
             default:
                 return (
-                   <TopicConfig currentPage={page}/>
+                   <TopicConfig setPage={this.setPage} setQuestion={this.setQuestion} setTime={this.setTime}/>
                 );
         }
     }
 
     render() {
-        const page = this.state.page;
+        const { page } = this.state;
+        const { question } = this.state;
+        const { time } = this.state;
+
+        console.log("page " + page);
+        console.log("question " + question);
+        console.log("time " + time)
+
         return this.renderPage(page);
+
+        
     }
 }
 
