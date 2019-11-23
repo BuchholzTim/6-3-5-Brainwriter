@@ -11,6 +11,7 @@ export class Topic extends Component {
         time: ""
     };
 
+
     setPage = (page) => {
         this.setState({page: page})
     };
@@ -32,7 +33,7 @@ export class Topic extends Component {
     renderPage(page) {
         switch (page) {
             case "1":
-                    return <TopicControl/>
+                    return <TopicControl setPage={this.setPage}/>
             case "2":
                 return <TopicWaitingRoom/>
             default:
