@@ -15,7 +15,6 @@ export class IdeaTable extends Component {
 
   render() {
     const num_ideas = this.props.num_ideas;
-    const gridArea = this.props.gridArea;
     const data = this.props.data;
 
     for (let i = 0; i < data.length; i++) {
@@ -34,12 +33,7 @@ export class IdeaTable extends Component {
       column_configs.push(config);
     }
     return (
-      <DataTable
-        size="medium"
-        gridArea={gridArea}
-        columns={column_configs}
-        data={data}
-      ></DataTable>
+      <DataTable size="small" columns={column_configs} data={data}></DataTable>
     );
   }
 }

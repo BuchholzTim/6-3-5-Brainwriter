@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import JoinTopic from "./JoinTopic";
-import EnterIdeas from "./EnterIdeas copy";
+import EnterIdeas from "./EnterIdeas";
+import { IdeaResults } from "./IdeaResults";
 //import {Button, Grommet} from 'grommet';
 
 export class PlayerView extends Component {
@@ -19,10 +20,16 @@ export class PlayerView extends Component {
           <EnterIdeas
             num_ideas={4}
             question={"Warum ist die Banane krumm?"}
+            setPage={this.setPage}
           ></EnterIdeas>
         );
       case "2":
-        return <h1>case2</h1>;
+        return (
+          <IdeaResults
+            num_ideas={4}
+            question={"Warum ist die Banane krumm?"}
+          ></IdeaResults>
+        );
       default:
         return <JoinTopic setPage={this.setPage} />;
     }

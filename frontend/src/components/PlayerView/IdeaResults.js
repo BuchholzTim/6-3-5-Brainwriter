@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-import { Grid, Text, Box } from "grommet";
-import { IdeaInput } from "./IdeaInput";
+import { Button, Text, Box } from "grommet";
 import { IdeaTable } from "./IdeaTable";
-import { Timer } from "../tools/Timer";
 
-export class enterIdeas extends Component {
+export class IdeaResults extends Component {
   render() {
     const num_ideas = this.props.num_ideas;
     const question = this.props.question;
-
-    const ideaInputs = [];
 
     // Should be delivered via API-Call
     const data = [
@@ -39,26 +35,36 @@ export class enterIdeas extends Component {
         idea_2: "Much Wow",
         idea_3: "Krasses Ding",
         idea_4: "Kranke vierte Idee"
+      },
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4: "Kranke vierte Idee"
+      },
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4: "Kranke vierte Idee"
+      },
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4: "Kranke vierte Idee"
       }
     ];
-
-    // Generate Items
-    for (let i = 0; i < num_ideas; i++) {
-      // Generate Input-Field for each Idea
-      ideaInputs.push(<IdeaInput></IdeaInput>);
-    }
-
     return (
       <Box>
         <Box direction="row">
           <Text>{question}</Text>
-          <Timer roundTime={180}></Timer>
         </Box>
         <IdeaTable num_ideas={num_ideas} data={data} />
-        <Box direction="row">{ideaInputs}</Box>
+        <Button>Drück Mich</Button>
       </Box>
     );
   }
 }
 
-export default enterIdeas;
+export default IdeaResults;
