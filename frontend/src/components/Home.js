@@ -4,6 +4,7 @@ import { Group, Login } from "grommet-icons";
 import Topic from "./topic/Topic";
 import PlayerView from "./playerView/PlayerView";
 import { socket } from "../socket/socket";
+import { Link } from "react-router-dom";
 
 export class Home extends Component {
   state = {
@@ -82,8 +83,48 @@ export class Home extends Component {
   }
 
   render() {
-    const { page } = this.state;
-    return this.renderPage(page);
+    return (
+      <Box
+        direction="column"
+        border={{ color: "brand", size: "medium" }}
+        pad={{ vertical: "xsmall" }}
+        align="center"
+      >
+        <Box
+          direction="row-responsive"
+          justify="center"
+          align="center"
+          pad="xlarge"
+          gap="medium"
+        >
+          <Box
+            pad="large"
+            align="center"
+            background={{ color: "light-6", opacity: "strong" }}
+            round
+            gap="small"
+          >
+            <Group size="large" color="dark-2" />
+            <Link to="/topic">
+              <Button primary label="Schnelle Runde erstellen" value="1" />
+            </Link>
+          </Box>
+          <Link to="/playerView">
+            <Box
+              pad="large"
+              align="center"
+              background="light-6"
+              round
+              gap="small"
+            >
+              <Login size="large" color="dark-2" />
+
+              <Button primary label="Runde beitreten" value="2" />
+            </Box>
+          </Link>
+        </Box>
+      </Box>
+    );
   }
 }
 
