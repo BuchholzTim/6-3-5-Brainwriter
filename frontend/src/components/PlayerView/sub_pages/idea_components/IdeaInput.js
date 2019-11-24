@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TextArea} from "grommet";
+import { TextArea } from "grommet";
 
 export class IdeaInput extends Component {
   render() {

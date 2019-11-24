@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { TextArea, Form, TextInput, Button, FormField, Box } from "grommet";
+import { Link } from "react-router-dom";
 
 export class CreateRoundModerator1 extends Component {
   state = {
@@ -8,11 +9,11 @@ export class CreateRoundModerator1 extends Component {
   };
 
   createRound = () => {
-    const { question } = this.state;
-    const { time } = this.state;
-    this.props.setQuestion(question);
-    this.props.setTime(time);
-    this.setPage("1");
+    // const { question } = this.state;
+    // const { time } = this.state;
+    // this.props.setQuestion(question);
+    // this.props.setTime(time);
+    // this.setPage("1");
   };
 
   setQuestion = question => {
@@ -57,10 +58,11 @@ export class CreateRoundModerator1 extends Component {
               message: "Wert muss folgendes erfüllen"
             }}
           />
-
-          <Button type="submit" primary label="Runde erstellen" />
+          <Link to="/topic/controls">
+            <Button type="submit" primary label="Runde erstellen" />
+          </Link>
         </Form>
-        </Box>
+      </Box>
     );
   }
 }

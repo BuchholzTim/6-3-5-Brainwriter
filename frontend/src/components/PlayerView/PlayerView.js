@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import JoinTopic from "./sub_pages/JoinTopic";
 import EnterIdeas from "./sub_pages/EnterIdeas";
 import { IdeaResults } from "./sub_pages/IdeaResults";
+import { Switch, Route } from "react-router-dom";
 
 export class PlayerView extends Component {
   state = {
-    page: "",
     joinCode: "",
     userName: "",
     timePerRound: 10,
@@ -72,18 +72,21 @@ export class PlayerView extends Component {
     this.setState({ data: data, num_ideas: Object.keys(data[0]).length });
   };
 
-  // setJoinCode = joinCode => {
-  //   this.setState({ joinCode: joinCode });
-  // };
-
   setPage = page => {
     this.setState({ page: page });
   };
 
-  renderPage(page) {
-    switch (page) {
-      case "1":
-        return (
+  render() {
+    return (
+      <Switch>
+        <Route path="/playerView/summary">
+          <IdeaResults
+            num_ideas={this.state.num_ideas}
+            question={this.state.question}
+            data={this.state.data}
+          ></IdeaResults>
+        </Route>
+        <Route path="/playerView/ideating">
           <EnterIdeas
             num_ideas={this.state.num_ideas}
             question={this.state.question}
@@ -91,23 +94,12 @@ export class PlayerView extends Component {
             data={this.state.data}
             timePerRound={this.state.timePerRound}
           ></EnterIdeas>
-        );
-      case "2":
-        return (
-          <IdeaResults
-            num_ideas={this.state.num_ideas}
-            question={this.state.question}
-            data={this.state.data}
-          ></IdeaResults>
-        );
-      default:
-        return <JoinTopic setPage={this.setPage} />;
-    }
-  }
-
-  render() {
-    const { page } = this.state;
-    return this.renderPage(page);
+        </Route>
+        <Route path="/playerView">
+          <JoinTopic setPage={this.setPage} />
+        </Route>
+      </Switch>
+    );
   }
 }
 

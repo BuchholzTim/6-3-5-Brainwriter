@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, FormField, TextInput, Button, Grommet } from "grommet";
+import { Link } from "react-router-dom";
 
 export class JoinTopic extends Component {
   state = {
@@ -21,18 +22,12 @@ export class JoinTopic extends Component {
     });
   };
 
-  submit = () => {
-    console.log(this.state.userName);
-    console.log(this.state.joinCode);
-    this.props.setPage("1");
-  };
-
   render() {
     const { userName } = this.state;
     const { joinCode } = this.state;
     return (
       <Grommet>
-        <Form onSubmit={this.submit}>
+        <Form>
           <FormField
             label="User-Name"
             placeholder="Guter Username"
@@ -52,8 +47,9 @@ export class JoinTopic extends Component {
             onChange={event => this.setJoinCode(event.target.value)}
             required
           />
-
-          <Button type="submit" primary label="Runde beitreten" />
+          <Link to="/playerView/ideating">
+            <Button type="submit" primary label="Runde beitreten" />
+          </Link>
         </Form>
       </Grommet>
     );
