@@ -3,23 +3,25 @@ import { Form, FormField, TextInput, Button, Grommet } from "grommet";
 
 export class JoinTopic extends Component {
   state = {
-    userName: "",
-    joinCode: ""
+    userName: this.props.userName,
+    joinCode: this.props.joinCode
   };
 
   setUserName = event => {
+    // this.props.setUserName(event);
     this.setState({
       userName: event
     });
   };
 
   setJoinCode = event => {
+    // this.props.setJoinCode(event);
     this.setState({
       joinCode: event
     });
   };
 
-  submitSuck = () => {
+  submit = () => {
     console.log(this.state.userName);
     console.log(this.state.joinCode);
     this.props.setPage("1");
@@ -30,10 +32,10 @@ export class JoinTopic extends Component {
     const { joinCode } = this.state;
     return (
       <Grommet>
-        <Form onSubmit={this.submitSuck}>
+        <Form onSubmit={this.submit}>
           <FormField
             label="User-Name"
-            placeholder="Cockstopfer_69"
+            placeholder="Guter Username"
             name="userName"
             component={TextInput}
             value={userName}
@@ -43,7 +45,7 @@ export class JoinTopic extends Component {
 
           <FormField
             label="Join-Code"
-            placeholder="OwO420"
+            placeholder="Guter JoinCode"
             name="joinCode"
             component={TextInput}
             value={joinCode}
