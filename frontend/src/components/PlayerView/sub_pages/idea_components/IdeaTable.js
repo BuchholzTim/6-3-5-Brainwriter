@@ -33,7 +33,7 @@ export class IdeaTable extends Component {
       column_configs.push(config);
     }
     return (
-      <DataTable size="small" columns={column_configs} data={data}></DataTable>
+      <DataTable size="medium" columns={column_configs} data={data}></DataTable>
     );
   }
 }

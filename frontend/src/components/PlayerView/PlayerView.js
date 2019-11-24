@@ -1,13 +1,80 @@
 import React, { Component } from "react";
-import JoinTopic from "./JoinTopic";
-import EnterIdeas from "./EnterIdeas";
-import { IdeaResults } from "./IdeaResults";
-//import {Button, Grommet} from 'grommet';
+import JoinTopic from "./sub_pages/JoinTopic";
+import EnterIdeas from "./sub_pages/EnterIdeas";
+import { IdeaResults } from "./sub_pages/IdeaResults";
 
 export class PlayerView extends Component {
   state = {
-    page: ""
+    page: "",
+    joinCode: "",
+    userName: "",
+    timePerRound: 10,
+    question: "Warum ist die Banane krumm?",
+    data: "",
+    num_ideas: "",
+    previous_data: ""
   };
+
+  componentDidMount() {
+    this.getMessages();
+  }
+
+  getMessages = () => {
+    //API-CALL
+    const data = [
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4:
+          "Kranke vierte Idee\nKranke vierte Idee\nKranke vierte Idee\nKranke vierte Idee"
+      },
+      {
+        idea_1:
+          "Kranke vierte Idee\nKranke vierte Idee\nKranke vierte Idee\nKranke vierte Idee",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4: "Kranke vierte Idee"
+      },
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3:
+          "Kranke vierte Idee\nKranke vierte Idee\nKranke vierte Idee\nKranke vierte Idee",
+        idea_4: "Kranke vierte Idee"
+      },
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4: "Kranke vierte Idee"
+      },
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4: "Kranke vierte Idee"
+      },
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4: "Kranke vierte Idee"
+      },
+      {
+        idea_1: "Noice",
+        idea_2: "Much Wow",
+        idea_3: "Krasses Ding",
+        idea_4: "Kranke vierte Idee"
+      }
+    ];
+
+    this.setState({ data: data, num_ideas: Object.keys(data[0]).length });
+  };
+
+  // setJoinCode = joinCode => {
+  //   this.setState({ joinCode: joinCode });
+  // };
 
   setPage = page => {
     this.setState({ page: page });
@@ -18,16 +85,19 @@ export class PlayerView extends Component {
       case "1":
         return (
           <EnterIdeas
-            num_ideas={4}
-            question={"Warum ist die Banane krumm?"}
+            num_ideas={this.state.num_ideas}
+            question={this.state.question}
             setPage={this.setPage}
+            data={this.state.data}
+            timePerRound={this.state.timePerRound}
           ></EnterIdeas>
         );
       case "2":
         return (
           <IdeaResults
-            num_ideas={4}
-            question={"Warum ist die Banane krumm?"}
+            num_ideas={this.state.num_ideas}
+            question={this.state.question}
+            data={this.state.data}
           ></IdeaResults>
         );
       default:
