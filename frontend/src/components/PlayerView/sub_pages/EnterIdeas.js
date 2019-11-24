@@ -33,8 +33,10 @@ export class enterIdeas extends Component {
 
     return (
       <Box direction="column" justify="center" gap="small" pad="small">
-        <QuestionBox question={question} />
-        <Timer roundTime={timePerRound} executeAfter={this.showResults} />
+        <Box direction="row" align="center" justify="center">
+          <QuestionBox question={question} />
+          <Timer roundTime={timePerRound} executeAfter={this.showResults} />
+        </Box>
         <IdeaTable num_ideas={num_ideas} data={data} />
         <Box direction="row">{ideaInputs}</Box>
       </Box>

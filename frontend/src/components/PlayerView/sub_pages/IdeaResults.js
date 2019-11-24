@@ -22,10 +22,10 @@ export class IdeaResults extends Component {
     const { num_ideas } = this.state;
 
     return (
-      <Box direction="column" gap="large" pad="small">
+      <Box direction="column" gap="medium" pad="small">
         <QuestionBox question={question} />
         <IdeaTable num_ideas={num_ideas} data={data} />
-        <Box direction="column" gap="xsmall" justify="center">
+        <Box direction="row" gap="xsmall" justify="end">
           <Button
             primary
             label="Übersicht anzeigen"
