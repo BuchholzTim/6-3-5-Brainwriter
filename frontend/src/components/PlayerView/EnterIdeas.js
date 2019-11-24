@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Text, Box } from "grommet";
+import { Text, Box } from "grommet";
 import { IdeaInput } from "./IdeaInput";
 import { IdeaTable } from "./IdeaTable";
 import { Timer } from "../tools/Timer";
