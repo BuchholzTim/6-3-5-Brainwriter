@@ -5,10 +5,18 @@ import { FormPreviousLink } from "grommet-icons";
 import Home from "./components/Home";
 import { socket } from "./socket/socket";
 
+//Themes
+import { deepMerge } from "grommet/utils";
+import testTheme from "./themes/testTheme"
+
+
+const customFocus = deepMerge(Grommet, testTheme
+);
+
 function App() {
   socket.connect();
   return (
-    <Grommet className="App">
+    <Grommet className="App" theme={customFocus}>
       <Box
         as="header"
         direction="row"
