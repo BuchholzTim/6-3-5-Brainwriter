@@ -14,7 +14,7 @@ function App() {
         direction="row"
         align="center"
         justify="between"
-        pad={{ vertical: "small", horizontal: "medium" }}
+        pad={{ vertical: "xsmall", horizontal: "xsmall" }}
         background="brand"
         elevation="large"
         style={{ zIndex: "1000" }}
@@ -27,7 +27,7 @@ function App() {
       <Box
         direction="column"
         border={{ color: "brand", size: "medium" }}
-        pad={{ vertical: "small" }}
+        pad={{ vertical: "xsmall" }}
         align="center"
       >
         <Home />

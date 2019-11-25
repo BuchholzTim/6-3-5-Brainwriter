@@ -30,7 +30,7 @@ export class Home extends Component {
             direction="row-responsive"
             justify="center"
             align="center"
-            pad="xlarge"
+            pad="small"
             gap="medium"
           >
             <PlayerView />
