@@ -24,16 +24,12 @@ export class CreateRoundModerator1 extends Component {
     this.setState({ time: time });
   };
 
-  setPage = page => {
-    this.props.setPage(page);
-  };
-
   render() {
     const { question } = this.state;
     const { time } = this.state;
     return (
       <Box fill align="center" justify="center">
-        <Form onSubmit={this.createRound}>
+        <Form>
           <FormField
             label="Thema"
             placeholder="Warum ist die Banane krumm?"

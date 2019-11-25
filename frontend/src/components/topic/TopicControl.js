@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Box, Text, Button } from "grommet";
 import { PlayerList } from "../tools/PlayerList";
+import { Link } from "react-router-dom";
 
 export class TopicControl extends Component {
   state = {
@@ -9,13 +10,8 @@ export class TopicControl extends Component {
     }
   };
 
-  setPage = page => {
-    this.props.setPage(page);
-  };
-
   startSession = () => {
     console.log("Started session");
-    this.setPage("2");
   };
 
   render() {
@@ -26,7 +22,9 @@ export class TopicControl extends Component {
         <Box direction="column" gap="large">
           <Text weight="bold">Status:</Text>
           <Text>Session noch nicht gestartet, warten auf Teilnehmer</Text>
-          <Button primary label="Session starten" onClick={this.startSession} />
+          <Link to="/topic/waiting">
+            <Button primary label="Session starten" />
+          </Link>
         </Box>
       </Box>
     );

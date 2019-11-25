@@ -5,6 +5,7 @@ import { PlayerView } from "./components/playerView/PlayerView";
 import { Grommet, Box } from "grommet";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import MenuBar from "./components/MenuBar";
+import "./App.css";
 
 export class App extends Component {
   render() {

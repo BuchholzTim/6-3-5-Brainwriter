@@ -4,6 +4,7 @@ import { IdeaInput } from "./idea_components/IdeaInput";
 import { IdeaTable } from "./idea_components/IdeaTable";
 import { Timer } from "../../tools/Timer";
 import { QuestionBox } from "../../tools/QuestionBox";
+import { useHistory } from "react-router-dom";
 
 export class enterIdeas extends Component {
   state = {
@@ -14,7 +15,9 @@ export class enterIdeas extends Component {
   };
 
   showResults = () => {
-    this.props.setPage("2");
+    let history = useHistory();
+    history.push("/playerView/summary");
+    // this.setState({ redirect: true });
   };
 
   render() {
@@ -30,7 +33,6 @@ export class enterIdeas extends Component {
       // Generate Input-Field for each Idea
       ideaInputs.push(<IdeaInput></IdeaInput>);
     }
-
     return (
       <Box direction="column" gap="small">
         <Box direction="row" align="center" justify="center">
