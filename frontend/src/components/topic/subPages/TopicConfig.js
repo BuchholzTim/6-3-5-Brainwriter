@@ -7,14 +7,6 @@ export class CreateRoundModerator1 extends Component {
     time: ""
   };
 
-  createRound = () => {
-    const { question } = this.state;
-    const { time } = this.state;
-    this.props.setQuestion(question);
-    this.props.setTime(time);
-    this.setPage("1");
-  };
-
   setQuestion = question => {
     this.setState({ question: question });
   };
@@ -23,8 +15,8 @@ export class CreateRoundModerator1 extends Component {
     this.setState({ time: time });
   };
 
-  setPage = page => {
-    this.props.setPage(page);
+  nextPage = () => {
+    this.props.setPage("CONTROL");
   };
 
   render() {
@@ -32,7 +24,7 @@ export class CreateRoundModerator1 extends Component {
     const { time } = this.state;
     return (
       <Box fill align="center" justify="center">
-        <Form onSubmit={this.createRound}>
+        <Form onSubmit={this.nextPage}>
           <FormField
             label="Thema"
             placeholder="Warum ist die Banane krumm?"
@@ -57,10 +49,9 @@ export class CreateRoundModerator1 extends Component {
               message: "Wert muss folgendes erfüllen"
             }}
           />
-
           <Button type="submit" primary label="Runde erstellen" />
         </Form>
-        </Box>
+      </Box>
     );
   }
 }

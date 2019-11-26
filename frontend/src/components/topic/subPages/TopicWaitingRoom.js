@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Box, Button } from "grommet";
-import PlayerList from "../tools/PlayerList";
-import Timer from "../tools/Timer";
-import RoundState from "../tools/RoundState";
-import { QuestionBox } from "../tools/QuestionBox";
+import PlayerList from "../../tools/PlayerList";
+import Timer from "../../tools/Timer";
+import RoundState from "../../tools/RoundState";
+import { QuestionBox } from "../../tools/QuestionBox";
 
 export class TopicWaitingRoom extends Component {
   state = {

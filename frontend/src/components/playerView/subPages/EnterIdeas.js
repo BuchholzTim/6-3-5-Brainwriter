@@ -14,7 +14,7 @@ export class enterIdeas extends Component {
   };
 
   showResults = () => {
-    this.props.setPage("2");
+    this.props.setPage("SUMMARY");
   };
 
   render() {
@@ -30,11 +30,10 @@ export class enterIdeas extends Component {
       // Generate Input-Field for each Idea
       ideaInputs.push(<IdeaInput></IdeaInput>);
     }
-
     return (
       <Box direction="column" gap="small">
         <Box direction="row" align="center" justify="center">
-        <QuestionBox question={question} />
+          <QuestionBox question={question} />
           <Timer roundTime={timePerRound} executeAfter={this.showResults} />
         </Box>
         <IdeaTable num_ideas={num_ideas} data={data} />
