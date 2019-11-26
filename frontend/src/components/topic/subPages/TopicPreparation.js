@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Box, Text, Button } from "grommet";
 import { PlayerList } from "../../tools/PlayerList";
 
+import { connect } from "react-redux";
+import { setTopicPage } from "../../../redux/actions/pageActions";
+import { CONTROLS } from "../pages";
+
 export class TopicPreparation extends Component {
   state = {
     Authors: {
@@ -10,7 +14,7 @@ export class TopicPreparation extends Component {
   };
 
   nextPage = () => {
-    this.props.setPage("WAITING");
+    this.props.setPage(CONTROLS);
   };
 
   render() {
@@ -28,4 +32,7 @@ export class TopicPreparation extends Component {
   }
 }
 
-export default TopicPreparation;
+const mapStateToProps = null;
+const mapDispatchToProps = { setPage: setTopicPage };
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopicPreparation);

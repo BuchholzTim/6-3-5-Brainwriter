@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import playerReducer from "./playerReducer";
 import topicReducer from "./topicReducer";
+import pageReducer from "./pageReducer";
 
 export default combineReducers({
-  playerReducer,
-  topicReducer
+  topicReducer,
+  pageReducer
 });

@@ -5,6 +5,9 @@ import Timer from "../../tools/Timer";
 import RoundState from "../../tools/RoundState";
 import { QuestionBox } from "../../tools/QuestionBox";
 
+import { connect } from "react-redux";
+import { setTopicPage } from "../../../redux/actions/pageActions";
+
 export class TopicControls extends Component {
   state = {
     round: "1",
@@ -51,4 +54,7 @@ export class TopicControls extends Component {
   }
 }
 
-export default TopicControls;
+const mapStateToProps = null;
+const mapDispatchToProps = { setPage: setTopicPage };
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopicControls);

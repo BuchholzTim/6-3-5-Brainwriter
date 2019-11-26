@@ -4,14 +4,10 @@ import { Form, FormField, TextInput, Button, Box } from "grommet";
 import { ROUND } from "../pages";
 
 import { connect } from "react-redux";
-import { setUserData } from "../../../redux/actions/playerActions";
+import { setUserData, getTopicData } from "../../../redux/actions/topicActions";
+import { setPlayerPage } from "../../../redux/actions/pageActions";
 
 export class PlayerViewJoin extends Component {
-  componentDidMount() {
-    console.log(this.props);
-    // this.props.fetchPosts();
-  }
-
   setUserName = event => {
     this.setState({
       userName: event
@@ -26,8 +22,10 @@ export class PlayerViewJoin extends Component {
 
   nextPage = () => {
     const { userName, joinCode } = this.state;
+
+    this.props.getTopicData(joinCode);
+
     this.props.setUserData({
-      joinCode,
       userName
     });
     this.props.setPage(ROUND);
@@ -60,4 +58,11 @@ export class PlayerViewJoin extends Component {
   }
 }
 
-export default connect(null, { setUserData })(PlayerViewJoin);
+const mapStateToProps = null;
+const mapDispatchToProps = {
+  setUserData: setUserData,
+  setPage: setPlayerPage,
+  getTopicData: getTopicData
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewJoin);

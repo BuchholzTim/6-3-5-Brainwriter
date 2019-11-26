@@ -3,6 +3,8 @@ import { Button, Box } from "grommet";
 import { IdeaTable } from "./ideaComponents/IdeaTable";
 import { QuestionBox } from "../../tools/QuestionBox";
 
+import { connect } from "react-redux";
+
 export class PlayerViewSummary extends Component {
   state = {
     data: this.props.data,
@@ -13,13 +15,7 @@ export class PlayerViewSummary extends Component {
   showSummary = () => {};
 
   render() {
-    // const num_ideas = this.props.num_ideas;
-    // const question = this.props.question;
-    // const data = this.props.data;
-
-    const { data } = this.state;
-    const { question } = this.state;
-    const { num_ideas } = this.state;
+    const { data, question, num_ideas } = this.state;
 
     return (
       <Box direction="column" gap="medium" pad="small">
@@ -37,4 +33,7 @@ export class PlayerViewSummary extends Component {
   }
 }
 
-export default PlayerViewSummary;
+const mapStateToProps = null;
+const mapDispatchToProps = null;
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewSummary);

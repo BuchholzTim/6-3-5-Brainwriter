@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { TextArea, Form, TextInput, Button, FormField, Box } from "grommet";
 import { connect } from "react-redux";
+import { setTopicPage } from "../../../redux/actions/pageActions";
 import { setTopicData } from "../../../redux/actions/topicActions";
 import { PREPARATION } from "../pages";
 
@@ -10,7 +11,7 @@ export class TopicConfig extends Component {
     timePerRound: ""
   };
 
-  setQuestion = topic => {
+  setTopic = topic => {
     this.setState({ topic: topic });
   };
 
@@ -20,10 +21,7 @@ export class TopicConfig extends Component {
 
   nextPage = () => {
     const { topic, timePerRound } = this.state;
-    this.props.setTopicData({
-      topic,
-      timePerRound
-    });
+    this.props.setTopicData({ topic: topic, timePerRound: timePerRound });
     this.props.setPage(PREPARATION);
   };
 
@@ -36,7 +34,7 @@ export class TopicConfig extends Component {
             placeholder="Warum ist die Banane krumm?"
             name="topic"
             component={TextArea}
-            onChange={event => this.setQuestion(event.target.value)}
+            onChange={event => this.setTopic(event.target.value)}
             resize={false}
             required
           />
@@ -60,4 +58,10 @@ export class TopicConfig extends Component {
   }
 }
 
-export default connect(null, { setTopicData })(TopicConfig);
+const mapStateToProps = null;
+const mapDispatchToProps = {
+  setTopicData: setTopicData,
+  setPage: setTopicPage
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopicConfig);

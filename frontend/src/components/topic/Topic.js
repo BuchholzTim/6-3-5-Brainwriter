@@ -1,42 +1,41 @@
 import React, { Component } from "react";
-import { TopicConfig } from "./subPages/TopicConfig";
-import { TopicControls } from "./subPages/TopicControls";
-import { TopicPreparation } from "./subPages/TopicPreparation";
+import TopicConfig from "./subPages/TopicConfig";
+import TopicControls from "./subPages/TopicControls";
+import TopicPreparation from "./subPages/TopicPreparation";
 import { CONTROLS, PREPARATION } from "./pages";
 
+import { connect } from "react-redux";
+
 export class Topic extends Component {
-  state = {
-    question: "",
-    time: ""
-  };
-
-  setPage = page => {
-    this.setState({ page: page });
-  };
-
-  setQuestion = question => {
-    this.setState({ question: question });
-  };
-
-  setTime = time => {
-    this.setState({ time: time });
-  };
-
   switchPage = () => {
-    const { page } = this.state;
+    const { page } = this.props.page;
     switch (page) {
       case PREPARATION:
-        return <TopicPreparation setPage={this.setPage}></TopicPreparation>;
+        return <TopicPreparation></TopicPreparation>;
       case CONTROLS:
-        return <TopicControls setPage={this.setPage}></TopicControls>;
+        return <TopicControls></TopicControls>;
       default:
-        return <TopicConfig setPage={this.setPage}></TopicConfig>;
+        return <TopicConfig></TopicConfig>;
     }
   };
 
   render() {
-    return this.switchPage();
+    const { topicPage } = this.props.topicPage;
+    console.log(topicPage);
+    switch (topicPage) {
+      case PREPARATION:
+        return <TopicPreparation></TopicPreparation>;
+      case CONTROLS:
+        return <TopicControls></TopicControls>;
+      default:
+        return <TopicConfig></TopicConfig>;
+    }
   }
 }
 
-export default Topic;
+const mapStateToProps = state => ({
+  topicPage: state.pageReducer.topicPage
+});
+const mapDispatchToProps = null;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Topic);

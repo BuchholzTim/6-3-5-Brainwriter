@@ -1,2 +1,7 @@
-export const SET_USERDATA = "SET_USERDATA";
-export const SET_TOPICDATA = "SET_TOPICDATA";
+export const SET_TOPIC_DATA = "SET_TOPIC_DATA";
+export const INITIATE_TOPIC = "INITIATE_TOPIC";
+export const SET_USER_DATA = "SET_USERDATA";
+export const SET_PLAYER_PAGE = "SET_PLAYER_PAGE";
+export const SET_TOPIC_PAGE = "SET_TOPIC_PAGE";
+export const SET_MESSAGES = "SET_MESSAGES";
+export const INCREMENT_ROUND = "INCREMENT_ROUND";
