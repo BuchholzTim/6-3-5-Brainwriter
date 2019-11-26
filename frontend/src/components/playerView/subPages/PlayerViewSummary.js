@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Button, Box } from "grommet";
-import { IdeaTable } from "./idea_components/IdeaTable";
+import { IdeaTable } from "./ideaComponents/IdeaTable";
 import { QuestionBox } from "../../tools/QuestionBox";
 
-export class IdeaResults extends Component {
+export class PlayerViewSummary extends Component {
   state = {
     data: this.props.data,
     question: this.props.question,
@@ -37,4 +37,4 @@ export class IdeaResults extends Component {
   }
 }
 
-export default IdeaResults;
+export default PlayerViewSummary;

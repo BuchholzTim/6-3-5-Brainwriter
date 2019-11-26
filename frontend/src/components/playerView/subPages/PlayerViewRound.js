@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Box } from "grommet";
-import { IdeaInput } from "./idea_components/IdeaInput";
-import { IdeaTable } from "./idea_components/IdeaTable";
+import { IdeaInput } from "./ideaComponents/IdeaInput";
+import { IdeaTable } from "./ideaComponents/IdeaTable";
 import { Timer } from "../../tools/Timer";
 import { QuestionBox } from "../../tools/QuestionBox";
+import { SUMMARY } from "../pages";
 
-export class enterIdeas extends Component {
+export class PlayerViewRound extends Component {
   state = {
     data: this.props.data,
     question: this.props.question,
@@ -14,7 +15,7 @@ export class enterIdeas extends Component {
   };
 
   showResults = () => {
-    this.props.setPage("SUMMARY");
+    this.props.setPage(SUMMARY);
   };
 
   render() {
@@ -43,4 +44,4 @@ export class enterIdeas extends Component {
   }
 }
 
-export default enterIdeas;
+export default PlayerViewRound;

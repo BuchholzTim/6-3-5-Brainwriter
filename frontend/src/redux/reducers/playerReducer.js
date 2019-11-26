@@ -1,14 +1,10 @@
-import { MY_TYPE } from "../actions/types";
+import { SET_USERDATA } from "../actions/types";
 
-const initialState = {
-  items: [],
-  data: {}
-};
+const initialState = {};
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case MY_TYPE:
-      console.log(`${MY_TYPE}`);
+    case SET_USERDATA:
       return {
         ...state,
         data: action.payload

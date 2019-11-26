@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Box, Text, Button } from "grommet";
 import { PlayerList } from "../../tools/PlayerList";
 
-export class TopicControl extends Component {
+export class TopicPreparation extends Component {
   state = {
     Authors: {
       Author: [{ name: "Peter" }, { name: "Hans" }]
@@ -28,4 +28,4 @@ export class TopicControl extends Component {
   }
 }
 
-export default TopicControl;
+export default TopicPreparation;

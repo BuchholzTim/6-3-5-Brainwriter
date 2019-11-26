@@ -5,7 +5,7 @@ import Timer from "../../tools/Timer";
 import RoundState from "../../tools/RoundState";
 import { QuestionBox } from "../../tools/QuestionBox";
 
-export class TopicWaitingRoom extends Component {
+export class TopicControls extends Component {
   state = {
     round: "1",
     maxrounds: "5",
@@ -51,4 +51,4 @@ export class TopicWaitingRoom extends Component {
   }
 }
 
-export default TopicWaitingRoom;
+export default TopicControls;

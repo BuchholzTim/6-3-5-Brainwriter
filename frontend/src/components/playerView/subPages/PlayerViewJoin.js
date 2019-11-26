@@ -1,24 +1,36 @@
 import React, { Component } from "react";
 import { Form, FormField, TextInput, Button, Box } from "grommet";
 
-export class JoinTopic extends Component {
+import { ROUND } from "../pages";
+
+import { connect } from "react-redux";
+import { setUserData } from "../../../redux/actions/playerActions";
+
+export class PlayerViewJoin extends Component {
+  componentDidMount() {
+    console.log(this.props);
+    // this.props.fetchPosts();
+  }
+
   setUserName = event => {
     this.setState({
       userName: event
     });
-    console.log(event);
   };
 
   setJoinCode = event => {
     this.setState({
       joinCode: event
     });
-    console.log(event);
   };
 
   nextPage = () => {
-    console.log("Getting calleed");
-    this.props.setPage("ENTER");
+    const { userName, joinCode } = this.state;
+    this.props.setUserData({
+      joinCode,
+      userName
+    });
+    this.props.setPage(ROUND);
   };
 
   render() {
@@ -48,4 +60,4 @@ export class JoinTopic extends Component {
   }
 }
 
-export default JoinTopic;
+export default connect(null, { setUserData })(PlayerViewJoin);

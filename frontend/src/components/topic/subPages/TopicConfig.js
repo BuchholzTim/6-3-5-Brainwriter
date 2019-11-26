@@ -1,27 +1,33 @@
 import React, { Component } from "react";
 import { TextArea, Form, TextInput, Button, FormField, Box } from "grommet";
+import { connect } from "react-redux";
+import { setTopicData } from "../../../redux/actions/topicActions";
+import { PREPARATION } from "../pages";
 
-export class CreateRoundModerator1 extends Component {
+export class TopicConfig extends Component {
   state = {
-    question: "",
-    time: ""
+    topic: "",
+    timePerRound: ""
   };
 
-  setQuestion = question => {
-    this.setState({ question: question });
+  setQuestion = topic => {
+    this.setState({ topic: topic });
   };
 
-  setTime = time => {
-    this.setState({ time: time });
+  setTime = timePerRound => {
+    this.setState({ timePerRound: timePerRound });
   };
 
   nextPage = () => {
-    this.props.setPage("CONTROL");
+    const { topic, timePerRound } = this.state;
+    this.props.setTopicData({
+      topic,
+      timePerRound
+    });
+    this.props.setPage(PREPARATION);
   };
 
   render() {
-    const { question } = this.state;
-    const { time } = this.state;
     return (
       <Box fill align="center" justify="center">
         <Form onSubmit={this.nextPage}>
@@ -30,7 +36,6 @@ export class CreateRoundModerator1 extends Component {
             placeholder="Warum ist die Banane krumm?"
             name="topic"
             component={TextArea}
-            value={question}
             onChange={event => this.setQuestion(event.target.value)}
             resize={false}
             required
@@ -38,14 +43,13 @@ export class CreateRoundModerator1 extends Component {
 
           <FormField
             label="Timer in Sekunden"
-            placeholder="180s"
+            placeholder="180"
             name="time-per-round"
             component={TextInput}
-            value={time}
             onChange={event => this.setTime(event.target.value)}
             required
             validate={{
-              regexp: /^\d*(s)$/,
+              regexp: /^\d*$/,
               message: "Wert muss folgendes erfüllen"
             }}
           />
@@ -56,4 +60,4 @@ export class CreateRoundModerator1 extends Component {
   }
 }
 
-export default CreateRoundModerator1;
+export default connect(null, { setTopicData })(TopicConfig);

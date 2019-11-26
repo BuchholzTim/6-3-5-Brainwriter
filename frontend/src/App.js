@@ -12,9 +12,9 @@ import store from "./redux/store";
 export class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <Router>
         <Grommet className="App">
-          <Router>
+          <Provider store={store}>
             <Menubar />
             <Box
               direction="column"
@@ -34,9 +34,9 @@ export class App extends Component {
                 </Route>
               </Switch>
             </Box>
-          </Router>
+          </Provider>
         </Grommet>
-      </Provider>
+      </Router>
     );
   }
 }

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import TopicConfig from "./subPages/TopicConfig";
-import TopicControl from "./subPages/TopicControl";
-import TopicWaitingRoom from "./subPages/TopicWaitingRoom";
+import { TopicConfig } from "./subPages/TopicConfig";
+import { TopicControls } from "./subPages/TopicControls";
+import { TopicPreparation } from "./subPages/TopicPreparation";
+import { CONTROLS, PREPARATION } from "./pages";
 
 export class Topic extends Component {
   state = {
@@ -24,10 +25,10 @@ export class Topic extends Component {
   switchPage = () => {
     const { page } = this.state;
     switch (page) {
-      case "WAITING":
-        return <TopicWaitingRoom setPage={this.setPage}></TopicWaitingRoom>;
-      case "CONTROL":
-        return <TopicControl setPage={this.setPage}></TopicControl>;
+      case PREPARATION:
+        return <TopicPreparation setPage={this.setPage}></TopicPreparation>;
+      case CONTROLS:
+        return <TopicControls setPage={this.setPage}></TopicControls>;
       default:
         return <TopicConfig setPage={this.setPage}></TopicConfig>;
     }

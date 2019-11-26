@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import JoinTopic from "./subPages/JoinTopic";
-import EnterIdeas from "./subPages/EnterIdeas";
-import { IdeaResults } from "./subPages/IdeaResults";
+import { PlayerViewJoin } from "./subPages/PlayerViewJoin";
+import { PlayerViewRound } from "./subPages/PlayerViewRound";
+import { PlayerViewSummary } from "./subPages/PlayerViewSummary";
+import { ROUND, SUMMARY } from "./pages";
 
 export class PlayerView extends Component {
   state = {
@@ -16,6 +17,11 @@ export class PlayerView extends Component {
 
   componentDidMount() {
     this.getMessages();
+  }
+
+  componentWillMount() {
+    console.log(this.props);
+    // this.props.fetchPosts();
   }
 
   getMessages = () => {
@@ -78,26 +84,26 @@ export class PlayerView extends Component {
   switchPage = () => {
     const { page } = this.state;
     switch (page) {
-      case "ENTER":
+      case ROUND:
         return (
-          <EnterIdeas
+          <PlayerViewRound
             num_ideas={this.state.num_ideas}
             question={this.state.question}
             setPage={this.setPage}
             data={this.state.data}
             timePerRound={this.state.timePerRound}
-          ></EnterIdeas>
+          ></PlayerViewRound>
         );
-      case "SUMMARY":
+      case SUMMARY:
         return (
-          <IdeaResults
+          <PlayerViewSummary
             num_ideas={this.state.num_ideas}
             question={this.state.question}
             data={this.state.data}
-          ></IdeaResults>
+          ></PlayerViewSummary>
         );
       default:
-        return <JoinTopic setPage={this.setPage}></JoinTopic>;
+        return <PlayerViewJoin setPage={this.setPage}></PlayerViewJoin>;
     }
   };
 
