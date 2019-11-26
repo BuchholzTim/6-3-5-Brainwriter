@@ -53,7 +53,7 @@ export class JoinTopic extends Component {
             required
           />
 
-          <Button type="submit" primary label="Runde beitreten" />
+          <Button type="submit" label="Runde beitreten" />
         </Form>
       </Grommet>
     );
