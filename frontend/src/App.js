@@ -1,39 +1,23 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
-import { Box, Heading, Grommet, Button } from "grommet";
-import { FormPreviousLink } from "grommet-icons";
-import Home from "./components/Home";
+import { Grommet } from "grommet";
+import { Home } from "./components/Home";
+import { Menubar } from "./components/Menubar";
 import { socket } from "./socket/socket";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-function App() {
-  socket.connect();
-  return (
-    <Grommet className="App">
-      <Box
-        as="header"
-        direction="row"
-        align="center"
-        justify="between"
-        pad={{ vertical: "xsmall", horizontal: "xsmall" }}
-        background="brand"
-        elevation="large"
-        style={{ zIndex: "1000" }}
-      >
-        <Button icon={<FormPreviousLink size="large" color="white" />}></Button>
-        <Heading level={3} margin="none" color="white">
-          6-3-5 Brainwriter
-        </Heading>
-      </Box>
-      <Box
-        direction="column"
-        border={{ color: "brand", size: "medium" }}
-        pad={{ vertical: "xsmall" }}
-        align="center"
-      >
-        <Home />
-      </Box>
-    </Grommet>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Grommet className="App">
+          <Menubar></Menubar>
+          <Home />
+        </Grommet>
+      </Provider>
+    );
+  }
 }
 
 export default App;

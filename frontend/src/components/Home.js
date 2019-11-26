@@ -83,7 +83,16 @@ export class Home extends Component {
 
   render() {
     const { page } = this.state;
-    return this.renderPage(page);
+    return (
+      <Box
+        direction="column"
+        border={{ color: "brand", size: "medium" }}
+        pad={{ vertical: "xsmall" }}
+        align="center"
+      >
+        {this.renderPage(page)}
+      </Box>
+    );
   }
 }
 
