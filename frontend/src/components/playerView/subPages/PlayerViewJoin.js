@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Form, FormField, TextInput, Button, Box } from "grommet";
-
 import { ROUND } from "../pages";
-
 import { connect } from "react-redux";
-import { setUserData, getTopicData } from "../../../redux/actions/topicActions";
+import { setTopicData, setMessages } from "../../../redux/actions/topicActions";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
+
+import { joinTopic, getMessages } from "../../../axios/apiCalls";
 
 export class PlayerViewJoin extends Component {
   setUserName = event => {
@@ -20,21 +20,38 @@ export class PlayerViewJoin extends Component {
     });
   };
 
-  nextPage = () => {
+  onSubmit = () => {
     const { userName, joinCode } = this.state;
 
-    this.props.getTopicData(joinCode);
+    joinTopic(userName, joinCode)
+      .then(data => {
+        const topic = data.topic;
+        const author = data.author;
+        this.props.setTopicData({
+          joinCode: topic.joinCode,
+          timePerRound: topic.timePerRound,
+          topic: topic.topic,
+          userName: author.userName
+        });
+        return;
+      })
+      .then(() => {
+        return getMessages(joinCode);
+      })
+      .then(messages => {
+        this.props.setMessages(messages);
+        this.nextPage(ROUND);
+      });
+  };
 
-    this.props.setUserData({
-      userName
-    });
+  nextPage = () => {
     this.props.setPage(ROUND);
   };
 
   render() {
     return (
       <Box fill align="center" justify="center">
-        <Form onSubmit={this.nextPage}>
+        <Form onSubmit={this.onSubmit}>
           <FormField
             label="User-Name"
             placeholder="Guter Username"
@@ -58,11 +75,16 @@ export class PlayerViewJoin extends Component {
   }
 }
 
-const mapStateToProps = null;
+const mapStateToProps = state => ({
+  stateUserName: state.topicReducer.userName,
+  stateJoinCode: state.topicReducer.joinCode
+});
+
 const mapDispatchToProps = {
-  setUserData: setUserData,
   setPage: setPlayerPage,
-  getTopicData: getTopicData
+  setTopicData: setTopicData,
+  setMessages: setMessages
+  // join: join
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewJoin);

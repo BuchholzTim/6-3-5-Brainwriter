@@ -9,6 +9,7 @@ const initialState = {
   timePerRound: "",
   topic: "",
   messages: "",
+  userName: "",
   num_ideas: 3,
   rounds: 6,
   currentRound: 1
@@ -21,7 +22,8 @@ export default function(state = initialState, action) {
         ...state,
         topic: action.payload.topic,
         timePerRound: action.payload.timePerRound,
-        joinCode: action.payload.joinCode
+        joinCode: action.payload.joinCode,
+        userName: action.payload.userName
       };
     case SET_MESSAGES:
       return {

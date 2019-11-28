@@ -7,6 +7,7 @@ import { QuestionBox } from "../../tools/QuestionBox";
 import { SUMMARY } from "../pages";
 import { connect } from "react-redux";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
+import { setMessages } from "../../../redux/actions/topicActions";
 
 export class PlayerViewRound extends Component {
   showResults = () => {
@@ -14,8 +15,7 @@ export class PlayerViewRound extends Component {
   };
 
   render() {
-    const { topic, timePerRound, num_ideas, messages } = this.props;
-
+    const { topic, timePerRound, messages, num_ideas } = this.props;
     const ideaInputs = [];
 
     // Generate Items
@@ -38,10 +38,11 @@ export class PlayerViewRound extends Component {
 
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
+  joinCode: state.topicReducer.joinCode,
   timePerRound: state.topicReducer.timePerRound,
-  num_ideas: state.topicReducer.num_ideas,
-  messages: state.topicReducer.messages
+  messages: state.topicReducer.messages,
+  num_ideas: state.topicReducer.num_ideas
 });
-const mapDispatchToProps = { setPage: setPlayerPage };
+const mapDispatchToProps = { setPage: setPlayerPage, setMessages: setMessages };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewRound);

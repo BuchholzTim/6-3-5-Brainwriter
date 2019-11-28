@@ -1,29 +1,28 @@
-import { SET_TOPIC_DATA } from "./types";
-import { getMessages, createTopic, getTopic } from "../../axios/apiCalls";
+import { SET_TOPIC_DATA, SET_MESSAGES, INCREMENT_ROUND } from "./types";
 
 export const setTopicData = topicData => dispatch => {
-  const topic = createTopic(topicData.topic, topicData.timePerRound);
-
   dispatch({
     type: SET_TOPIC_DATA,
     payload: {
-      joinCode: topic.joinCode,
-      topic: topic.topic,
-      timePerRound: topic.timePerRound
+      joinCode: topicData.joinCode,
+      topic: topicData.topic,
+      timePerRound: topicData.timePerRound,
+      userName: topicData.userName
     }
   });
 };
 
-export const getTopicData = joinCode => dispatch => {
-  //API-CALL
-  const topic = getTopic(joinCode);
-
+export const setMessages = messages => dispatch => {
   dispatch({
-    type: SET_TOPIC_DATA,
+    type: SET_MESSAGES,
     payload: {
-      joinCode: topic.joinCode,
-      topic: topic.topic,
-      timePerRound: topic.timePerRound
+      messages: messages
     }
+  });
+};
+
+export const incrementRound = () => dispatch => {
+  dispatch({
+    type: INCREMENT_ROUND
   });
 };

@@ -5,6 +5,8 @@ import { setTopicPage } from "../../../redux/actions/pageActions";
 import { setTopicData } from "../../../redux/actions/topicActions";
 import { PREPARATION } from "../pages";
 
+import { createTopic } from "../../../axios/apiCalls";
+
 export class TopicConfig extends Component {
   state = {
     topic: "",
@@ -19,16 +21,32 @@ export class TopicConfig extends Component {
     this.setState({ timePerRound: timePerRound });
   };
 
-  nextPage = () => {
+  onSubmit = () => {
     const { topic, timePerRound } = this.state;
-    this.props.setTopicData({ topic: topic, timePerRound: timePerRound });
+
+    createTopic({ topic, timePerRound })
+      .then(data => {
+        const topic = data.topic;
+        this.props.setTopicData({
+          joinCode: topic.joinCode,
+          timePerRound: topic.timePerRound,
+          topic: topic.topic
+        });
+        return;
+      })
+      .then(() => {
+        this.nextPage();
+      });
+  };
+
+  nextPage = () => {
     this.props.setPage(PREPARATION);
   };
 
   render() {
     return (
       <Box fill align="center" justify="center">
-        <Form onSubmit={this.nextPage}>
+        <Form onSubmit={this.onSubmit}>
           <FormField
             label="Thema"
             placeholder="Warum ist die Banane krumm?"

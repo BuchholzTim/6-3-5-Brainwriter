@@ -21,7 +21,6 @@ export class Topic extends Component {
 
   render() {
     const { topicPage } = this.props.topicPage;
-    console.log(topicPage);
     switch (topicPage) {
       case PREPARATION:
         return <TopicPreparation></TopicPreparation>;

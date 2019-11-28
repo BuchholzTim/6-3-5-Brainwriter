@@ -4,37 +4,39 @@ const models = require("../models/models");
 const router = express.Router();
 
 router.post("/create", async function(req, res, next) {
-  const topicName = req.body.topicName;
+  const topic = req.body.topic;
   const timePerRound = req.body.timePerRound;
 
+  if (!(tools.checkExistence(topic) && tools.checkExistence(timePerRound))) {
+    return;
+  }
+
   const codeLength = 6;
-
-  let joinCode = tools.generateCode(joinCodeLength);
-
-  let existingTopic = getTopic(joinCode);
+  let joinCode = tools.generateCode(codeLength);
+  let existingTopic = await getTopic(joinCode);
 
   // If a Topic with this exact code is found, generate a new one.
   while (existingTopic) {
     joinCode = tools.generateCode(codeLength);
-    existingTopic = getTopic(joinCode);
+    existingTopic = await getTopic(joinCode);
   }
 
   // Create Topic in Database, then send response containing the generated Topic
-  const topic = {
-    topicName: topicName,
+  const Topic = {
+    topic: topic,
     timePerRound: timePerRound,
     joinCode: joinCode
   };
 
-  models.Topic.create(topic).then(topic => res.json(topic));
+  models.Topic.create(Topic).then(Topic => res.json({ topic: Topic }));
 });
 
 router.get("/get", async function(req, res, next) {
   const joinCode = req.query.joinCode;
-  const topic = getTopic(joinCode);
+  const existingTopic = await getTopic(joinCode);
 
-  if (topic) {
-    res.json(topic);
+  if (existingTopic) {
+    res.json({ topic: existingTopic });
   } else {
     res.status(400);
     res.end();
@@ -45,29 +47,31 @@ router.post("/join", async function(req, res, next) {
   const codeLength = 4;
 
   const joinCode = req.body.joinCode;
-  const username = req.body.username + "_" + tools.generateCode(codeLength);
+  const userName = req.body.userName + "_" + tools.generateCode(codeLength);
 
   // Find existing Topic
-  let topic = getTopic(joinCode);
+  let existingTopic = await getTopic(joinCode);
 
   // If topic is null or undefined
-  if (!topic) {
+  if (!existingTopic) {
     res.status(400);
     res.end();
     return;
   }
 
-  const author = {
-    username: username,
-    topicID: topic.id
+  const Author = {
+    userName: userName,
+    topicID: existingTopic.id
   };
 
-  models.Author.create(author).then(author => res.json({ topic, author }));
+  models.Author.create(Author).then(Author =>
+    res.json({ topic: existingTopic, author: Author })
+  );
 });
 
-router.get("/getPlayers", async function(req, res, next) {
-  const joinCode = req.query.joinCode;
-  const topic = getTopic(joinCode);
+router.post("/getPlayers", async function(req, res, next) {
+  const joinCode = req.body.joinCode;
+  const topic = await getTopic(joinCode);
 
   if (topic) {
     const topicID = topic.id;
@@ -102,15 +106,5 @@ async function getTopic(joinCode) {
     return false;
   }
 }
-
-router.get("/axiosGet", function(req, res, next) {
-  console.log(req.query.id);
-  res.send(req.query);
-});
-
-router.post("/axiosPost", function(req, res, next) {
-  console.log(req.body);
-  res.send("ok");
-});
 
 module.exports = router;
