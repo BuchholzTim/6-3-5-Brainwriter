@@ -7,16 +7,21 @@ import { socket } from "./socket/socket";
 
 //Themes
 import { deepMerge } from "grommet/utils";
-import testTheme from "./themes/testTheme"
+//Json-Datei
+import testTheme from "./themes/testTheme";
+//Bei JS Dateinen kann man es so machen 
+import {base} from "./themes/testThemeJS";
+import {dark} from "./themes/TestDark";
 
-
+//Eigentlich unnötig, wird benötig bei JSON. (DeepMerge: Merge änderungen in Grommet-Theme)
 const customFocus = deepMerge(Grommet, testTheme
 );
+
 
 function App() {
   socket.connect();
   return (
-    <Grommet className="App" theme={customFocus}>
+    <Grommet className="App" theme={base}>
       <Box
         as="header"
         direction="row"
