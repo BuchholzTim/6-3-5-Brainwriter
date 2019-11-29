@@ -28,6 +28,7 @@ export class TopicConfig extends Component {
       .then(data => {
         const topic = data.topic;
         this.props.setTopicData({
+          id: topic.id,
           joinCode: topic.joinCode,
           timePerRound: topic.timePerRound,
           topic: topic.topic

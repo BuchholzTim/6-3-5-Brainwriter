@@ -70,23 +70,16 @@ router.post("/join", async function(req, res, next) {
 });
 
 router.post("/getPlayers", async function(req, res, next) {
-  const joinCode = req.body.joinCode;
-  const topic = await getTopic(joinCode);
+  const id = req.body.id;
 
-  if (topic) {
-    const topicID = topic.id;
-    const players = await models.Author.findAll({
-      where: {
-        topicID: topicID
-      }
-    });
-
-    if (tools.checkExistence(players)) {
-      res.json(players);
-    } else {
-      res.status(400);
-      res.end();
+  const players = await models.Author.findAll({
+    where: {
+      topicID: id
     }
+  });
+
+  if (tools.checkExistence(players)) {
+    res.json(players);
   } else {
     res.status(400);
     res.end();

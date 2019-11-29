@@ -45,10 +45,10 @@ export const getMessages = joinCode =>
 
 // Retrieves all Players that currently have joined the specified JoinCode
 // Returns Names of all Players
-export const getPlayers = joinCode =>
+export const getPlayers = topicID =>
   axios
     .post(`${topics}/getPlayers`, {
-      joinCode: joinCode
+      id: topicID
     })
     .then(response => {
       const data = response.data;

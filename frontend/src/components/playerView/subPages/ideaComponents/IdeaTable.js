@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { DataTable, Text } from "grommet";
 
+import { connect } from "react-redux";
+import { getMessages } from "../../../../axios/apiCalls";
+
 export class IdeaTable extends Component {
+  componentWillMount() {}
+
   stringToDom = str => {
     return <Text truncate={false}>{str}</Text>;
   };
@@ -38,4 +43,10 @@ export class IdeaTable extends Component {
   }
 }
 
-export default IdeaTable;
+const mapStateToProps = state => ({
+  joinCode: state.topicReducer.joinCode,
+  priorMessages: state.messageReducer.priorMessages
+});
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IdeaTable);

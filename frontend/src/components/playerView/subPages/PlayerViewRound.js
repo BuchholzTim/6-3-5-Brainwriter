@@ -7,7 +7,7 @@ import { QuestionBox } from "../../tools/QuestionBox";
 import { SUMMARY } from "../pages";
 import { connect } from "react-redux";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
-import { setMessages } from "../../../redux/actions/topicActions";
+import { setMessages } from "../../../redux/actions/messageActions";
 
 export class PlayerViewRound extends Component {
   showResults = () => {

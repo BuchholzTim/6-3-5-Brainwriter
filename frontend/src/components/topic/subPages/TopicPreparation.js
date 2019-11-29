@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import { Box, Text, Button } from "grommet";
-import { PlayerList } from "../../tools/PlayerList";
+import PlayerList from "../../tools/PlayerList";
 
 import { connect } from "react-redux";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 import { CONTROLS } from "../pages";
 
-export class TopicPreparation extends Component {
-  state = {
-    Authors: {
-      Author: [{ name: "Peter" }, { name: "Hans" }]
-    }
-  };
+import { setPlayerInterval } from "../../../redux/actions/topicActions";
 
+export class TopicPreparation extends Component {
   nextPage = () => {
     this.props.setPage(CONTROLS);
   };
@@ -32,7 +28,12 @@ export class TopicPreparation extends Component {
   }
 }
 
-const mapStateToProps = null;
-const mapDispatchToProps = { setPage: setTopicPage };
+const mapStateToProps = state => ({
+  interval: state.topicReducer.interval
+});
+const mapDispatchToProps = {
+  setPage: setTopicPage,
+  setPlayerInterval: setPlayerInterval
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicPreparation);

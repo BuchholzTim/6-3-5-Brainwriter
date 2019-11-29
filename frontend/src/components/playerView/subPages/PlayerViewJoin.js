@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, FormField, TextInput, Button, Box } from "grommet";
 import { ROUND } from "../pages";
 import { connect } from "react-redux";
-import { setTopicData, setMessages } from "../../../redux/actions/topicActions";
+import { setTopicData } from "../../../redux/actions/topicActions";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 
 import { joinTopic, getMessages } from "../../../axios/apiCalls";
