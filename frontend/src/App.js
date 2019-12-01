@@ -9,11 +9,20 @@ import "./App.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
+//Themes
+import { deepMerge } from "grommet/utils";
+//Json-Datei
+import testTheme from "./themes/testTheme";
+import { base } from "./themes/testThemeJS";
+//Bei JS Dateinen kann man es so machen
+import { dark } from "./themes/TestDark";
+const customFocus = deepMerge(Grommet, testTheme);
+
 export class App extends Component {
   render() {
     return (
       <Router>
-        <Grommet className="App">
+        <Grommet className="App" theme={base}>
           <Provider store={store}>
             <Menubar />
             <Box
