@@ -1,16 +1,16 @@
-import { SET_MESSAGES, SET_PRIOR_MESSAGES } from "../actions/types";
+import { SET_CURRENT_MESSAGES, SET_PRIOR_MESSAGES } from "../actions/types";
 
 const initialState = {
-  priorMessages: "",
-  messages: ""
+  priorMessages: [],
+  currentMessages: []
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case SET_MESSAGES:
+    case SET_CURRENT_MESSAGES:
       return {
         ...state,
-        messages: action.payload.messages
+        currentMessages: action.payload.currentMessages
       };
     case SET_PRIOR_MESSAGES: {
       return {

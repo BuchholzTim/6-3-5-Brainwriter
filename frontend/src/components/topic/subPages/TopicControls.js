@@ -1,20 +1,14 @@
 import React, { Component } from "react";
 import { Box, Button } from "grommet";
-import PlayerList from "../../tools/PlayerList";
+import PlayerList from "./topicComponents/PlayerList";
 import Timer from "../../tools/Timer";
-import RoundState from "../../tools/RoundState";
+import RoundState from "./topicComponents/RoundState";
 import { QuestionBox } from "../../tools/QuestionBox";
 
 import { connect } from "react-redux";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 
 export class TopicControls extends Component {
-  state = {
-    round: "1",
-    maxrounds: "5",
-    question: "Warum ist die Banane krumm?"
-  };
-
   pauseSession = () => {
     console.log("Paused Session");
   };
@@ -24,16 +18,17 @@ export class TopicControls extends Component {
   };
 
   render() {
+    const { topic, timePerRound } = this.props;
     return (
       <Box direction="column" gap="xlarge" pad="small">
-        <QuestionBox question={this.state.question} />
+        <QuestionBox question={topic} />
 
         <Box direction="row" gap="large">
           <PlayerList />
 
           <Box direction="column" gap="xsmall">
             <RoundState />
-            <Timer roundTime={15} executeAfter={() => {}} />
+            <Timer roundTime={timePerRound} executeAfter={() => {}} />
           </Box>
 
           <Box direction="column" gap="xsmall" justify="center">
@@ -54,7 +49,10 @@ export class TopicControls extends Component {
   }
 }
 
-const mapStateToProps = null;
+const mapStateToProps = state => ({
+  topic: state.topicReducer.topic,
+  timePerRound: state.topicReducer.timePerRound
+});
 const mapDispatchToProps = { setPage: setTopicPage };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicControls);

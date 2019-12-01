@@ -3,44 +3,42 @@ import { Form, FormField, TextInput, Button, Box } from "grommet";
 import { ROUND } from "../pages";
 import { connect } from "react-redux";
 import { setTopicData } from "../../../redux/actions/topicActions";
+import { setAuthorData } from "../../../redux/actions/authorActions";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 
-import { joinTopic, getMessages } from "../../../axios/apiCalls";
+import { joinTopic } from "../../../axios/apiCalls";
 
 export class PlayerViewJoin extends Component {
-  setUserName = event => {
+  state = {
+    userName: "",
+    joinCode: ""
+  };
+
+  setUserName = userName => {
     this.setState({
-      userName: event
+      userName: userName
     });
   };
 
-  setJoinCode = event => {
+  setJoinCode = joinCode => {
     this.setState({
-      joinCode: event
+      joinCode: joinCode
     });
   };
 
   onSubmit = () => {
     const { userName, joinCode } = this.state;
 
-    joinTopic(userName, joinCode)
-      .then(data => {
-        const topic = data.topic;
-        const author = data.author;
-        this.props.setTopicData({
-          joinCode: topic.joinCode,
-          timePerRound: topic.timePerRound,
-          topic: topic.topic,
-          userName: author.userName
-        });
+    joinTopic({ userName, joinCode })
+      .then(response => {
+        const topic = response.topic;
+        const author = response.author;
+        this.props.setTopicData(topic);
+        this.props.setAuthorData(author);
         return;
       })
       .then(() => {
-        return getMessages(joinCode);
-      })
-      .then(messages => {
-        this.props.setMessages(messages);
-        this.nextPage(ROUND);
+        this.nextPage();
       });
   };
 
@@ -75,16 +73,12 @@ export class PlayerViewJoin extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  stateUserName: state.topicReducer.userName,
-  stateJoinCode: state.topicReducer.joinCode
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
   setPage: setPlayerPage,
   setTopicData: setTopicData,
-  setMessages: setMessages
-  // join: join
+  setAuthorData: setAuthorData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewJoin);

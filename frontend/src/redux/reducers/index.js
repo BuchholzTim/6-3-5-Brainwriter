@@ -1,10 +1,17 @@
 import { combineReducers } from "redux";
-import topicReducer from "./topicReducer";
+
+import authorReducer from "./authorReducer";
+import configReducer from "./configReducer";
+import controlReducer from "./controlreducer";
 import messageReducer from "./messageReducer";
 import pageReducer from "./pageReducer";
+import topicReducer from "./topicReducer";
 
 export default combineReducers({
-  topicReducer,
+  authorReducer,
+  configReducer,
+  controlReducer,
   messageReducer,
-  pageReducer
+  pageReducer,
+  topicReducer
 });

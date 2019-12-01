@@ -7,18 +7,8 @@ import { ROUND, SUMMARY } from "./pages";
 import { connect } from "react-redux";
 
 export class PlayerView extends Component {
-  state = {
-    joinCode: "",
-    userName: "",
-    timePerRound: 10,
-    question: "Warum ist die Banane krumm?",
-    data: "",
-    num_ideas: "",
-    previous_data: ""
-  };
-
   render() {
-    const { playerPage } = this.props.playerPage;
+    const { playerPage } = this.props;
     switch (playerPage) {
       case ROUND:
         return <PlayerViewRound></PlayerViewRound>;

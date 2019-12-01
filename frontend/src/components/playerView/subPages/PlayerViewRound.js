@@ -1,35 +1,56 @@
 import React, { Component } from "react";
 import { Box } from "grommet";
-import { IdeaInput } from "./ideaComponents/IdeaInput";
-import { IdeaTable } from "./ideaComponents/IdeaTable";
+import IdeaInput from "./ideaComponents/IdeaInput";
+import IdeaTable from "./ideaComponents/IdeaTable";
 import { Timer } from "../../tools/Timer";
 import { QuestionBox } from "../../tools/QuestionBox";
 import { SUMMARY } from "../pages";
 import { connect } from "react-redux";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
-import { setMessages } from "../../../redux/actions/messageActions";
+import { setCurrentMessages } from "../../../redux/actions/messageActions";
 
 export class PlayerViewRound extends Component {
-  showResults = () => {
+  state = {
+    currentMessages: []
+  };
+
+  nextPage = () => {
     this.props.setPage(SUMMARY);
   };
 
+  setCurrentMessage = (currentMessage, index) => {
+    let { currentMessages } = this.state;
+    currentMessages[index] = currentMessage;
+    this.setState({ currentMessages: currentMessages });
+  };
+
+  executeAfter = () => {
+    const { currentMessages } = this.state;
+    this.props.setCurrentMessages({ currentMessages });
+    this.nextPage();
+  };
+
   render() {
-    const { topic, timePerRound, messages, num_ideas } = this.props;
+    const { topic, timePerRound, numIdeas } = this.props;
     const ideaInputs = [];
 
     // Generate Items
-    for (let i = 0; i < num_ideas; i++) {
+    for (let i = 0; i < numIdeas; i++) {
       // Generate Input-Field for each Idea
-      ideaInputs.push(<IdeaInput></IdeaInput>);
+      ideaInputs.push(
+        <IdeaInput
+          setCurrentMessage={this.setCurrentMessage}
+          index={i}
+        ></IdeaInput>
+      );
     }
     return (
       <Box direction="column" gap="small">
         <Box direction="row" align="center" justify="center">
           <QuestionBox question={topic} />
-          <Timer roundTime={timePerRound} executeAfter={this.showResults} />
+          <Timer roundTime={timePerRound} executeAfter={this.executeAfter} />
         </Box>
-        <IdeaTable num_ideas={num_ideas} data={messages} />
+        <IdeaTable />
         <Box direction="row">{ideaInputs}</Box>
       </Box>
     );
@@ -38,11 +59,12 @@ export class PlayerViewRound extends Component {
 
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
-  joinCode: state.topicReducer.joinCode,
   timePerRound: state.topicReducer.timePerRound,
-  messages: state.topicReducer.messages,
-  num_ideas: state.topicReducer.num_ideas
+  numIdeas: state.configReducer.numIdeas
 });
-const mapDispatchToProps = { setPage: setPlayerPage, setMessages: setMessages };
+const mapDispatchToProps = {
+  setPage: setPlayerPage,
+  setCurrentMessages: setCurrentMessages
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewRound);

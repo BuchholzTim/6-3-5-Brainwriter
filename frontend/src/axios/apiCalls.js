@@ -22,21 +22,21 @@ export const createTopic = topic =>
 // Retrieves exisiting Topic with joinCode
 // Creates new User with specified Name
 // Return Topic & User
-export const joinTopic = (userName, joinCode) =>
+export const joinTopic = data =>
   axios
     .post(`${topics}/join`, {
-      userName: userName,
-      joinCode: joinCode
+      userName: data.userName,
+      joinCode: data.joinCode
     })
     .then(response => {
       const data = response.data;
       return data;
     });
 
-export const getMessages = joinCode =>
+export const getMessages = topicID =>
   axios
     .post(`${messages}/get`, {
-      joinCode: joinCode
+      id: topicID
     })
     .then(response => {
       const data = response.data;

@@ -5,7 +5,7 @@ const DataTypes = Sequelize.DataTypes;
 const ChatMessage = db.define(
   "ChatMessage",
   {
-    authorID: DataTypes.STRING,
+    authorID: DataTypes.INTEGER,
     content: DataTypes.TEXT,
     column: DataTypes.INTEGER,
     row: DataTypes.INTEGER

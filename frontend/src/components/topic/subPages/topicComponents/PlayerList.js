@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { List, Text, Box } from "grommet";
-import { getPlayers } from "../../axios/apiCalls";
+import { getPlayers } from "../../../../axios/apiCalls";
 import { connect } from "react-redux";
-import { setPlayerInterval } from "../../redux/actions/topicActions";
+import { setPlayerInterval } from "../../../../redux/actions/controlActions";
 
 export class PlayerList extends Component {
   state = {

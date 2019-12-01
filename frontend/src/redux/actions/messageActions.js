@@ -1,19 +1,19 @@
-import { SET_MESSAGES, SET_PRIOR_MESSAGES } from "./types";
+import { SET_PRIOR_MESSAGES, SET_CURRENT_MESSAGES } from "./types";
 
-export const setMessages = messages => dispatch => {
+export const setCurrentMessages = messages => dispatch => {
   dispatch({
-    type: SET_MESSAGES,
+    type: SET_CURRENT_MESSAGES,
     payload: {
-      messages: messages
+      currentMessages: messages.currentMessages
     }
   });
 };
 
-export const setPriorMessages = priorMessages => dispatch => {
+export const setPriorMessages = messages => dispatch => {
   dispatch({
     type: SET_PRIOR_MESSAGES,
     payload: {
-      priorMessages: priorMessages
+      priorMessages: messages.priorMessages
     }
   });
 };

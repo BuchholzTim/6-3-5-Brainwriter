@@ -4,8 +4,18 @@ import { DataTable, Text } from "grommet";
 import { connect } from "react-redux";
 import { getMessages } from "../../../../axios/apiCalls";
 
+import { setPriorMessages } from "../../../../redux/actions/messageActions";
+
 export class IdeaTable extends Component {
-  componentWillMount() {}
+  componentWillMount() {
+    this.getPriorMessages();
+  }
+
+  getPriorMessages() {
+    const { id } = this.props;
+    const messages = getMessages(id);
+    this.props.setPriorMessages(messages);
+  }
 
   stringToDom = str => {
     return <Text truncate={false}>{str}</Text>;
@@ -19,17 +29,16 @@ export class IdeaTable extends Component {
   };
 
   render() {
-    const num_ideas = this.props.num_ideas;
-    const data = this.props.data;
+    const { numIdeas, priorMessages } = this.props;
 
-    for (let i = 0; i < data.length; i++) {
-      data[i] = this.jsonToDom(data[i]);
-    }
+    // for (let i = 0; i < data.length; i++) {
+    //   data[i] = this.jsonToDom(data[i]);
+    // }
 
     //const column_configs = [{ property: "round", header: "Runde" }];
     const column_configs = [];
 
-    for (let i = 0; i < num_ideas; i++) {
+    for (let i = 0; i < numIdeas; i++) {
       const config = {
         property: `idea_${i + 1}`,
         header: `Idee ${i + 1}`
@@ -38,15 +47,22 @@ export class IdeaTable extends Component {
       column_configs.push(config);
     }
     return (
-      <DataTable size="medium" columns={column_configs} data={data}></DataTable>
+      <DataTable
+        size="medium"
+        columns={column_configs}
+        data={priorMessages}
+      ></DataTable>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  joinCode: state.topicReducer.joinCode,
+  id: state.topicReducer.id,
+  numIdeas: state.configReducer.numIdeas,
   priorMessages: state.messageReducer.priorMessages
 });
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setPriorMessages: setPriorMessages
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(IdeaTable);

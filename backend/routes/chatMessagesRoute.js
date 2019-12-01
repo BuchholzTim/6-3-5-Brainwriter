@@ -22,20 +22,13 @@ router.post("/sendMessages/", async function(req, res, next) {
 });
 
 router.post("/get", async function(req, res, next) {
-  const joinCode = req.body.joinCode;
+  const topicID = req.body.id;
 
-  models.Topic.findOne({
+  models.Author.findAll({
     where: {
-      joinCode: joinCode
+      topicID: topicID
     }
   })
-    .then(topic => {
-      return models.Author.findAll({
-        where: {
-          topicID: topic.id
-        }
-      });
-    })
     .then(authors => {
       let authorIDs = [];
       for (let i = 0; i < authors.length; i++) {
@@ -43,8 +36,10 @@ router.post("/get", async function(req, res, next) {
       }
 
       return models.ChatMessages.findAll({
-        authorId: {
-          [Op.or]: authorIDs
+        where: {
+          authorID: {
+            [Op.or]: authorIDs
+          }
         }
       });
     })

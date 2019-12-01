@@ -6,21 +6,15 @@ import { QuestionBox } from "../../tools/QuestionBox";
 import { connect } from "react-redux";
 
 export class PlayerViewSummary extends Component {
-  state = {
-    data: this.props.data,
-    question: this.props.question,
-    num_ideas: this.props.num_ideas
-  };
-
   showSummary = () => {};
 
   render() {
-    const { data, question, num_ideas } = this.state;
+    const { topic } = this.props;
 
     return (
       <Box direction="column" gap="medium" pad="small">
-        <QuestionBox question={question} />
-        <IdeaTable num_ideas={num_ideas} data={data} />
+        <QuestionBox question={topic} />
+        <IdeaTable />
         <Box direction="row" gap="xsmall" justify="end">
           <Button
             primary
@@ -33,7 +27,9 @@ export class PlayerViewSummary extends Component {
   }
 }
 
-const mapStateToProps = null;
+const mapStateToProps = state => ({
+  topic: state.topicReducer.topic
+});
 const mapDispatchToProps = null;
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewSummary);

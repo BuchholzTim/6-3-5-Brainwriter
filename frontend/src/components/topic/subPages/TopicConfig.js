@@ -25,14 +25,9 @@ export class TopicConfig extends Component {
     const { topic, timePerRound } = this.state;
 
     createTopic({ topic, timePerRound })
-      .then(data => {
-        const topic = data.topic;
-        this.props.setTopicData({
-          id: topic.id,
-          joinCode: topic.joinCode,
-          timePerRound: topic.timePerRound,
-          topic: topic.topic
-        });
+      .then(response => {
+        const topic = response.topic;
+        this.props.setTopicData(topic);
         return;
       })
       .then(() => {

@@ -10,12 +10,12 @@ export default function(state = initialState, action) {
     case SET_PLAYER_PAGE:
       return {
         ...state,
-        playerPage: action.payload
+        playerPage: action.payload.playerPage
       };
     case SET_TOPIC_PAGE:
       return {
         ...state,
-        topicPage: action.payload
+        topicPage: action.payload.topicPage
       };
     default:
       return state;
