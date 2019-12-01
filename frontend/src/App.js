@@ -10,13 +10,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 //Themes
-import { deepMerge } from "grommet/utils";
-//Json-Datei
-import testTheme from "./themes/testTheme";
-import { base } from "./themes/testThemeJS";
-//Bei JS Dateinen kann man es so machen
-import { dark } from "./themes/TestDark";
-const customFocus = deepMerge(Grommet, testTheme);
+import { base } from "./themes/Base";
+import { dark } from "./themes/Dark";
 
 export class App extends Component {
   render() {
