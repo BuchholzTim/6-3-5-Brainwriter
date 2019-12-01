@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Meter, Grommet, Stack, Box, Text } from "grommet";
+import { Meter, Stack, Box, Text } from "grommet";
 
 export class Timer extends Component {
   state = {
@@ -43,26 +43,23 @@ export class Timer extends Component {
   }
 
   render() {
-    const gridArea = this.props.gridArea;
     return (
-      <Grommet>
-        <Box gridArea={gridArea} align="center" pad="large">
-          <Stack anchor="center">
-            <Meter
-              type="circle"
-              background="light-2"
-              values={[{ value: this.state.meterValue }]}
-              size="xsmall"
-              thickness="small"
-            />
-            <Box direction="row" align="center" pad={{ bottom: "xsmall" }}>
-              <Text size="xlarge" weight="bold">
-                {this.state.timeAsText}
-              </Text>
-            </Box>
-          </Stack>
-        </Box>
-      </Grommet>
+      <Box align="center" pad="large">
+        <Stack anchor="center">
+          <Meter
+            type="circle"
+            background="light-2"
+            values={[{ value: this.state.meterValue }]}
+            size="xsmall"
+            thickness="small"
+          />
+          <Box direction="row" align="center" pad={{ bottom: "xsmall" }}>
+            <Text size="xlarge" weight="bold">
+              {this.state.timeAsText}
+            </Text>
+          </Box>
+        </Stack>
+      </Box>
     );
   }
 }

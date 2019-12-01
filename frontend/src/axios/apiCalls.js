@@ -21,7 +21,7 @@ export const createTopic = topic =>
 
 // Retrieves exisiting Topic with joinCode
 // Creates new User with specified Name
-// Return Topic & User
+// Return Promis
 export const joinTopic = data =>
   axios
     .post(`${topics}/join`, {

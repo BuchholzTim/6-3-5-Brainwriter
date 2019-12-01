@@ -9,27 +9,20 @@ export class Home extends Component {
       <Box
         direction="row-responsive"
         justify="center"
-        align="center"
         pad="xlarge"
         gap="medium"
       >
-        <Box
-          pad="large"
-          align="center"
-          background={{ color: "light-6", opacity: "strong" }}
-          round
-          gap="small"
-        >
+        <Box pad="large" align="center" background="light-6" round gap="small">
           <Group size="large" color="dark-2" />
           <Link to="/topic">
-            <Button primary label="Schnelle Runde erstellen" value="1" />
+            <Button primary label="Schnelle Runde erstellen" />
           </Link>
         </Box>
 
         <Box pad="large" align="center" background="light-6" round gap="small">
           <Login size="large" color="dark-2" />
           <Link to="/playerView">
-            <Button primary label="Runde beitreten" value="2" />
+            <Button primary label="Runde beitreten" />
           </Link>
         </Box>
       </Box>
