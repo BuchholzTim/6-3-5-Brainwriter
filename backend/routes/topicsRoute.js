@@ -25,7 +25,8 @@ router.post("/create", async function(req, res, next) {
   const Topic = {
     topic: topic,
     timePerRound: timePerRound,
-    joinCode: joinCode
+    joinCode: joinCode,
+    active: true
   };
 
   models.Topic.create(Topic).then(Topic => res.json({ topic: Topic }));

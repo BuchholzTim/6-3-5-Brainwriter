@@ -7,7 +7,8 @@ const Topic = db.define(
   {
     topic: DataTypes.STRING,
     joinCode: DataTypes.STRING,
-    timePerRound: DataTypes.INTEGER
+    timePerRound: DataTypes.INTEGER,
+    active: DataTypes.BOOLEAN
   },
   {}
 );
