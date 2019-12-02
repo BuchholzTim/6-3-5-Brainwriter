@@ -5,6 +5,7 @@ import PlayerList from "./topicComponents/PlayerList";
 import { connect } from "react-redux";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 import { CONTROLS } from "../pages";
+import QuestionBox from "../../tools/QuestionBox";
 
 export class TopicPreparation extends Component {
   nextPage = () => {
@@ -12,21 +13,37 @@ export class TopicPreparation extends Component {
   };
 
   render() {
+    const { topic, joinCode } = this.props;
     return (
-      <Box direction="row" gap="xlarge">
-        <PlayerList />
+      <Box direction="column" gap="xlarge" pad="small">
+        <Box direction="row" gap="xlarge" pad="small" justify="center">
+          <QuestionBox question={topic} />
+          <Box direction="row" gap="small">
+            <Text weight="bold">Join-Code: </Text>
+            <Text>{joinCode}</Text>
+          </Box>
+        </Box>
 
-        <Box direction="column" gap="large">
-          <Text weight="bold">Status:</Text>
-          <Text>Session noch nicht gestartet, warten auf Teilnehmer</Text>
-          <Button primary label="Session starten" onClick={this.nextPage} />
+        <Box direction="row" gap="large">
+          <PlayerList />
+
+          <Box direction="column" gap="medium">
+            <Box direction="column" gap="small" align="center">
+              <Text weight="bold">Status:</Text>
+              <Text>Session noch nicht gestartet, warten auf Teilnehmer</Text>
+            </Box>
+            <Button primary label="Session starten" onClick={this.nextPage} />
+          </Box>
         </Box>
       </Box>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  topic: state.topicReducer.topic,
+  joinCode: state.topicReducer.joinCode
+});
 const mapDispatchToProps = {
   setPage: setTopicPage
 };
