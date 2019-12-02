@@ -1,3 +1,4 @@
 export const PREPARE = "PREPARE";
-export const SUMMARY = "SUMMARY";
 export const ROUND = "ROUND";
+export const AFTERROUND = "AFTERROUND";
+export const SUMMARY = "SUMMARY";

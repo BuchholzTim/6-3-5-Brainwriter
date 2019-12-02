@@ -3,7 +3,8 @@ import PlayerViewJoin from "./subPages/PlayerViewJoin";
 import PlayerViewRound from "./subPages/PlayerViewRound";
 import PlayerViewSummary from "./subPages/PlayerViewSummary";
 import PlayerViewPrepare from "./subPages/PlayerViewPrepare";
-import { ROUND, SUMMARY, PREPARE } from "./pages";
+import PlayerViewAfterRound from "./subPages/PlayerViewAfterRound";
+import { ROUND, SUMMARY, PREPARE, AFTERROUND } from "./pages";
 
 import { connect } from "react-redux";
 
@@ -17,6 +18,8 @@ export class PlayerView extends Component {
         return <PlayerViewSummary></PlayerViewSummary>;
       case PREPARE:
         return <PlayerViewPrepare></PlayerViewPrepare>;
+      case AFTERROUND:
+        return <PlayerViewAfterRound></PlayerViewAfterRound>;
       default:
         return <PlayerViewJoin></PlayerViewJoin>;
     }
