@@ -16,6 +16,8 @@ export class PlayerViewRound extends Component {
 
   nextPage = () => {
     this.props.setPage(SUMMARY);
+
+    //if configReducer
   };
 
   setCurrentMessage = (currentMessage, index) => {

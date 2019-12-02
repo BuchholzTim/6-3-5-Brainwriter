@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, FormField, TextInput, Button, Box } from "grommet";
-import { ROUND } from "../pages";
+import { PREPARE } from "../pages";
 import { connect } from "react-redux";
 import { setTopicData } from "../../../redux/actions/topicActions";
 import { setAuthorData } from "../../../redux/actions/authorActions";
@@ -43,7 +43,7 @@ export class PlayerViewJoin extends Component {
   };
 
   nextPage = () => {
-    this.props.setPage(ROUND);
+    this.props.setPage(PREPARE);
   };
 
   render() {
