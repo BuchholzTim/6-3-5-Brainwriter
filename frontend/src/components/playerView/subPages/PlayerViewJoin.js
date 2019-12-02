@@ -7,6 +7,7 @@ import { setAuthorData } from "../../../redux/actions/authorActions";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 
 import { joinTopic } from "../../../axios/apiCalls";
+import { emitJoin } from "../../../socket/socket";
 
 export class PlayerViewJoin extends Component {
   state = {
@@ -35,6 +36,10 @@ export class PlayerViewJoin extends Component {
         const author = response.author;
         this.props.setTopicData(topic);
         this.props.setAuthorData(author);
+        return;
+      })
+      .then(() => {
+        emitJoin(joinCode);
         return;
       })
       .then(() => {

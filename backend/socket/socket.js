@@ -7,22 +7,31 @@ module.exports = function configSocket(io) {
     clients.push(socket);
 
     // Put Socket in Room for his Topic
-    socket.on("joinTopic", function(data) {
-      socket.join(`${data.joinCode}`);
+    socket.on("join", function(data) {
+      const joinCode = data.joinCode;
+      socket.join(`${joinCode}`);
+      console.log(joinCode);
+
       console.log(socket.rooms);
     });
 
     // Game-Controls
     socket.on("start", function(data) {
-      io.to(`${data.joinCode}`).emit("start");
+      const joinCode = data.joinCode;
+      io.to(`${joinCode}`).emit("start");
+      console.log("Received Start");
     });
 
     socket.on("pause", function(data) {
-      io.to(`${data.joinCode}`).emit("pause");
+      const joinCode = data.joinCode;
+      io.to(`${joinCode}`).emit("pause");
+      console.log("Received Pause");
     });
 
     socket.on("resume", function(data) {
-      io.to(`${data.joinCode}`).emit("resume");
+      const joinCode = data.joinCode;
+      io.to(`${joinCode}`).emit("resume");
+      console.log("Received Resume");
     });
 
     // Remove from Active-Clients

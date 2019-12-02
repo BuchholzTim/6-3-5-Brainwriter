@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Box } from "grommet";
 import IdeaInput from "./ideaComponents/IdeaInput";
 import IdeaTable from "./ideaComponents/IdeaTable";
-import { Timer } from "../../tools/Timer";
+import Timer from "../../tools/Timer";
 import { QuestionBox } from "../../tools/QuestionBox";
 import { SUMMARY } from "../pages";
 import { connect } from "react-redux";
@@ -48,7 +48,10 @@ export class PlayerViewRound extends Component {
       <Box direction="column" gap="small">
         <Box direction="row" align="center" justify="center">
           <QuestionBox question={topic} />
-          <Timer roundTime={timePerRound} executeAfter={this.executeAfter} />
+          <Timer
+            timeInSeconds={timePerRound}
+            executeAfter={this.executeAfter}
+          />
         </Box>
         <IdeaTable />
         <Box direction="row">{ideaInputs}</Box>

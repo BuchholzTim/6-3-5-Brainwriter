@@ -4,7 +4,8 @@ const initialState = {
   id: -1,
   topic: "",
   joinCode: "",
-  timePerRound: -1
+  timePerRound: -1,
+  players: []
 };
 
 export default function(state = initialState, action) {
@@ -15,7 +16,8 @@ export default function(state = initialState, action) {
         id: action.payload.id,
         joinCode: action.payload.joinCode,
         topic: action.payload.topic,
-        timePerRound: action.payload.timePerRound
+        timePerRound: action.payload.timePerRound,
+        players: action.payload.players
       };
     default:
       return state;

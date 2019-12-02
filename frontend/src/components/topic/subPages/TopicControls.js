@@ -8,13 +8,23 @@ import { QuestionBox } from "../../tools/QuestionBox";
 import { connect } from "react-redux";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 
+import { emitPause, emitResume } from "../../../socket/socket";
+
 export class TopicControls extends Component {
   pauseSession = () => {
+    const { joinCode } = this.props;
     console.log("Paused Session");
+    emitPause(joinCode);
   };
 
   cancelSession = () => {
     console.log("Cancelled Session");
+  };
+
+  resumeSession = () => {
+    const { joinCode } = this.props;
+    console.log("Resumed Session");
+    emitResume(joinCode);
   };
 
   render() {
@@ -28,7 +38,7 @@ export class TopicControls extends Component {
 
           <Box direction="column" gap="xsmall">
             <RoundState />
-            <Timer roundTime={timePerRound} executeAfter={() => {}} />
+            <Timer timeInSeconds={timePerRound} executeAfter={() => {}} />
           </Box>
 
           <Box direction="column" gap="xsmall" justify="center">
@@ -51,6 +61,7 @@ export class TopicControls extends Component {
 
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
+  joinCode: state.topicReducer.joinCode,
   timePerRound: state.topicReducer.timePerRound
 });
 const mapDispatchToProps = { setPage: setTopicPage };
