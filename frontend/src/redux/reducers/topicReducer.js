@@ -1,4 +1,4 @@
-import { SET_TOPIC_DATA } from "../actions/types";
+import { SET_TOPIC_DATA, SET_PLAYERS } from "../actions/types";
 
 const initialState = {
   id: -1,
@@ -16,9 +16,10 @@ export default function(state = initialState, action) {
         id: action.payload.id,
         joinCode: action.payload.joinCode,
         topic: action.payload.topic,
-        timePerRound: action.payload.timePerRound,
-        players: action.payload.players
+        timePerRound: action.payload.timePerRound
       };
+    case SET_PLAYERS:
+      return { ...state, players: action.payload.players };
     default:
       return state;
   }

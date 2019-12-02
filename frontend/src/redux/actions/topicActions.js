@@ -1,4 +1,4 @@
-import { SET_TOPIC_DATA } from "./types";
+import { SET_TOPIC_DATA, SET_PLAYERS } from "./types";
 
 export const setTopicData = topic => dispatch => {
   dispatch({
@@ -8,6 +8,15 @@ export const setTopicData = topic => dispatch => {
       joinCode: topic.joinCode,
       topic: topic.topic,
       timePerRound: topic.timePerRound
+    }
+  });
+};
+
+export const setPlayers = players => dispatch => {
+  dispatch({
+    type: SET_PLAYERS,
+    payload: {
+      players: players
     }
   });
 };

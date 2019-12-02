@@ -1,4 +1,4 @@
-import { INCREMENT_ROUND } from "../actions/types";
+import { SET_ROUND } from "../actions/types";
 
 const initialState = {
   numIdeas: 3,
@@ -8,11 +8,11 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case INCREMENT_ROUND:
+    case SET_ROUND:
       return {
         ...state,
         config: {
-          currentRound: state.config.currentRound + 1
+          currentRound: action.payload.currentRound
         }
       };
     default:

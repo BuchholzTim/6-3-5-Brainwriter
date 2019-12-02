@@ -41,19 +41,17 @@ socket.on("resume", () => {
 });
 
 export const emitStart = joinCode => {
-  console.log("Emitted Start");
   socket.emit("start", { joinCode: joinCode });
 };
 export const emitPause = joinCode => {
-  console.log("Emitted Pause");
+  setTimeStopped(true);
   socket.emit("pause", { joinCode: joinCode });
 };
 export const emitResume = joinCode => {
-  console.log("Emitted Resume");
+  setTimeStopped(false);
   socket.emit("resume", { joinCode: joinCode });
 };
 
 export const emitJoin = joinCode => {
-  console.log("Emitted Join");
   socket.emit("join", { joinCode: joinCode });
 };

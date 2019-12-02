@@ -1,7 +1,10 @@
-import { INCREMENT_ROUND } from "./types";
+import { SET_ROUND } from "./types";
 
-export const incrementRound = () => dispatch => {
+export const setRound = currentRound => dispatch => {
   dispatch({
-    type: INCREMENT_ROUND
+    type: SET_ROUND,
+    payload: {
+      currentRound: currentRound
+    }
   });
 };
