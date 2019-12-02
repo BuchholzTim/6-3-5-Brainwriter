@@ -4,7 +4,7 @@ import IdeaInput from "./ideaComponents/IdeaInput";
 import IdeaTable from "./ideaComponents/IdeaTable";
 import Timer from "../../tools/Timer";
 import { QuestionBox } from "../../tools/QuestionBox";
-import { SUMMARY } from "../pages";
+import { SUMMARY, AFTERROUND } from "../pages";
 import { connect } from "react-redux";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 import { setCurrentMessages } from "../../../redux/actions/messageActions";
@@ -15,7 +15,12 @@ export class PlayerViewRound extends Component {
   };
 
   nextPage = () => {
-    this.props.setPage(SUMMARY);
+    const { currentRound, rounds } = this.props;
+    if (currentRound === rounds) {
+      this.props.setPage(SUMMARY);
+    } else {
+      this.props.setPage(AFTERROUND);
+    }
   };
 
   setCurrentMessage = (currentMessage, index) => {
@@ -63,7 +68,9 @@ export class PlayerViewRound extends Component {
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
   timePerRound: state.topicReducer.timePerRound,
-  numIdeas: state.configReducer.numIdeas
+  numIdeas: state.configReducer.numIdeas,
+  currentRound: state.configReducer.currentRound,
+  rounds: state.configReducer.rounds
 });
 const mapDispatchToProps = {
   setPage: setPlayerPage,
