@@ -13,7 +13,7 @@ export const setPriorMessages = messages => dispatch => {
   dispatch({
     type: SET_PRIOR_MESSAGES,
     payload: {
-      priorMessages: messages.priorMessages
+      priorMessages: messages
     }
   });
 };

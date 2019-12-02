@@ -1,33 +1,38 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Box, Button } from "grommet";
 import PlayerList from "./topicComponents/PlayerList";
-import Timer from "../../tools/Timer";
 import RoundState from "./topicComponents/RoundState";
+import Timer from "../../tools/Timer";
 import { QuestionBox } from "../../tools/QuestionBox";
-
-import { connect } from "react-redux";
 import { setTopicPage } from "../../../redux/actions/pageActions";
-
 import { emitPause, emitResume } from "../../../socket/socket";
 
 export class TopicControls extends Component {
-  pauseSession = () => {
-    const { joinCode } = this.props;
-    console.log("Paused Session");
-    emitPause(joinCode);
+  state = {
+    buttonLabel: "Session pausieren",
+    pauseLabel: "Session pausieren",
+    resumeLabel: "Session weiterführen"
+  };
+
+  togglePause = () => {
+    const { joinCode, timeIsStopped } = this.props;
+    const { pauseLabel, resumeLabel } = this.state;
+    if (!timeIsStopped) {
+      emitPause(joinCode);
+      this.setState({ buttonLabel: resumeLabel });
+    } else {
+      emitResume(joinCode);
+      this.setState({ buttonLabel: pauseLabel });
+    }
   };
 
   cancelSession = () => {
     console.log("Cancelled Session");
   };
 
-  resumeSession = () => {
-    const { joinCode } = this.props;
-    console.log("Resumed Session");
-    emitResume(joinCode);
-  };
-
   render() {
+    const { buttonLabel } = this.state;
     const { topic, timePerRound } = this.props;
     return (
       <Box direction="column" gap="xlarge" pad="small">
@@ -42,11 +47,7 @@ export class TopicControls extends Component {
           </Box>
 
           <Box direction="column" gap="xsmall" justify="center">
-            <Button
-              primary
-              label="Session pausieren"
-              onClick={this.pauseSession}
-            />
+            <Button primary label={buttonLabel} onClick={this.togglePause} />
             <Button
               primary
               label="Session beenden"
@@ -62,7 +63,8 @@ export class TopicControls extends Component {
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
   joinCode: state.topicReducer.joinCode,
-  timePerRound: state.topicReducer.timePerRound
+  timePerRound: state.topicReducer.timePerRound,
+  timeIsStopped: state.controlReducer.timeIsStopped
 });
 const mapDispatchToProps = { setPage: setTopicPage };
 

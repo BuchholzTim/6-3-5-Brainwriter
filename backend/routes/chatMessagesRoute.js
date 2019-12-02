@@ -1,11 +1,11 @@
 const express = require("express");
 const models = require("../models/models");
 const router = express.Router();
-const tools = require("../tools/generalTools");
 const Op = require("sequelize").Op;
 
-router.post("/sendMessages/", async function(req, res, next) {
+router.post("/set", async function(req, res, next) {
   let messages = req.body.messages;
+
   let responseMessages = [];
   for (const message of messages) {
     try {

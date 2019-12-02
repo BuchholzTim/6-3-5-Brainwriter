@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { TextArea, Form, TextInput, Button, FormField, Box } from "grommet";
 import { connect } from "react-redux";
+import { TextArea, Form, TextInput, Button, FormField, Box } from "grommet";
+import { PREPARATION } from "../pages";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 import { setTopicData } from "../../../redux/actions/topicActions";
-import { PREPARATION } from "../pages";
-
 import { createTopic } from "../../../axios/apiCalls";
 
 export class TopicConfig extends Component {

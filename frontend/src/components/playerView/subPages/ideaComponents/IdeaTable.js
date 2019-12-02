@@ -1,22 +1,8 @@
 import React, { Component } from "react";
 import { DataTable, Text } from "grommet";
-
 import { connect } from "react-redux";
-import { getMessages } from "../../../../axios/apiCalls";
-
-import { setPriorMessages } from "../../../../redux/actions/messageActions";
 
 export class IdeaTable extends Component {
-  componentWillMount() {
-    this.getPriorMessages();
-  }
-
-  getPriorMessages() {
-    const { id } = this.props;
-    const messages = getMessages(id);
-    this.props.setPriorMessages(messages);
-  }
-
   stringToDom = str => {
     return <Text truncate={false}>{str}</Text>;
   };
@@ -57,12 +43,9 @@ export class IdeaTable extends Component {
 }
 
 const mapStateToProps = state => ({
-  id: state.topicReducer.id,
   numIdeas: state.configReducer.numIdeas,
   priorMessages: state.messageReducer.priorMessages
 });
-const mapDispatchToProps = {
-  setPriorMessages: setPriorMessages
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(IdeaTable);

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { emitJoin } from "../../../socket/socket";
 import { Form, FormField, TextInput, Button, Box } from "grommet";
 import { PREPARE } from "../pages";
-import { connect } from "react-redux";
 import { setTopicData } from "../../../redux/actions/topicActions";
 import { setAuthorData } from "../../../redux/actions/authorActions";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
-
 import { joinTopic } from "../../../axios/apiCalls";
-import { emitJoin } from "../../../socket/socket";
 
 export class PlayerViewJoin extends Component {
   state = {

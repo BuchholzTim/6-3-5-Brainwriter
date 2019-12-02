@@ -87,6 +87,24 @@ router.post("/getPlayers", async function(req, res, next) {
   }
 });
 
+router.post("/getPlayerCount", async function(req, res, next) {
+  const id = req.body.id;
+
+  const players = await models.Author.findAll({
+    where: {
+      topicID: id
+    }
+  });
+
+  if (tools.checkExistence(players)) {
+    const playerCount = players.length;
+    res.json(playerCount);
+  } else {
+    res.status(400);
+    res.end();
+  }
+});
+
 async function getTopic(joinCode) {
   const topic = await models.Topic.findOne({
     where: {

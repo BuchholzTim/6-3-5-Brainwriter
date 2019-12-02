@@ -1,19 +1,23 @@
-import { SET_ROUND } from "../actions/types";
+import { SET_CURRENT_ROUND, SET_MAX_ROUNDS } from "../actions/types";
 
 const initialState = {
   numIdeas: 3,
-  rounds: 6,
-  currentRound: 1
+  maxRounds: 6,
+  currentRound: 1,
+  timeBetweenRounds: 10
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case SET_ROUND:
+    case SET_CURRENT_ROUND:
       return {
         ...state,
-        config: {
-          currentRound: action.payload.currentRound
-        }
+        currentRound: action.payload.currentRound
+      };
+    case SET_MAX_ROUNDS:
+      return {
+        ...state,
+        maxRounds: action.payload.maxRounds
       };
     default:
       return state;

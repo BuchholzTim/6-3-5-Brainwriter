@@ -1,15 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Box, Text, Button } from "grommet";
 import PlayerList from "./topicComponents/PlayerList";
-
-import { connect } from "react-redux";
-import { setTopicPage } from "../../../redux/actions/pageActions";
-import { CONTROLS } from "../pages";
 import QuestionBox from "../../tools/QuestionBox";
+import { CONTROLS } from "../pages";
+import { setPlayers } from "../../../redux/actions/topicActions";
+import { setMaxRounds } from "../../../redux/actions/configActions";
+import { setPlayerInterval } from "../../../redux/actions/controlActions";
+import { setTopicPage } from "../../../redux/actions/pageActions";
 import { getPlayers } from "../../../axios/apiCalls";
 import { emitStart } from "../../../socket/socket";
-import { setPlayerInterval } from "../../../redux/actions/controlActions";
-import { setPlayers } from "../../../redux/actions/topicActions";
 
 export class TopicPreparation extends Component {
   state = {
@@ -18,27 +18,19 @@ export class TopicPreparation extends Component {
 
   refreshPlayers = () => {
     const { id } = this.props;
-    getPlayers(id)
-      .then(players => {
-        let names = [];
-        for (let i = 0; i < players.length; i++) {
-          const player = players[i];
-          names.push({ name: player.userName });
-        }
-        this.setState({ players: names });
-        return;
-      })
-      .then(() => {
-        const { players } = this.state;
-        const { propPlayers } = this.props;
-        if (players.length !== propPlayers.length) {
-          this.props.setPlayers(players);
-        }
-      });
+    getPlayers(id).then(data => {
+      this.setState({ players: data });
+      const { players } = this.state;
+      const { propPlayers } = this.props;
+      if (players.length !== propPlayers.length) {
+        this.props.setPlayers(players);
+      }
+    });
   };
 
   onSubmit = () => {
-    const { joinCode, playerListInterval } = this.props;
+    const { joinCode, playerListInterval, propPlayers } = this.props;
+    this.props.setMaxRounds(propPlayers.length);
     clearInterval(playerListInterval);
     emitStart(joinCode);
     this.nextPage();
@@ -95,7 +87,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setPage: setTopicPage,
   setPlayers: setPlayers,
-  setPlayerInterval: setPlayerInterval
+  setPlayerInterval: setPlayerInterval,
+  setMaxRounds: setMaxRounds
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicPreparation);

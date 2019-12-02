@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Box, Text } from "grommet";
 import { connect } from "react-redux";
+import { Box, Text } from "grommet";
 
 export class RoundState extends Component {
   render() {

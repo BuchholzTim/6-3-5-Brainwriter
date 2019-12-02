@@ -4,12 +4,12 @@ import axios from "axios";
 const APIURL = backend_ip + backend_port;
 
 // Define Endpoints
-const topics = APIURL + "/topics";
-const messages = APIURL + "/messages";
+const topicURL = APIURL + "/topics";
+const messageURL = APIURL + "/messages";
 
 export const createTopic = topic =>
   axios
-    .post(`${topics}/create`, {
+    .post(`${topicURL}/create`, {
       topic: topic.topic,
       timePerRound: topic.timePerRound
     })
@@ -24,7 +24,7 @@ export const createTopic = topic =>
 // Return Promis
 export const joinTopic = data =>
   axios
-    .post(`${topics}/join`, {
+    .post(`${topicURL}/join`, {
       userName: data.userName,
       joinCode: data.joinCode
     })
@@ -35,8 +35,18 @@ export const joinTopic = data =>
 
 export const getMessages = topicID =>
   axios
-    .post(`${messages}/get`, {
+    .post(`${messageURL}/get`, {
       id: topicID
+    })
+    .then(response => {
+      const data = response.data;
+      return data;
+    });
+
+export const setMessages = messages =>
+  axios
+    .post(`${messageURL}/set`, {
+      messages: messages
     })
     .then(response => {
       const data = response.data;
@@ -47,7 +57,7 @@ export const getMessages = topicID =>
 // Returns Names of all Players
 export const getPlayers = topicID =>
   axios
-    .post(`${topics}/getPlayers`, {
+    .post(`${topicURL}/getPlayers`, {
       id: topicID
     })
     .then(response => {

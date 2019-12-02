@@ -1,11 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { CONTROLS, PREPARATION } from "./pages";
 import TopicConfig from "./subPages/TopicConfig";
 import TopicControls from "./subPages/TopicControls";
 import TopicPreparation from "./subPages/TopicPreparation";
-
-import { CONTROLS, PREPARATION } from "./pages";
-
-import { connect } from "react-redux";
 
 export class Topic extends Component {
   render() {

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Meter, Stack, Box, Text } from "grommet";
-
 import { connect } from "react-redux";
+import { Meter, Stack, Box, Text } from "grommet";
 
 export class Timer extends Component {
   state = {

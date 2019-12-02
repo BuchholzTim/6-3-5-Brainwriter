@@ -11,7 +11,7 @@ import store from "./redux/store";
 
 //Themes
 import { base } from "./themes/Base";
-import { dark } from "./themes/Dark";
+//import { dark } from "./themes/Dark";
 
 export class App extends Component {
   render() {
