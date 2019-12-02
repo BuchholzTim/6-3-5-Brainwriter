@@ -12,7 +12,10 @@ const dbDialect = process.env.DB_DIALECT;
 const Sequelize = require("sequelize");
 
 module.exports = new Sequelize(dbName, dbUsername, dbPassword, {
-    host: dbHost,
-    dialect: dbDialect,
-    port: dbPort
+  host: dbHost,
+  dialect: dbDialect,
+  port: dbPort,
+
+  // disable logging; default: console.log
+  logging: false
 });

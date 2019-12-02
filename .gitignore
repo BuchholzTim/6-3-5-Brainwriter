@@ -7,3 +7,4 @@ backend/.idea/
 frontend/.idea/
 frontend/node_modules
 backend/node_modules
+package-lock.json

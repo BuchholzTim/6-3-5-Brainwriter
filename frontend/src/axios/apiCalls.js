@@ -1,44 +1,66 @@
-import {backend_ip, backend_port} from "../config/config";
+import { backend_ip, backend_port } from "../config/config";
 import axios from "axios";
 
 const APIURL = backend_ip + backend_port;
 
 // Define Endpoints
-const topics = APIURL + "/topics";
-const chatMessages = APIURL + "/chatMessages";
+const topicURL = APIURL + "/topics";
+const messageURL = APIURL + "/messages";
 
-// Snippets
-// export const getSnippet = () => axios.get(`${topics}/`);
-// export const postSnippet = () => axios.post(`${topics}/`);
-
-axios.post(`${topics}/axiosPost`, {
-    id: 12
-})
-    .then(function (response) {
-        // handle success
-        console.log(response);
+export const createTopic = topic =>
+  axios
+    .post(`${topicURL}/create`, {
+      topic: topic.topic,
+      timePerRound: topic.timePerRound
     })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
-    })
-    .finally(function () {
-        // always executed
+    .then(response => {
+      // handle success
+      const data = response.data;
+      return data;
     });
 
-axios.get(`${topics}/axiosGet`, {
-    params: {
-        id: 12
-    }
-})
-    .then(function (response) {
-        // handle success
-        console.log(response);
+// Retrieves exisiting Topic with joinCode
+// Creates new User with specified Name
+// Return Promis
+export const joinTopic = data =>
+  axios
+    .post(`${topicURL}/join`, {
+      userName: data.userName,
+      joinCode: data.joinCode
     })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
+    .then(response => {
+      const data = response.data;
+      return data;
+    });
+
+export const getMessages = topicID =>
+  axios
+    .post(`${messageURL}/get`, {
+      id: topicID
     })
-    .finally(function () {
-        // always executed
+    .then(response => {
+      const data = response.data;
+      return data;
+    });
+
+export const setMessages = messages =>
+  axios
+    .post(`${messageURL}/set`, {
+      messages: messages
+    })
+    .then(response => {
+      const data = response.data;
+      return data;
+    });
+
+// Retrieves all Players that currently have joined the specified JoinCode
+// Returns Names of all Players
+export const getPlayers = topicID =>
+  axios
+    .post(`${topicURL}/getPlayers`, {
+      id: topicID
+    })
+    .then(response => {
+      const data = response.data;
+      return data;
     });

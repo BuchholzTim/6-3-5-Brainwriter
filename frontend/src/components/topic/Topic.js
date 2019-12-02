@@ -1,37 +1,27 @@
-import React, {Component} from "react";
-import TopicConfig from "./TopicConfig"
-//import {Button, Grommet} from 'grommet';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { CONTROLS, PREPARATION } from "./pages";
+import TopicConfig from "./subPages/TopicConfig";
+import TopicControls from "./subPages/TopicControls";
+import TopicPreparation from "./subPages/TopicPreparation";
 
 export class Topic extends Component {
-    state = {
-        page: "",
-        question: "",
-        time: ""
-    };
-
-    switchPage = event => {
-        this.setState({
-            page: event.target.value
-        });
-    };
-
-    renderPage(page) {
-        switch (page) {
-            case "1":
-                return <h1>case1</h1>
-            case "2":
-                return <h1>case2</h1>;
-            default:
-                return (
-                   <TopicConfig currentPage={page}/>
-                );
-        }
+  render() {
+    const { topicPage } = this.props;
+    switch (topicPage) {
+      case PREPARATION:
+        return <TopicPreparation></TopicPreparation>;
+      case CONTROLS:
+        return <TopicControls></TopicControls>;
+      default:
+        return <TopicConfig></TopicConfig>;
     }
-
-    render() {
-        const page = this.state.page;
-        return this.renderPage(page);
-    }
+  }
 }
 
-export default Topic;
+const mapStateToProps = state => ({
+  topicPage: state.pageReducer.topicPage
+});
+const mapDispatchToProps = null;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Topic);

@@ -1,25 +1,48 @@
-import React from "react";
-import './App.css';
-import {Box, Heading, Grommet} from "grommet";
+import React, { Component } from "react";
 import Home from "./components/Home";
-import {socket} from "./socket/socket"
+import Topic from "./components/topic/Topic";
+import PlayerView from "./components/playerView/PlayerView";
+import { Grommet, Box } from "grommet";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import Menubar from "./components/Menubar";
+import "./App.css";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-function App() {
-    socket.connect();
+//Themes
+import { base } from "./themes/Base";
+//import { dark } from "./themes/Dark";
+
+export class App extends Component {
+  render() {
     return (
-        <Grommet className="App">
+      <Router>
+        <Grommet className="App" theme={base}>
+          <Provider store={store}>
+            <Menubar />
             <Box
-                direction="column"
-                border={{color: "brand", size: "large"}}
-                pad="medium"
-                align="center"
-                alignContent="center"
+              direction="column"
+              border={{ color: "brand", size: "medium" }}
+              pad={{ vertical: "xsmall" }}
+              align="center"
             >
-                <Heading textAlign="center">Brainwriter</Heading>
-                <Home/>
+              <Switch>
+                <Route path="/playerView">
+                  <PlayerView></PlayerView>
+                </Route>
+                <Route path="/topic">
+                  <Topic></Topic>
+                </Route>
+                <Route path="/">
+                  <Home></Home>
+                </Route>
+              </Switch>
             </Box>
+          </Provider>
         </Grommet>
+      </Router>
     );
+  }
 }
 
 export default App;
