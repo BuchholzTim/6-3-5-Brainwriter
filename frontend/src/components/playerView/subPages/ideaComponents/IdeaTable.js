@@ -67,9 +67,7 @@ export class IdeaTable extends Component {
   };
 
   render() {
-    const { numIdeas, priorMessages } = this.props;
-    console.log(this.formatMessagesToTable());
-
+    const { numIdeas } = this.props;
     const column_configs = [];
 
     for (let i = 0; i < numIdeas; i++) {
@@ -80,12 +78,23 @@ export class IdeaTable extends Component {
 
       column_configs.push(config);
     }
+
+    const messages = this.formatMessagesToTable();
+    const data = [];
+
+    for (let i = 0; i < messages.length; i++) {
+      const row = messages[i];
+
+      const rowData = {};
+      for (let j = 0; j < row.length; j++) {
+        rowData[`idea_${j + 1}`] = row[j].content;
+      }
+
+      data.push(rowData);
+    }
+
     return (
-      <DataTable
-        size="medium"
-        columns={column_configs}
-        data={priorMessages}
-      ></DataTable>
+      <DataTable size="medium" columns={column_configs} data={data}></DataTable>
     );
   }
 }
