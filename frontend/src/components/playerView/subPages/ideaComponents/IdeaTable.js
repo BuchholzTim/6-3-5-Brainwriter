@@ -68,7 +68,6 @@ export class IdeaTable extends Component {
 
   render() {
     const { numIdeas, priorMessages } = this.props;
-
     console.log(this.formatMessagesToTable());
 
     const column_configs = [];

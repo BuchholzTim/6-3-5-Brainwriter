@@ -53,7 +53,6 @@ export class PlayerViewAfterRound extends Component {
     if (!executed) {
       this.setState({ executed: true });
       const messages = this.constructMessages();
-      console.log(messages);
 
       setMessages(messages).then(() => {
         this.props.setCurrentRound(currentRound + 1);
