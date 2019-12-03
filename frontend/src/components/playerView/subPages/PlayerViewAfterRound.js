@@ -22,7 +22,6 @@ export class PlayerViewAfterRound extends Component {
     const { id } = this.props;
     getMessages(id)
       .then(data => {
-        console.log(data);
         this.props.setPriorMessages(data);
         return;
       })
