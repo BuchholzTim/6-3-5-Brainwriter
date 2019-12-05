@@ -4,7 +4,7 @@ import { Meter, Stack, Box, Text } from "grommet";
 
 export class Timer extends Component {
   state = {
-    meterValue: 100,
+    meterValue: 0,
     executeAfter: this.props.executeAfter,
     timeInSeconds: this.props.timeInSeconds,
     remainingTime: this.props.timeInSeconds
@@ -24,7 +24,7 @@ export class Timer extends Component {
       remainingTime -= 1;
       const timeAsText = this.convertSecondsToTime(remainingTime);
 
-      const meterValue = (remainingTime / timeInSeconds) * 100;
+      const meterValue = (1 - remainingTime / timeInSeconds) * 100;
 
       this.setState({
         remainingTime: remainingTime,

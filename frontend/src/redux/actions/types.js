@@ -10,3 +10,4 @@ export const START_ROUND = "START_ROUND";
 export const SET_PLAYERS = "SET_PLAYERS";
 export const SET_CURRENT_ROUND = "SET_CURRENT_ROUND";
 export const SET_MAX_ROUNDS = "SET_MAX_ROUNDS";
+export const SET_AFTER_ROUND = "SET_AFTER_ROUND";

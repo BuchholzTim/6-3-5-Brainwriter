@@ -1,10 +1,16 @@
-import { SET_INTERVAL, SET_TIME, START_ROUND } from "../actions/types";
+import {
+  SET_INTERVAL,
+  SET_TIME,
+  START_ROUND,
+  SET_AFTER_ROUND
+} from "../actions/types";
 
 const initialState = {
   playerListInterval: -1,
   playerListIntervalStarted: false,
   timeIsStopped: false,
-  roundStarted: false
+  roundStarted: false,
+  isAfterRound: false
 };
 
 export default function(state = initialState, action) {
@@ -14,6 +20,11 @@ export default function(state = initialState, action) {
         ...state,
         playerListInterval: action.payload.playerListInterval,
         playerListIntervalStarted: action.payload.playerListIntervalStarted
+      };
+    case SET_AFTER_ROUND:
+      return {
+        ...state,
+        isAfterRound: action.payload.isAfterRound
       };
     case SET_TIME:
       return {

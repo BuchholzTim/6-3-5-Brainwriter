@@ -103,7 +103,6 @@ const mapStateToProps = state => ({
   numIdeas: state.configReducer.numIdeas,
   priorMessages: state.messageReducer.priorMessages,
   currentRound: state.configReducer.currentRound,
-  authorID: state.authorReducer.id,
   players: state.topicReducer.players
 });
 const mapDispatchToProps = {};
