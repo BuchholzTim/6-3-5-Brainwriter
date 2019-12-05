@@ -15,12 +15,7 @@ export class PlayerViewRound extends Component {
   };
 
   nextPage = () => {
-    const { currentRound, rounds } = this.props;
-    if (currentRound === rounds) {
-      this.props.setPage(SUMMARY);
-    } else {
-      this.props.setPage(AFTERROUND);
-    }
+    this.props.setPage(AFTERROUND);
   };
 
   setCurrentMessage = (currentMessage, index) => {
@@ -70,7 +65,7 @@ const mapStateToProps = state => ({
   timePerRound: state.topicReducer.timePerRound,
   numIdeas: state.configReducer.numIdeas,
   currentRound: state.configReducer.currentRound,
-  rounds: state.configReducer.rounds
+  rounds: state.configReducer.maxRounds
 });
 const mapDispatchToProps = {
   setPage: setPlayerPage,

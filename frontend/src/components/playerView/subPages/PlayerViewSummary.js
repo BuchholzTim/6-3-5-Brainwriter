@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Box } from "grommet";
-import { IdeaTable } from "./ideaComponents/IdeaTable";
+import IdeaTable from "./ideaComponents/IdeaTable";
 import { QuestionBox } from "../../tools/QuestionBox";
 
 export class PlayerViewSummary extends Component {
