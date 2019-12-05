@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Heading, Box } from "grommet";
 import { QuestionBox } from "../../tools/QuestionBox";
-import { Timer } from "../../tools/Timer";
+import Timer from "../../tools/Timer";
 import { ROUND, SUMMARY } from "../pages";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 import { setCurrentRound } from "../../../redux/actions/configActions";

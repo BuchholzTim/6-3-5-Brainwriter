@@ -63,7 +63,7 @@ export class TopicControls extends Component {
       currentRound
     } = this.props;
 
-    let time = null;
+    let time = -1;
     if (isAfterRound) {
       time = timeBetweenRounds;
     } else {
