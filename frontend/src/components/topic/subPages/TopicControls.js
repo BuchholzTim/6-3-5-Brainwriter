@@ -9,7 +9,10 @@ import { setTopicPage } from "../../../redux/actions/pageActions";
 import { emitPause, emitResume } from "../../../socket/socket";
 import { setCurrentRound } from "../../../redux/actions/configActions";
 import { setAfterRound } from "../../../redux/actions/controlActions";
+import { setPriorMessages } from "../../../redux/actions/messageActions";
 import { SUMMARY } from "../pages";
+
+import { getMessages } from "../../../axios/apiCalls";
 
 export class TopicControls extends Component {
   state = {
@@ -35,7 +38,7 @@ export class TopicControls extends Component {
   };
 
   executeAfter = () => {
-    const { isAfterRound, currentRound, maxRounds } = this.props;
+    const { isAfterRound, currentRound, maxRounds, topicID } = this.props;
 
     if (!isAfterRound) {
       this.props.setAfterRound(!isAfterRound);
@@ -44,7 +47,14 @@ export class TopicControls extends Component {
       this.props.setAfterRound(!isAfterRound);
     }
     if (currentRound === maxRounds && isAfterRound) {
-      this.nextPage();
+      getMessages(topicID)
+        .then(data => {
+          this.props.setPriorMessages(data);
+          return;
+        })
+        .then(() => {
+          this.nextPage();
+        });
     }
   };
 
@@ -97,6 +107,7 @@ export class TopicControls extends Component {
 
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
+  topicID: state.topicReducer.id,
   joinCode: state.topicReducer.joinCode,
   timePerRound: state.topicReducer.timePerRound,
   timeIsStopped: state.controlReducer.timeIsStopped,
@@ -109,7 +120,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setPage: setTopicPage,
   setAfterRound: setAfterRound,
-  setCurrentRound: setCurrentRound
+  setCurrentRound: setCurrentRound,
+  setPriorMessages: setPriorMessages
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicControls);

@@ -24,8 +24,8 @@ export class PlayerViewAfterRound extends Component {
   };
 
   executeAfter = () => {
-    const { id } = this.props;
-    getMessages(id)
+    const { topicID } = this.props;
+    getMessages(topicID)
       .then(data => {
         this.props.setPriorMessages(data);
         return;
@@ -79,7 +79,7 @@ export class PlayerViewAfterRound extends Component {
 
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
-  id: state.topicReducer.id,
+  topicID: state.topicReducer.id,
   currentRound: state.configReducer.currentRound,
   maxRounds: state.configReducer.maxRounds,
   timeBetweenRounds: state.configReducer.timeBetweenRounds,
