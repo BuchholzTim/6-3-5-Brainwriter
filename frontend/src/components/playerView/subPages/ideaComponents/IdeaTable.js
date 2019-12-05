@@ -7,13 +7,6 @@ export class IdeaTable extends Component {
     return <Text truncate={false}>{str}</Text>;
   };
 
-  jsonToDom = jsonObj => {
-    for (let key in jsonObj) {
-      jsonObj[key] = this.stringToDom(jsonObj[key]);
-    }
-    return jsonObj;
-  };
-
   /**
    * This function takes all the messages which were sent to the room
    * and returns only those which are relevant for the current round, for the specified player.
@@ -87,7 +80,8 @@ export class IdeaTable extends Component {
 
       const rowData = {};
       for (let j = 0; j < row.length; j++) {
-        rowData[`idea_${j + 1}`] = row[j].content;
+        const message = this.stringToDom(row[j].content);
+        rowData[`idea_${j + 1}`] = message;
       }
 
       data.push(rowData);
