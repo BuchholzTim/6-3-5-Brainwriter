@@ -54,18 +54,11 @@ export class TopicControls extends Component {
       currentRound
     } = this.props;
 
-    let timer;
-
+    let time = null;
     if (isAfterRound) {
-      const time = timeBetweenRounds;
-      timer = (
-        <Timer timeInSeconds={time} executeAfter={this.executeAfter}></Timer>
-      );
+      time = timeBetweenRounds;
     } else {
-      const time = timePerRound + (currentRound - 1) * readingTime;
-      timer = (
-        <Timer timeInSeconds={time} executeAfter={this.executeAfter}></Timer>
-      );
+      time = timePerRound + (currentRound - 1) * readingTime;
     }
 
     return (
@@ -77,10 +70,8 @@ export class TopicControls extends Component {
 
           <Box direction="column" gap="xsmall">
             <RoundState />
-            {/* <Timer timeInSeconds={timer} executeAfter={this.executeAfter} /> */}
-            {timer}
+            <Timer timeInSeconds={time} executeAfter={this.executeAfter} />
           </Box>
-
           <Box direction="column" gap="xsmall" justify="center">
             <Button primary label={buttonLabel} onClick={this.togglePause} />
             <Button

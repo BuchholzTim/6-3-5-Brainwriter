@@ -10,6 +10,21 @@ export class Timer extends Component {
     remainingTime: this.props.timeInSeconds
   };
 
+  componentDidUpdate = (prevProps, prevState) => {
+    const { maxRounds, currentRound, timerInterval } = this.props;
+    if (prevProps.timeInSeconds !== this.props.timeInSeconds) {
+      if (currentRound <= maxRounds) {
+        if (timerInterval !== -1) {
+          this.interval = setInterval(() => this.refreshTimer(), 1000);
+        }
+        this.setState({
+          timeInSeconds: this.props.timeInSeconds,
+          remainingTime: this.props.timeInSeconds
+        });
+      }
+    }
+  };
+
   convertSecondsToTime = timeInSeconds => {
     const seconds = timeInSeconds % 60;
     const minutes = Math.floor(timeInSeconds / 60);
@@ -69,7 +84,10 @@ export class Timer extends Component {
 }
 
 const mapStateToProps = state => ({
-  timeIsStopped: state.controlReducer.timeIsStopped
+  timeIsStopped: state.controlReducer.timeIsStopped,
+  maxRounds: state.configReducer.maxRounds,
+  currentRound: state.configReducer.currentRound,
+  timerInterval: state.controlReducer.timerInterval
 });
 
 const mapDispatchToProps = {};
