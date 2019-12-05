@@ -9,6 +9,7 @@ import { setTopicPage } from "../../../redux/actions/pageActions";
 import { emitPause, emitResume } from "../../../socket/socket";
 import { setCurrentRound } from "../../../redux/actions/configActions";
 import { setAfterRound } from "../../../redux/actions/controlActions";
+import { SUMMARY } from "../pages";
 
 export class TopicControls extends Component {
   state = {
@@ -34,13 +35,21 @@ export class TopicControls extends Component {
   };
 
   executeAfter = () => {
-    const { isAfterRound, currentRound } = this.props;
+    const { isAfterRound, currentRound, maxRounds } = this.props;
+
     if (!isAfterRound) {
       this.props.setAfterRound(!isAfterRound);
     } else {
       this.props.setCurrentRound(currentRound + 1);
       this.props.setAfterRound(!isAfterRound);
     }
+    if (currentRound === maxRounds && isAfterRound) {
+      this.nextPage();
+    }
+  };
+
+  nextPage = () => {
+    this.props.setPage(SUMMARY);
   };
 
   render() {
@@ -94,7 +103,8 @@ const mapStateToProps = state => ({
   timeBetweenRounds: state.configReducer.timeBetweenRounds,
   readingTime: state.configReducer.readingTime,
   currentRound: state.configReducer.currentRound,
-  isAfterRound: state.controlReducer.isAfterRound
+  isAfterRound: state.controlReducer.isAfterRound,
+  maxRounds: state.configReducer.maxRounds
 });
 const mapDispatchToProps = {
   setPage: setTopicPage,

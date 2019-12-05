@@ -14,12 +14,11 @@ export class Timer extends Component {
     const { maxRounds, currentRound, timerInterval } = this.props;
     if (prevProps.timeInSeconds !== this.props.timeInSeconds) {
       if (currentRound <= maxRounds) {
-        if (timerInterval !== -1) {
-          this.interval = setInterval(() => this.refreshTimer(), 1000);
-        }
+        this.interval = setInterval(() => this.refreshTimer(), 1000);
         this.setState({
           timeInSeconds: this.props.timeInSeconds,
-          remainingTime: this.props.timeInSeconds
+          remainingTime: this.props.timeInSeconds,
+          executeAfter: this.props.executeAfter
         });
       }
     }
@@ -50,6 +49,7 @@ export class Timer extends Component {
 
     if (remainingTime === 0) {
       clearInterval(this.interval);
+
       if (executeAfter != null) {
         executeAfter();
       }

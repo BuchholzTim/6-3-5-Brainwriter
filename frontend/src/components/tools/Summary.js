@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Box, Carousel } from "grommet";
-import IdeaTable from "./ideaComponents/IdeaTable";
-import { QuestionBox } from "../../tools/QuestionBox";
+import IdeaTable from "../playerView/subPages/ideaComponents/IdeaTable";
+import { QuestionBox } from "./QuestionBox";
 
 export class PlayerViewSummary extends Component {
   showSummary = () => {};
