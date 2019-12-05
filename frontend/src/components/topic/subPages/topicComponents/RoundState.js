@@ -4,12 +4,12 @@ import { Box, Text } from "grommet";
 
 export class RoundState extends Component {
   render() {
-    const { currentRound, rounds } = this.props;
+    const { currentRound, maxRounds } = this.props;
     return (
       <Box direction="column" gap="xsmall">
         <Text weight="bold">Status:</Text>
         <Text>
-          Runde {currentRound}/{rounds} läuft gerade
+          Runde {currentRound}/{maxRounds} läuft gerade
         </Text>
       </Box>
     );
@@ -18,7 +18,7 @@ export class RoundState extends Component {
 
 const mapStateToProps = state => ({
   currentRound: state.configReducer.currentRound,
-  rounds: state.configReducer.rounds
+  maxRounds: state.configReducer.maxRounds
 });
 const mapDispatchToProps = {};
 

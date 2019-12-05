@@ -5,7 +5,7 @@ import IdeaInput from "./ideaComponents/IdeaInput";
 import IdeaTable from "./ideaComponents/IdeaTable";
 import Timer from "../../tools/Timer";
 import { QuestionBox } from "../../tools/QuestionBox";
-import { SUMMARY, AFTERROUND } from "../pages";
+import { AFTERROUND } from "../pages";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 import { setCurrentMessages } from "../../../redux/actions/messageActions";
 
@@ -15,12 +15,7 @@ export class PlayerViewRound extends Component {
   };
 
   nextPage = () => {
-    const { currentRound, rounds } = this.props;
-    if (currentRound === rounds) {
-      this.props.setPage(SUMMARY);
-    } else {
-      this.props.setPage(AFTERROUND);
-    }
+    this.props.setPage(AFTERROUND);
   };
 
   setCurrentMessage = (currentMessage, index) => {
@@ -36,8 +31,17 @@ export class PlayerViewRound extends Component {
   };
 
   render() {
-    const { topic, timePerRound, numIdeas } = this.props;
+    const {
+      topic,
+      timePerRound,
+      numIdeas,
+      readingTime,
+      currentRound,
+      authorID
+    } = this.props;
     const ideaInputs = [];
+
+    const timeForRound = timePerRound + readingTime * (currentRound - 1);
 
     // Generate Items
     for (let i = 0; i < numIdeas; i++) {
@@ -54,11 +58,11 @@ export class PlayerViewRound extends Component {
         <Box direction="row" align="center" justify="center">
           <QuestionBox question={topic} />
           <Timer
-            timeInSeconds={timePerRound}
+            timeInSeconds={timeForRound}
             executeAfter={this.executeAfter}
           />
         </Box>
-        <IdeaTable />
+        <IdeaTable authorID={authorID} />
         <Box direction="row">{ideaInputs}</Box>
       </Box>
     );
@@ -70,7 +74,9 @@ const mapStateToProps = state => ({
   timePerRound: state.topicReducer.timePerRound,
   numIdeas: state.configReducer.numIdeas,
   currentRound: state.configReducer.currentRound,
-  rounds: state.configReducer.rounds
+  authorID: state.authorReducer.id,
+  rounds: state.configReducer.maxRounds,
+  readingTime: state.configReducer.readingTime
 });
 const mapDispatchToProps = {
   setPage: setPlayerPage,

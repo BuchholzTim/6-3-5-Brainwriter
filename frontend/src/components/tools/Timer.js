@@ -2,12 +2,27 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Meter, Stack, Box, Text } from "grommet";
 
+import { setTimerInterval } from "../../redux/actions/controlActions";
+
 export class Timer extends Component {
-  state = {
-    meterValue: 100,
-    executeAfter: this.props.executeAfter,
-    timeInSeconds: this.props.timeInSeconds,
-    remainingTime: this.props.timeInSeconds
+  constructor(props) {
+    super(props);
+    this.state = {
+      meterValue: 0,
+      executeAfter: this.props.executeAfter,
+      timeInSeconds: this.props.timeInSeconds,
+      remainingTime: this.props.timeInSeconds
+    };
+  }
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.timeInSeconds !== this.props.timeInSeconds) {
+      this.startTimer();
+      this.setState({
+        timeInSeconds: this.props.timeInSeconds,
+        remainingTime: this.props.timeInSeconds,
+        executeAfter: this.props.executeAfter
+      });
+    }
   };
 
   convertSecondsToTime = timeInSeconds => {
@@ -23,27 +38,37 @@ export class Timer extends Component {
     if (!timeIsStopped) {
       remainingTime -= 1;
       const timeAsText = this.convertSecondsToTime(remainingTime);
-
-      const meterValue = (remainingTime / timeInSeconds) * 100;
+      const meterValue = (1 - remainingTime / timeInSeconds) * 100;
 
       this.setState({
         remainingTime: remainingTime,
         timeAsText: timeAsText,
         meterValue: meterValue
       });
-    }
 
-    if (remainingTime === 0) {
-      clearInterval(this.interval);
-      if (executeAfter != null) {
-        executeAfter();
+      if (remainingTime === 0) {
+        this.clearTimer();
+        if (executeAfter != null) {
+          executeAfter();
+        }
       }
     }
   };
 
-  componentDidMount() {
-    this.interval = setInterval(() => this.refreshTimer(), 1000);
-  }
+  startTimer = () => {
+    const interval = setInterval(() => this.refreshTimer(), 1000);
+    this.props.setTimerInterval(interval);
+  };
+
+  clearTimer = () => {
+    const { timerInterval } = this.props;
+    clearInterval(timerInterval);
+    this.props.setTimerInterval(-1);
+  };
+
+  componentDidMount = () => {
+    this.startTimer();
+  };
 
   render() {
     const { meterValue, timeAsText } = this.state;
@@ -69,9 +94,12 @@ export class Timer extends Component {
 }
 
 const mapStateToProps = state => ({
-  timeIsStopped: state.controlReducer.timeIsStopped
+  timeIsStopped: state.controlReducer.timeIsStopped,
+  maxRounds: state.configReducer.maxRounds,
+  currentRound: state.configReducer.currentRound,
+  timerInterval: state.controlReducer.timerInterval
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { setTimerInterval: setTimerInterval };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);

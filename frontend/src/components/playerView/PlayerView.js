@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PlayerViewJoin from "./subPages/PlayerViewJoin";
 import PlayerViewRound from "./subPages/PlayerViewRound";
-import PlayerViewSummary from "./subPages/PlayerViewSummary";
+import Summary from "../tools/Summary";
 import PlayerViewPrepare from "./subPages/PlayerViewPrepare";
 import PlayerViewAfterRound from "./subPages/PlayerViewAfterRound";
 import { ROUND, SUMMARY, PREPARE, AFTERROUND } from "./pages";
@@ -15,7 +15,7 @@ export class PlayerView extends Component {
       case ROUND:
         return <PlayerViewRound></PlayerViewRound>;
       case SUMMARY:
-        return <PlayerViewSummary></PlayerViewSummary>;
+        return <Summary></Summary>;
       case PREPARE:
         return <PlayerViewPrepare></PlayerViewPrepare>;
       case AFTERROUND:
