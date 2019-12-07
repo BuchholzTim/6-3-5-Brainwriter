@@ -44,7 +44,7 @@ npm install
 
   + Backend:
 
-    Run `npm start`
+    Run `babel-node ./bin/www`
 
 + <u>**Note:**</u> In Linux you can use `screen` to run the project, without killing the process, when leaving the terminal
 
