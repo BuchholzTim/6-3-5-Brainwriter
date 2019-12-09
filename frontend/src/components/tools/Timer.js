@@ -77,8 +77,8 @@ export class Timer extends Component {
         <Stack anchor="center">
           <Meter
             type="circle"
-            background="light-2"
-            values={[{ value: meterValue }]}
+            background="accent-1"
+            values={[{ value: meterValue, color: "light-2" }]}
             size="xsmall"
             thickness="small"
           />

@@ -63,7 +63,9 @@ export class PlayerViewRound extends Component {
           />
         </Box>
         <IdeaTable authorID={authorID} />
-        <Box direction="row">{ideaInputs}</Box>
+        <Box direction="row" pad="small" gap="small">
+          {ideaInputs}
+        </Box>
       </Box>
     );
   }
