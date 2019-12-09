@@ -10,14 +10,17 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 //Themes
-import { base } from "./themes/Base";
+//import { base } from "./themes/Base";
 //import { dark } from "./themes/Dark";
+import { hci2b } from "./themes/hci2b";
+//import { base } from "./themes/Base-Kopie";
+
 
 export class App extends Component {
   render() {
     return (
       <Router>
-        <Grommet className="App" theme={base}>
+        <Grommet className="App" theme={ hci2b }>
           <Provider store={store}>
             <Menubar />
             <Box
