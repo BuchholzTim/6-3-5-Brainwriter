@@ -15,14 +15,14 @@ export class Home extends Component {
         <Box pad="large" align="center" background="light-6" round gap="small">
           <Group size="large" color="dark-2" />
           <Link to="/topic">
-            <Button primary label="Schnelle Runde erstellen" />
+            <Button primary label="Schnelle Runde erstellen" hoverIndicator='true' />
           </Link>
         </Box>
 
         <Box pad="large" align="center" background="light-6" round gap="small">
           <Login size="large" color="dark-2" />
           <Link to="/playerView">
-            <Button primary label="Runde beitreten" />
+            <Button primary label="Runde beitreten" hoverIndicator='true'/>
           </Link>
         </Box>
       </Box>
