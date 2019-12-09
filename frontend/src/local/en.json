@@ -1,12 +1,13 @@
 {
   "translation": {
+    "applicationName": "6-3-5 Brainwriter",
     "createQuickRound": "Create Quick Round",
     "createRound": "Create Round",
     "joinRound": "Join Round",
     "startRound": "Start Round",
     "pauseRound": "Pause Round",
     "resumeRound": "Resume Round",
-    "topicName": "Why is the banana crooked?",
+    "topicName": "How can we Improve this App?",
     "idea": "Idea",
     "ideaPlaceholder": "Your best Idea!",
     "joinCode": "Join Code",
@@ -20,7 +21,7 @@
     "aboutToStart": "It's about to start!",
     "aboutToContinue": "It's about to continue!",
     "waitingForParticipants": "Waiting until everybody has joined...",
-    "roundCurrentlyRunning": "Round {currentRound}/{maxRounds} is currently in progress!",
+    "roundCurrentlyRunning": "Round {{currentRound}}/{{maxRounds}} is currently in progress!",
     "notEnoughPlayers": "You need at least one player!",
     "onlyNumeric": "Only numeric values are allowed"
   }

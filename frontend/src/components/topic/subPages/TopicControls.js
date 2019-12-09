@@ -4,7 +4,7 @@ import { Box, Button } from "grommet";
 import PlayerList from "./topicComponents/PlayerList";
 import RoundState from "./topicComponents/RoundState";
 import Timer from "../../tools/Timer";
-import { QuestionBox } from "../../tools/QuestionBox";
+import QuestionBox from "../../tools/QuestionBox";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 import { emitPause, emitResume } from "../../../socket/socket";
 import { setCurrentRound } from "../../../redux/actions/configActions";
@@ -17,9 +17,13 @@ import { withTranslation } from "react-i18next";
 import { getMessages } from "../../../axios/apiCalls";
 
 export class TopicControls extends Component {
-  state = {
-    buttonLabel: "Session pausieren"
-  };
+  constructor(props) {
+    super(props);
+    const { t } = props;
+    this.state = {
+      buttonLabel: t("pauseRound")
+    };
+  }
 
   togglePause = () => {
     const { joinCode, timeIsStopped, t } = this.props;

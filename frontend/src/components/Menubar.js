@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Box, Heading, DropButton, Text } from "grommet";
+import { Box, Heading, DropButton, Text, Button } from "grommet";
 import { Github, Language } from "grommet-icons";
 import { withTranslation } from "react-i18next";
 
@@ -18,6 +18,7 @@ export class Menubar extends Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <Box
         as="header"
@@ -37,7 +38,7 @@ export class Menubar extends Component {
           align="end"
           onClick={this.goToHome}
         >
-          6-3-5 Brainwriter
+          {t("applicationName")}
         </Heading>
         <Box direction="row" gap="small">
           <DropButton
@@ -63,12 +64,14 @@ export class Menubar extends Component {
           >
             <Language size="large" color="white" alignmentBaseline="center" />
           </DropButton>
-          <Github
-            onClick={this.goToGithub}
-            size="large"
-            color="white"
-            alignmentBaseline="center"
-          ></Github>
+          <Button>
+            <Github
+              onClick={this.goToGithub}
+              size="large"
+              color="white"
+              alignmentBaseline="center"
+            ></Github>
+          </Button>
         </Box>
       </Box>
     );

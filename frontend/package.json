@@ -10,6 +10,7 @@
     "grommet": "^2.8.0",
     "grommet-icons": "^4.4.0",
     "i18next": "^19.0.1",
+    "i18next-browser-languagedetector": "^4.0.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-i18next": "^11.2.5",

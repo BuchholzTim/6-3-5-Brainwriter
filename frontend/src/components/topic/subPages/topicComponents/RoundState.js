@@ -10,7 +10,12 @@ export class RoundState extends Component {
     return (
       <Box direction="column" gap="xsmall">
         <Text weight="bold">{t("status")}</Text>
-        <Text>{t("roundCurrentlyRunning")}</Text>
+        <Text>
+          {t("roundCurrentlyRunning", {
+            currentRound: currentRound,
+            maxRounds: maxRounds
+          })}
+        </Text>
       </Box>
     );
   }

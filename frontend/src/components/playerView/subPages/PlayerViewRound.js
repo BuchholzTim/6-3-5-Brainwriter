@@ -4,7 +4,7 @@ import { Box } from "grommet";
 import IdeaInput from "./ideaComponents/IdeaInput";
 import IdeaTable from "./ideaComponents/IdeaTable";
 import Timer from "../../tools/Timer";
-import { QuestionBox } from "../../tools/QuestionBox";
+import QuestionBox from "../../tools/QuestionBox";
 import { AFTERROUND } from "../pages";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 import { setCurrentMessages } from "../../../redux/actions/messageActions";
