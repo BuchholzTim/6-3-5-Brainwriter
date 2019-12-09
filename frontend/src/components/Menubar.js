@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Box, Heading } from "grommet";
-import { Github } from "grommet-icons";
+import { Box, Heading, DropButton, Text, Button } from "grommet";
+import { Github, Language } from "grommet-icons";
+import { withTranslation } from "react-i18next";
 
 export class Menubar extends Component {
   goToGithub = () => {
@@ -11,7 +12,13 @@ export class Menubar extends Component {
     window.open("/", "_self");
   };
 
+  changeLanguage = language => {
+    const { i18n } = this.props;
+    i18n.changeLanguage(language);
+  };
+
   render() {
+    const { t } = this.props;
     return (
       <Box
         as="header"
@@ -31,17 +38,44 @@ export class Menubar extends Component {
           align="end"
           onClick={this.goToHome}
         >
-          6-3-5 Brainwriter
+          {t("applicationName")}
         </Heading>
-        <Github
-          onClick={this.goToGithub}
-          size="large"
-          color="white"
-          alignmentBaseline="center"
-        ></Github>
+        <Box direction="row" gap="small">
+          <DropButton
+            dropAlign={{ top: "bottom", right: "right" }}
+            dropContent={
+              <Box background="light-2">
+                <Text
+                  onClick={() => {
+                    this.changeLanguage("de");
+                  }}
+                >
+                  de
+                </Text>
+                <Text
+                  onClick={() => {
+                    this.changeLanguage("en");
+                  }}
+                >
+                  en
+                </Text>
+              </Box>
+            }
+          >
+            <Language size="large" color="white" alignmentBaseline="center" />
+          </DropButton>
+          <Button>
+            <Github
+              onClick={this.goToGithub}
+              size="large"
+              color="white"
+              alignmentBaseline="center"
+            ></Github>
+          </Button>
+        </Box>
       </Box>
     );
   }
 }
 
-export default Menubar;
+export default withTranslation()(Menubar);

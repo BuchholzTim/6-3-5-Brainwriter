@@ -4,7 +4,7 @@ import { Box, Button } from "grommet";
 import PlayerList from "./topicComponents/PlayerList";
 import RoundState from "./topicComponents/RoundState";
 import Timer from "../../tools/Timer";
-import { QuestionBox } from "../../tools/QuestionBox";
+import QuestionBox from "../../tools/QuestionBox";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 import { emitPause, emitResume } from "../../../socket/socket";
 import { setCurrentRound } from "../../../redux/actions/configActions";
@@ -12,29 +12,28 @@ import { setAfterRound } from "../../../redux/actions/controlActions";
 import { setPriorMessages } from "../../../redux/actions/messageActions";
 import { SUMMARY } from "../pages";
 
+import { withTranslation } from "react-i18next";
+
 import { getMessages } from "../../../axios/apiCalls";
 
 export class TopicControls extends Component {
-  state = {
-    buttonLabel: "Session pausieren",
-    pauseLabel: "Session pausieren",
-    resumeLabel: "Session weiterführen"
-  };
+  constructor(props) {
+    super(props);
+    const { t } = props;
+    this.state = {
+      buttonLabel: t("pauseRound")
+    };
+  }
 
   togglePause = () => {
-    const { joinCode, timeIsStopped } = this.props;
-    const { pauseLabel, resumeLabel } = this.state;
+    const { joinCode, timeIsStopped, t } = this.props;
     if (!timeIsStopped) {
       emitPause(joinCode);
-      this.setState({ buttonLabel: resumeLabel });
+      this.setState({ buttonLabel: t("pauseRound") });
     } else {
       emitResume(joinCode);
-      this.setState({ buttonLabel: pauseLabel });
+      this.setState({ buttonLabel: t("resumeRound") });
     }
-  };
-
-  cancelSession = () => {
-    console.log("Cancelled Session");
   };
 
   executeAfter = () => {
@@ -93,11 +92,6 @@ export class TopicControls extends Component {
           </Box>
           <Box direction="column" gap="xsmall" justify="center">
             <Button primary label={buttonLabel} onClick={this.togglePause} />
-            <Button
-              primary
-              label="Session beenden"
-              onClick={this.cancelSession}
-            />
           </Box>
         </Box>
       </Box>
@@ -124,4 +118,6 @@ const mapDispatchToProps = {
   setPriorMessages: setPriorMessages
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopicControls);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(TopicControls)
+);

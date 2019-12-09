@@ -6,6 +6,8 @@ import { setTopicPage } from "../../../redux/actions/pageActions";
 import { setTopicData } from "../../../redux/actions/topicActions";
 import { createTopic } from "../../../axios/apiCalls";
 
+import { withTranslation } from "react-i18next";
+
 export class TopicConfig extends Component {
   state = {
     topic: "",
@@ -39,12 +41,13 @@ export class TopicConfig extends Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <Box fill align="center" justify="center">
         <Form onSubmit={this.onSubmit}>
           <FormField
-            label="Thema"
-            placeholder="Warum ist die Banane krumm?"
+            label={t("topic")}
+            placeholder={t("topicName")}
             name="topic"
             component={TextArea}
             onChange={event => this.setTopic(event.target.value)}
@@ -53,7 +56,7 @@ export class TopicConfig extends Component {
           />
 
           <FormField
-            label="Timer in Sekunden"
+            label={t("timePerRound")}
             placeholder="180"
             name="time-per-round"
             component={TextInput}
@@ -61,10 +64,10 @@ export class TopicConfig extends Component {
             required
             validate={{
               regexp: /^\d*$/,
-              message: "Wert muss numerisch sein!"
+              message: t("onlyNumeric")
             }}
           />
-          <Button type="submit" primary label="Runde erstellen" />
+          <Button type="submit" primary label={t("createRound")} />
         </Form>
       </Box>
     );
@@ -77,4 +80,6 @@ const mapDispatchToProps = {
   setPage: setTopicPage
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopicConfig);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(TopicConfig)
+);

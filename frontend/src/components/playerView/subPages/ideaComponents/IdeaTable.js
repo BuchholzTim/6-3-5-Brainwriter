@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { DataTable, Text } from "grommet";
 import { connect } from "react-redux";
 
+import { withTranslation } from "react-i18next";
+
 export class IdeaTable extends Component {
   stringToDom = str => {
     return <Text truncate={false}>{str}</Text>;
@@ -60,13 +62,13 @@ export class IdeaTable extends Component {
   };
 
   render() {
-    const { numIdeas } = this.props;
+    const { numIdeas, t } = this.props;
     const column_configs = [];
 
     for (let i = 0; i < numIdeas; i++) {
       const config = {
         property: `idea_${i + 1}`,
-        header: `Idee ${i + 1}`
+        header: `${t("idea")} ${i + 1}`
       };
 
       column_configs.push(config);
@@ -101,4 +103,6 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(IdeaTable);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(IdeaTable)
+);

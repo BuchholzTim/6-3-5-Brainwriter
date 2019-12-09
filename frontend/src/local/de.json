@@ -1,0 +1,28 @@
+{
+  "translation": {
+    "applicationName": "6-3-5 Brainwriter",
+    "createQuickRound": "Schnelle Runde erstellen",
+    "createRound": "Runde erstellen",
+    "joinRound": "Runde beitreten",
+    "startRound": "Runde starten",
+    "pauseRound": "Runde pausieren",
+    "resumeRound": "Runde weiterführen",
+    "topicName": "Wie kann man diese App verbessern?",
+    "idea": "Idee",
+    "ideaPlaceholder": "Deine beste Idee!",
+    "joinCode": "Join Code",
+    "joinCodePlaceholder": "XaV5k8",
+    "userName": "Nutzer-Name",
+    "userNamePlaceholder": "Dein Name",
+    "timePerRound": "Zeit pro Runde",
+    "participants": "Teilnehmer",
+    "topic": "Frage",
+    "status": "Status",
+    "aboutToStart": "Gleich geht es los!",
+    "aboutToContinue": "Gleich geht es weiter!",
+    "waitingForParticipants": "Warten bis alle beigetreten sind...",
+    "roundCurrentlyRunning": "Runde {{currentRound}}/{{maxRounds}} läuft aktuell!",
+    "notEnoughPlayers": "Es wird mindestens 1 Teilnehmer benötigt!",
+    "onlyNumeric": "Nur numerische Werte sind erlaubt"
+  }
+}

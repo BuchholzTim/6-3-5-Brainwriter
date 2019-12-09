@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { TextArea } from "grommet";
 
+import { withTranslation } from "react-i18next";
+
 export class IdeaInput extends Component {
   state = {
     currentMessage: ""
@@ -11,10 +13,11 @@ export class IdeaInput extends Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <TextArea
         resize={false}
-        placeholder="Your best Idea!"
+        placeholder={t("ideaPlaceholder")}
         background="white"
         onChange={event => this.setCurrentMessage(event.target.value)}
       ></TextArea>
@@ -22,4 +25,4 @@ export class IdeaInput extends Component {
   }
 }
 
-export default IdeaInput;
+export default withTranslation()(IdeaInput);

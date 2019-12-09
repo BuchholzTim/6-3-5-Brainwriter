@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Heading, Box } from "grommet";
-import { QuestionBox } from "../../tools/QuestionBox";
+import QuestionBox from "../../tools/QuestionBox";
 import Timer from "../../tools/Timer";
 import { ROUND, SUMMARY } from "../pages";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 import { setCurrentRound } from "../../../redux/actions/configActions";
 import { setPriorMessages } from "../../../redux/actions/messageActions";
 import { setMessages, getMessages } from "../../../axios/apiCalls";
+
+import { withTranslation } from "react-i18next";
 
 export class PlayerViewAfterRound extends Component {
   state = {
@@ -53,7 +55,7 @@ export class PlayerViewAfterRound extends Component {
 
   render() {
     const { executed } = this.state;
-    const { topic, currentRound, timeBetweenRounds } = this.props;
+    const { topic, currentRound, timeBetweenRounds, t } = this.props;
 
     if (!executed) {
       this.setState({ executed: true });
@@ -66,7 +68,7 @@ export class PlayerViewAfterRound extends Component {
 
     return (
       <Box direction="column" gap="small" align="center">
-        <Heading size="small">Gleich gehts weiter</Heading>
+        <Heading size="small">{t("aboutToContinue")}</Heading>
         <Timer
           timeInSeconds={timeBetweenRounds}
           executeAfter={this.executeAfter}
@@ -93,7 +95,6 @@ const mapDispatchToProps = {
   setPriorMessages: setPriorMessages
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PlayerViewAfterRound);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(PlayerViewAfterRound)
+);

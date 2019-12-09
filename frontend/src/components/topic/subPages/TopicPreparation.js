@@ -11,6 +11,8 @@ import { setTopicPage } from "../../../redux/actions/pageActions";
 import { getPlayers } from "../../../axios/apiCalls";
 import { emitStart } from "../../../socket/socket";
 
+import { withTranslation } from "react-i18next";
+
 export class TopicPreparation extends Component {
   state = {
     players: [],
@@ -31,8 +33,7 @@ export class TopicPreparation extends Component {
   };
 
   onSubmit = () => {
-    const { joinCode, playerListInterval, propPlayers } = this.props;
-    const { errorMessage } = this.state;
+    const { joinCode, playerListInterval, propPlayers, t } = this.props;
     if (propPlayers.length > 0) {
       this.props.setMaxRounds(propPlayers.length);
       clearInterval(playerListInterval);
@@ -40,7 +41,7 @@ export class TopicPreparation extends Component {
       this.nextPage();
     } else {
       this.setState({
-        displayMessage: errorMessage
+        displayMessage: t("notEnoughPlayers")
       });
     }
   };
@@ -50,7 +51,7 @@ export class TopicPreparation extends Component {
   };
 
   render() {
-    const { topic, joinCode, playerListIntervalStarted } = this.props;
+    const { topic, joinCode, playerListIntervalStarted, t } = this.props;
     const { displayMessage, players } = this.state;
 
     if (players.length > 0 && displayMessage !== "") {
@@ -71,7 +72,7 @@ export class TopicPreparation extends Component {
         <Box direction="row" gap="xlarge" pad="small" justify="center">
           <QuestionBox question={topic} />
           <Box direction="row" gap="small">
-            <Text weight="bold">Join-Code: </Text>
+            <Text weight="bold">{t("joinCode")}</Text>
             <Text>{joinCode}</Text>
           </Box>
         </Box>
@@ -81,10 +82,10 @@ export class TopicPreparation extends Component {
 
           <Box direction="column" gap="medium" align="center">
             <Box direction="column" gap="small" align="center">
-              <Text weight="bold">Status:</Text>
-              <Text>Session noch nicht gestartet, warten auf Teilnehmer</Text>
+              <Text weight="bold">{t("status")}</Text>
+              <Text>{t("waitingForParticipants")}</Text>
             </Box>
-            <Button primary label="Session starten" onClick={this.onSubmit} />
+            <Button primary label={t("startRound")} onClick={this.onSubmit} />
             <Text color="status-critical">{displayMessage}</Text>
           </Box>
         </Box>
@@ -108,4 +109,6 @@ const mapDispatchToProps = {
   setMaxRounds: setMaxRounds
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopicPreparation);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(TopicPreparation)
+);

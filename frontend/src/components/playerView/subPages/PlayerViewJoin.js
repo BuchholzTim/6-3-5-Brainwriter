@@ -8,6 +8,8 @@ import { setAuthorData } from "../../../redux/actions/authorActions";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 import { joinTopic } from "../../../axios/apiCalls";
 
+import { withTranslation } from "react-i18next";
+
 export class PlayerViewJoin extends Component {
   state = {
     userName: "",
@@ -51,26 +53,27 @@ export class PlayerViewJoin extends Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <Box fill align="center" justify="center">
         <Form onSubmit={this.onSubmit}>
           <FormField
-            label="User-Name"
-            placeholder="Guter Username"
+            label={t("userName")}
+            placeholder={t("userNamePlaceholder")}
             name="userName"
             component={TextInput}
             onChange={event => this.setUserName(event.target.value)}
             required
           />
           <FormField
-            label="Join-Code"
-            placeholder="Guter JoinCode"
+            label={t("joinCode")}
+            placeholder={t("joinCodePlaceholder")}
             name="joinCode"
             component={TextInput}
             onChange={event => this.setJoinCode(event.target.value)}
             required
           />
-          <Button type="submit" label="Runde beitreten" primary />
+          <Button type="submit" label={t("joinRound")} primary />
         </Form>
       </Box>
     );
@@ -85,4 +88,6 @@ const mapDispatchToProps = {
   setAuthorData: setAuthorData
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewJoin);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(PlayerViewJoin)
+);
