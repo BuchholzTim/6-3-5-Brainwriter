@@ -1,64 +1,19 @@
-# Quick Start
+## Quick Start
 
-### Requirements
+### What is 6-3-5 Brainwriting?
 
-+ [Postgres 12](https://www.postgresql.org/) 
-+ [Node 12.xx + NPM 6.xx](https://nodejs.org/en/)
+It's a brainstorming-technique, which allows to create many ideas within a relatively short period of time.
 
-It may work with older Versions, but it was never tested with any other versions.
+You can read more about it [here](https://en.wikipedia.org/wiki/6-3-5_Brainwriting).
 
-### How to Run
+### Why should I use 6-3-5 Brainwriter?
 
-+ Clone the Repo
+Usually, you would just write down your ideas on paper and pass it around, so that everybody can contribute with their ideas. This comes with the downside, that some people cannot write readable and that your group has to be physically at the same place.
 
-```shell
-git clone https://github.com/BuchholzTim/6-3-5-Brainwriter/
-```
+Our project aims to solve those problems, by not allowing the user to write with his hands and by providing a web-application your team does not necessarily have to be physically at one place.
 
-+ Create the Postgres-DB with the provided Script [here](https://github.com/BuchholzTim/6-3-5-Brainwriter/blob/master/Doku/Tools/FUI.sql)
-+ Install Node-Dependencies
+### Sounds great! How can I get started?
 
-```shell
-cd backend/
-npm install
-cd ../frontend/
-npm install
-```
+You can read more about everything in the [Wiki on Github](https://github.com/BuchholzTim/6-3-5-Brainwriter/wiki).
 
-+ Edit Configuration-Files:
-
-  + Backend:
-    Copy `.env.bkup` to `.env` in the same folder and change its contents to match your configuration
-  + Frontend:
-    Edit `src/config/config.js`-Contents to match your Configuration
-    <u>**Note**</u>: If you set `production=false`, then you will need the [Redux-Dev Extension](https://extension.remotedev.io/) for your Browser to run the frontend. 
-
-+ Start Dev-Version:
-  Run `npm start` in the directories for backend and frontend in two separate Terminals
-
-+ Optimized Production Build:
-
-  + Frontend:
-
-    Run  `npm react-script build` & `npx serve build -l PORT`, where PORT is the Port you want your Application to be run on
-
-  + Backend:
-
-    Run `babel-node ./bin/www`
-
-+ <u>**Note:**</u> In Linux you can use `screen` to run the project, without killing the process, when leaving the terminal
-
-
-```shell
-screen
-cd ./...../frontend
-npx serve build -l PORT
-
-ctrl+a, ctrl+d (to detach from screen)
-
-screen
-cd ./...../backend
-npm start
-
-ctrl+a, ctrl+d (to detach from screen)
-```
+But basically you can build and deploy the project yourself by following our [Getting-Started Walkthrough](https://github.com/BuchholzTim/6-3-5-Brainwriter/wiki/Getting-started).
