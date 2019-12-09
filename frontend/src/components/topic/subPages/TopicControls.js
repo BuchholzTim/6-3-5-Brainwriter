@@ -12,29 +12,24 @@ import { setAfterRound } from "../../../redux/actions/controlActions";
 import { setPriorMessages } from "../../../redux/actions/messageActions";
 import { SUMMARY } from "../pages";
 
+import { withTranslation } from "react-i18next";
+
 import { getMessages } from "../../../axios/apiCalls";
 
 export class TopicControls extends Component {
   state = {
-    buttonLabel: "Session pausieren",
-    pauseLabel: "Session pausieren",
-    resumeLabel: "Session weiterführen"
+    buttonLabel: "Session pausieren"
   };
 
   togglePause = () => {
-    const { joinCode, timeIsStopped } = this.props;
-    const { pauseLabel, resumeLabel } = this.state;
+    const { joinCode, timeIsStopped, t } = this.props;
     if (!timeIsStopped) {
       emitPause(joinCode);
-      this.setState({ buttonLabel: resumeLabel });
+      this.setState({ buttonLabel: t("pauseRound") });
     } else {
       emitResume(joinCode);
-      this.setState({ buttonLabel: pauseLabel });
+      this.setState({ buttonLabel: t("resumeRound") });
     }
-  };
-
-  cancelSession = () => {
-    console.log("Cancelled Session");
   };
 
   executeAfter = () => {
@@ -93,11 +88,6 @@ export class TopicControls extends Component {
           </Box>
           <Box direction="column" gap="xsmall" justify="center">
             <Button primary label={buttonLabel} onClick={this.togglePause} />
-            <Button
-              primary
-              label="Session beenden"
-              onClick={this.cancelSession}
-            />
           </Box>
         </Box>
       </Box>
@@ -124,4 +114,6 @@ const mapDispatchToProps = {
   setPriorMessages: setPriorMessages
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopicControls);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(TopicControls)
+);

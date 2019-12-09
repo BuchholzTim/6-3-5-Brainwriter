@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Box, Text } from "grommet";
 
+import { withTranslation } from "react-i18next";
+
 export class RoundState extends Component {
   render() {
-    const { currentRound, maxRounds } = this.props;
+    const { currentRound, maxRounds, t } = this.props;
     return (
       <Box direction="column" gap="xsmall">
-        <Text weight="bold">Status:</Text>
-        <Text>
-          Runde {currentRound}/{maxRounds} läuft gerade
-        </Text>
+        <Text weight="bold">{t("status")}</Text>
+        <Text>{t("roundCurrentlyRunning")}</Text>
       </Box>
     );
   }
@@ -22,4 +22,6 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoundState);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(RoundState)
+);
