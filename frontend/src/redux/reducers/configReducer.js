@@ -4,7 +4,8 @@ const initialState = {
   numIdeas: 3,
   maxRounds: 6,
   currentRound: 1,
-  timeBetweenRounds: 10
+  timeBetweenRounds: 10,
+  readingTime: 5
 };
 
 export default function(state = initialState, action) {

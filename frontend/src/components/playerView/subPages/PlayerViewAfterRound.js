@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Heading, Box } from "grommet";
 import { QuestionBox } from "../../tools/QuestionBox";
-import { Timer } from "../../tools/Timer";
-import { ROUND } from "../pages";
+import Timer from "../../tools/Timer";
+import { ROUND, SUMMARY } from "../pages";
 import { setPlayerPage } from "../../../redux/actions/pageActions";
 import { setCurrentRound } from "../../../redux/actions/configActions";
 import { setPriorMessages } from "../../../redux/actions/messageActions";
@@ -15,14 +15,18 @@ export class PlayerViewAfterRound extends Component {
   };
 
   nextPage = () => {
-    this.props.setPage(ROUND);
+    const { currentRound, maxRounds } = this.props;
+    if (currentRound <= maxRounds) {
+      this.props.setPage(ROUND);
+    } else {
+      this.props.setPage(SUMMARY);
+    }
   };
 
   executeAfter = () => {
-    const { id } = this.props;
-    getMessages(id)
+    const { topicID } = this.props;
+    getMessages(topicID)
       .then(data => {
-        console.log(data);
         this.props.setPriorMessages(data);
         return;
       })
@@ -54,7 +58,6 @@ export class PlayerViewAfterRound extends Component {
     if (!executed) {
       this.setState({ executed: true });
       const messages = this.constructMessages();
-      console.log(messages);
 
       setMessages(messages).then(() => {
         this.props.setCurrentRound(currentRound + 1);
@@ -76,8 +79,9 @@ export class PlayerViewAfterRound extends Component {
 
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
-  id: state.topicReducer.id,
+  topicID: state.topicReducer.id,
   currentRound: state.configReducer.currentRound,
+  maxRounds: state.configReducer.maxRounds,
   timeBetweenRounds: state.configReducer.timeBetweenRounds,
   currentMessages: state.messageReducer.currentMessages,
   authorID: state.authorReducer.id

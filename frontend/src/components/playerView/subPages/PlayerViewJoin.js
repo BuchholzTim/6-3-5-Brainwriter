@@ -28,7 +28,6 @@ export class PlayerViewJoin extends Component {
 
   onSubmit = () => {
     const { userName, joinCode } = this.state;
-    console.log(joinCode);
 
     joinTopic({ userName, joinCode })
       .then(response => {

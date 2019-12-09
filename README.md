@@ -1,9 +1,19 @@
-# 6-3-5 Brainwriter
+## Quick Start
 
-## Was ist der 6-3-5-Brainwriter
+### What is 6-3-5 Brainwriting?
 
-Es handelt sich hierbei um ein Projekt im Rahmen der Master-Vorlesung 'Framewokrbasierte UI-Entwicklung'.
+It's a brainstorming-technique, which allows to create many ideas within a relatively short period of time.
 
-Der 6-3-5-Brainwriter stellt eine mit [React](https://reactjs.org/) und [Express](https://expressjs.com/de/) umgesetzte Web-Lösung dar, um die 6-3-5-Kreativmethode auch digital durchführen zu können.
+You can read more about it [here](https://en.wikipedia.org/wiki/6-3-5_Brainwriting).
 
-Alle weiteren Infos können im Wiki eingesehen werden.
+### Why should I use 6-3-5 Brainwriter?
+
+Usually, you would just write down your ideas on paper and pass it around, so that everybody can contribute with their ideas. This comes with the downside, that some people cannot write readable and that your group has to be physically at the same place.
+
+Our project aims to solve those problems, by not allowing the user to write with his hands and by providing a web-application your team does not necessarily have to be physically at one place.
+
+### Sounds great! How can I get started?
+
+You can read more about everything in the [Wiki on Github](https://github.com/BuchholzTim/6-3-5-Brainwriter/wiki).
+
+But basically you can build and deploy the project yourself by following our [Getting-Started Walkthrough](https://github.com/BuchholzTim/6-3-5-Brainwriter/wiki/Getting-started).

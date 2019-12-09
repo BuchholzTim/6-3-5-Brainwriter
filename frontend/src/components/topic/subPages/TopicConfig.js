@@ -61,7 +61,7 @@ export class TopicConfig extends Component {
             required
             validate={{
               regexp: /^\d*$/,
-              message: "Wert muss folgendes erfüllen"
+              message: "Wert muss numerisch sein!"
             }}
           />
           <Button type="submit" primary label="Runde erstellen" />

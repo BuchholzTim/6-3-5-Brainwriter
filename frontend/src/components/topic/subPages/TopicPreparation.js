@@ -13,12 +13,14 @@ import { emitStart } from "../../../socket/socket";
 
 export class TopicPreparation extends Component {
   state = {
-    players: []
+    players: [],
+    errorMessage: "Es sind noch keine Spieler beigetreten!",
+    displayMessage: ""
   };
 
   refreshPlayers = () => {
-    const { id } = this.props;
-    getPlayers(id).then(data => {
+    const { topicID } = this.props;
+    getPlayers(topicID).then(data => {
       this.setState({ players: data });
       const { players } = this.state;
       const { propPlayers } = this.props;
@@ -30,10 +32,17 @@ export class TopicPreparation extends Component {
 
   onSubmit = () => {
     const { joinCode, playerListInterval, propPlayers } = this.props;
-    this.props.setMaxRounds(propPlayers.length);
-    clearInterval(playerListInterval);
-    emitStart(joinCode);
-    this.nextPage();
+    const { errorMessage } = this.state;
+    if (propPlayers.length > 0) {
+      this.props.setMaxRounds(propPlayers.length);
+      clearInterval(playerListInterval);
+      emitStart(joinCode);
+      this.nextPage();
+    } else {
+      this.setState({
+        displayMessage: errorMessage
+      });
+    }
   };
 
   nextPage = () => {
@@ -42,6 +51,13 @@ export class TopicPreparation extends Component {
 
   render() {
     const { topic, joinCode, playerListIntervalStarted } = this.props;
+    const { displayMessage, players } = this.state;
+
+    if (players.length > 0 && displayMessage !== "") {
+      this.setState({
+        displayMessage: ""
+      });
+    }
 
     if (!playerListIntervalStarted) {
       const interval = setInterval(() => this.refreshPlayers(), 1500);
@@ -63,12 +79,13 @@ export class TopicPreparation extends Component {
         <Box direction="row" gap="large">
           <PlayerList />
 
-          <Box direction="column" gap="medium">
+          <Box direction="column" gap="medium" align="center">
             <Box direction="column" gap="small" align="center">
               <Text weight="bold">Status:</Text>
               <Text>Session noch nicht gestartet, warten auf Teilnehmer</Text>
             </Box>
             <Button primary label="Session starten" onClick={this.onSubmit} />
+            <Text color="status-critical">{displayMessage}</Text>
           </Box>
         </Box>
       </Box>
@@ -78,7 +95,7 @@ export class TopicPreparation extends Component {
 
 const mapStateToProps = state => ({
   topic: state.topicReducer.topic,
-  id: state.topicReducer.id,
+  topicID: state.topicReducer.id,
   joinCode: state.topicReducer.joinCode,
   playerListInterval: state.controlReducer.playerListInterval,
   playerListIntervalStarted: state.controlReducer.playerListIntervalStarted,
