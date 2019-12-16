@@ -12,3 +12,31 @@ button:hover{
   border-right-color: #38454c !important;
   border-bottom-color: #38454c !important;
 }
+
+#footer{
+  color:white;
+  font-size: 16px;
+  max-width: 1140px;
+  width:100%;
+  margin:auto;
+}
+
+
+a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+a:visited{
+  color: #cccccc;
+}
+
+a:hover{
+  color:white;
+}
+
+.wrapper{
+  max-width: 1140px;
+  margin:auto;
+  padding: 4rem 0px 0px 0px;
+}
