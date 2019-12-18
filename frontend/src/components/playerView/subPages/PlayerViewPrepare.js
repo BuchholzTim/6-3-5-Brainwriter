@@ -8,6 +8,8 @@ import { setMaxRounds } from "../../../redux/actions/configActions";
 import { setPlayers } from "../../../redux/actions/topicActions";
 import { getPlayers } from "../../../axios/apiCalls";
 
+import { withTranslation } from "react-i18next";
+
 export class PlayerViewPrepare extends Component {
   nextPage = () => {
     this.props.setPage(ROUND);
@@ -27,15 +29,15 @@ export class PlayerViewPrepare extends Component {
   };
 
   render() {
-    const { topic, roundStarted } = this.props;
+    const { topic, roundStarted, t } = this.props;
     if (roundStarted) {
       this.executeBeforeStart();
     }
     return (
       <Box direction="column" gap="small" align="center">
-        <Heading size="small">Gleich gehts los</Heading>
+        <Heading size="small">{t("aboutToStart")}</Heading>
         <QuestionBox question={topic} />
-        <Text>Warten bis alle Spieler beigetreten sind</Text>
+        <Text>{t("waitingForParticipants")}</Text>
       </Box>
     );
   }
@@ -53,4 +55,6 @@ const mapDispatchToProps = {
   setPlayers: setPlayers
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewPrepare);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(PlayerViewPrepare)
+);

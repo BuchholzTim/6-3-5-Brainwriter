@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { List, Text, Box } from "grommet";
 
+import { withTranslation } from "react-i18next";
+
 export class PlayerList extends Component {
   render() {
-    const { players } = this.props;
+    const { players, t } = this.props;
     const names = [];
 
     for (let i = 0; i < players.length; i++) {
@@ -14,7 +16,7 @@ export class PlayerList extends Component {
 
     return (
       <Box direction="column" gap="small">
-        <Text weight="bold">Teilnehmer:</Text>
+        <Text weight="bold">{t("participants")}</Text>
         <List
           title="Test"
           primaryKey="name"
@@ -31,4 +33,6 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerList);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(PlayerList)
+);
