@@ -20,9 +20,9 @@ export class App extends Component {
             <Menubar />
             <Box
               direction="column"
-              border={{ color: "brand", size: "medium" }}
               pad={{ vertical: "xsmall" }}
               align="center"
+              max-width="1140px"
             >
               <Switch>
                 <Route path="/playerView">

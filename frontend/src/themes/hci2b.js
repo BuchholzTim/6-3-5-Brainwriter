@@ -26,11 +26,11 @@ export const hci2b = deepFreeze({
       },
       text: {
         dark: "#EEEEEE",
-        light: "#333333"
+        light: "#0D181C"
       },
       "text-strong": {
         dark: "#000000",
-        light: "#000000"
+        light: "#0D181C"
       },
       "text-weak": {
         dark: "#CCCCCC",
@@ -51,7 +51,10 @@ export const hci2b = deepFreeze({
       "status-ok": "#00C781",
       "status-unknown": "#CCCCCC",
       "status-disabled": "#CCCCCC",
-      "accent-1": "#acd738"
+      "accent-1": "#4Eb4ca",
+      "accent-2": "#3E4548",
+      "accent-3": "#0d181c",
+
     },
     font: {
       family: '"Open Sans"',
@@ -162,6 +165,9 @@ export const hci2b = deepFreeze({
       radius: "8px"
     }
   },
+  
+
+  
 
   carousel: {
     animation: {
@@ -255,45 +261,38 @@ export const hci2b = deepFreeze({
       "1": {
         small: {
           size: "39.66666666666667px",
-          height: "46.66666666666667px",
-          maxWidth: "1110.6666666666667px"
+          height: "46.66666666666667px"
         },
         medium: {
           size: "58.333333333333336px",
-          height: "65.33333333333334px",
-          maxWidth: "1633.3333333333335px"
+          height: "65.33333333333334px"
         },
         large: {
           size: "95.66666666666667px",
-          height: "102.66666666666667px",
-          maxWidth: "2678.666666666667px"
+          height: "102.66666666666667px"
         },
         xlarge: {
           size: "133px",
-          height: "140px",
-          maxWidth: "3724px"
+          height: "140px"
         }
       },
       "2": {
         small: {
           size: "30.333333333333336px",
-          height: "37.333333333333336px",
-          maxWidth: "849.3333333333334px"
+          height: "37.333333333333336px"
         },
         medium: {
           size: "39.66666666666667px",
           height: "46.66666666666667px",
-          maxWidth: "1110.6666666666667px"
+          maxWidth:"100%"
         },
         large: {
           size: "58.333333333333336px",
-          height: "65.33333333333334px",
-          maxWidth: "1633.3333333333335px"
+          height: "65.33333333333334px"
         },
         xlarge: {
-          size: "77px",
-          height: "84px",
-          maxWidth: "2156px"
+          size: "400px",
+          height: "84px"
         }
       },
       "3": {
@@ -386,31 +385,37 @@ export const hci2b = deepFreeze({
       }
     }
   },
+  
   paragraph: {
     small: {
       size: "16.333333333333332px",
       height: "23.333333333333332px",
-      maxWidth: "457.3333333333333px"
+      maxWidth: "90%",
+      margin: "auto"
     },
     medium: {
       size: "21px",
       height: "28px",
-      maxWidth: "588px"
+      maxWidth: "90%",
+      margin: "auto"
     },
     large: {
       size: "25.666666666666668px",
       height: "32.666666666666664px",
-      maxWidth: "718.6666666666667px"
+      maxWidth: "90%",
+      margin: "auto"
     },
     xlarge: {
       size: "30.333333333333336px",
       height: "37.333333333333336px",
-      maxWidth: "849.3333333333334px"
+      maxWidth: "90%",
+      margin: "auto"
     },
     xxlarge: {
       size: "39.66666666666667px",
       height: "46.66666666666667px",
-      maxWidth: "1110.6666666666667px"
+      maxWidth: "90%",
+      margin: "auto"
     }
   },
   text: {
