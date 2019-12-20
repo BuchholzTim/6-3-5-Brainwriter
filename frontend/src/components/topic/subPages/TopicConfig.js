@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { TextArea, Form, TextInput, Button, FormField, Box } from "grommet";
+import { TextArea, Form, TextInput, Button, FormField, Box, Text } from "grommet";
 import { PREPARATION } from "../pages";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 import { setTopicData } from "../../../redux/actions/topicActions";
@@ -43,17 +43,23 @@ export class TopicConfig extends Component {
   render() {
     const { t } = this.props;
     return (
-      <Box fill align="center" justify="center">
-        <Form onSubmit={this.onSubmit}>
+      <Box fill align="center" justify="center" margin={{"top":"xlarge"}} >
+        <Form onSubmit={this.onSubmit}  style={{width:'50%'}}>
           <FormField
-            label={t("topic")}
+         
             placeholder={t("topicName")}
             name="topic"
             component={TextArea}
             onChange={event => this.setTopic(event.target.value)}
             resize={false}
             required
-          />
+            margin={{"bottom":"medium"}}
+          >
+            <Box direction="row" gap="medium">
+              <Text weight="bold">{t("topic")}</Text>
+             <TextArea id="text-area" placeholder={t("topicName")} focusIndicator="true" />
+             </Box>
+          </FormField>
 
           <FormField
             label={t("timePerRound")}
@@ -66,6 +72,8 @@ export class TopicConfig extends Component {
               regexp: /^\d*$/,
               message: t("onlyNumeric")
             }}
+            margin={{"bottom":"large"}}
+
           />
           <Button type="submit" primary label={t("createRound")} />
         </Form>

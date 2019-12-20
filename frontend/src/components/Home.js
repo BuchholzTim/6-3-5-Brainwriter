@@ -9,7 +9,7 @@ export class Home extends Component {
     const { t } = this.props;
     return (
       <Box direction="column" justify="center" gap="0px" width="100%">
-        <Box direction="row" className="wrapper">
+        <Box direction="row" className="wrapper" width="70%" alignSelf="center" margin={{"top":"xlarge"}}>
           <Box direction="column" width="50%" paragraph="small">
             <Heading level="2" size="medium">
               {t("welcome")}
@@ -54,6 +54,7 @@ export class Home extends Component {
             background="light-6"
             round
             gap="small"
+           
           >
             <Login size="large" color="dark-2" />
             <Link to="/playerView">
@@ -61,23 +62,26 @@ export class Home extends Component {
             </Link>
           </Box>
         </Box>
+        
         <Box
           direction="column"
           justify="center"
           pad="large"
           width="100%"
-          background="accent-2"
+          background="accent-2"         
         >
-          <Paragraph size="small" paragraph="xxlarge">
-            <h3>{t("about635")}</h3>
-            {t("description635")}
-          </Paragraph>
-          <Paragraph size="small" paragraph="xxlarge">
-            <h3>{t("aboutTool")}</h3>
-            {t("descriptionTool")}
-          </Paragraph>
+            <Box direction="column" className="wrapper" width="70%" alignSelf="center" >
+            <Paragraph size="small" paragraph="xxlarge">
+              <h3>{t("about635")}</h3>
+              {t("description635")}
+            </Paragraph>
+            <Paragraph size="small" paragraph="xxlarge">
+              <h3>{t("aboutTool")}</h3>
+              {t("descriptionTool")}
+            </Paragraph>
+          </Box>
         </Box>
-        <Box background="accent-3">
+        <Box background="accent-3" >
           <Box
             id="footer"
             pad="medium"

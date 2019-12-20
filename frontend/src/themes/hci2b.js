@@ -56,6 +56,7 @@ export const hci2b = deepFreeze({
       "accent-3": "#0d181c",
 
     },
+
     font: {
       family: '"Open Sans"',
       face:
@@ -155,6 +156,18 @@ export const hci2b = deepFreeze({
       xxlarge: "1792px",
       full: "100%"
     }
+  },
+  formField: {
+    label: {
+      color: "accent-3",
+      size: "medium",
+      margin: { vertical: "0", bottom: "small", horizontal: "0" },
+      weight: 600,
+
+    },
+    border: false,
+    margin: 0,
+    width: "100%",
   },
   email: "juha0010@stud.hs-kl.de",
   date: "2019-11-27T21:09:50.159Z",
@@ -396,28 +409,29 @@ export const hci2b = deepFreeze({
     medium: {
       size: "21px",
       height: "28px",
-      maxWidth: "90%",
+      maxWidth: "100%",
       margin: "auto"
     },
     large: {
       size: "25.666666666666668px",
       height: "32.666666666666664px",
-      maxWidth: "90%",
+      maxWidth: "100%",
       margin: "auto"
     },
     xlarge: {
       size: "30.333333333333336px",
       height: "37.333333333333336px",
-      maxWidth: "90%",
+      maxWidth: "100%",
       margin: "auto"
     },
     xxlarge: {
       size: "39.66666666666667px",
       height: "46.66666666666667px",
-      maxWidth: "90%",
+      maxWidth: "100%",
       margin: "auto"
     }
   },
+
   text: {
     xsmall: {
       size: "14px",

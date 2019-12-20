@@ -68,8 +68,8 @@ export class TopicPreparation extends Component {
       });
     }
     return (
-      <Box direction="column" gap="xlarge" pad="small">
-        <Box direction="row" gap="xlarge" pad="small" justify="center">
+      <Box direction="column" gap="xlarge" pad="small" >
+        <Box direction="row" gap="xlarge" pad="small" justify="center" margin={{"top":"xlarge"}}>
           <QuestionBox question={topic} />
           <Box direction="row" gap="small">
             <Text weight="bold">{t("joinCode")}</Text>
