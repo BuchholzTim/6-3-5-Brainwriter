@@ -15,7 +15,7 @@
     "startRound": "Runde starten",
     "pauseRound": "Runde pausieren",
     "resumeRound": "Runde weiterführen",
-    "topicName": "Wie kann man diese App verbessern?",
+    "topicName": "How might we ... ?",
     "idea": "Idee",
     "ideaPlaceholder": "Deine beste Idee!",
     "joinCode": "Join Code",
@@ -31,6 +31,8 @@
     "waitingForParticipants": "Warten bis alle beigetreten sind...",
     "roundCurrentlyRunning": "Runde {{currentRound}}/{{maxRounds}} läuft aktuell!",
     "notEnoughPlayers": "Es wird mindestens 1 Teilnehmer benötigt!",
-    "onlyNumeric": "Nur numerische Werte sind erlaubt"
+    "onlyNumeric": "Nur numerische Werte sind erlaubt",
+    "errorTopic": "Bitte eine Fragestellung eingeben",
+    "errorTimePerRound": "Bitte eine Zeit pro Runde eingeben"
   }
 }

@@ -43,7 +43,7 @@ export class TopicConfig extends Component {
   render() {
     const { t } = this.props;
     return (
-      <Box fill align="center" justify="center" margin={{"top":"xlarge"}} >
+      <Box fill align="center" justify="center" margin={{"top":"xlarge"}} direction="column" >
         <Form onSubmit={this.onSubmit}  style={{width:'50%'}}>
           <FormField
          
@@ -54,6 +54,7 @@ export class TopicConfig extends Component {
             resize={false}
             required
             margin={{"bottom":"medium"}}
+            error={t("errorTopic")}
           >
             <Box direction="row" gap="medium">
               <Text weight="bold">{t("topic")}</Text>
@@ -73,9 +74,12 @@ export class TopicConfig extends Component {
               message: t("onlyNumeric")
             }}
             margin={{"bottom":"large"}}
+            error={t("errorTimePerRound")}
 
           />
-          <Button type="submit" primary label={t("createRound")} />
+          <Box>
+          <Button type="submit" primary label={t("createRound")} alignSelf="center"/>
+          </Box>        
         </Form>
       </Box>
     );

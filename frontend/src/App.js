@@ -5,6 +5,7 @@ import PlayerView from "./components/playerView/PlayerView";
 import { Grommet, Box } from "grommet";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Menubar from "./components/Menubar";
+import "./App.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -22,7 +23,6 @@ export class App extends Component {
               direction="column"
               pad={{ vertical: "xsmall" }}
               align="center"
-              max-width="1140px"
             >
               <Switch>
                 <Route path="/playerView">

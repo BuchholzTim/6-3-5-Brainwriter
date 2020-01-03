@@ -1,4 +1,5 @@
 import { deepFreeze } from "grommet/utils";
+import reducers from "../redux/reducers";
 
 export const hci2b = deepFreeze({
   name: "hci2b",
@@ -54,6 +55,7 @@ export const hci2b = deepFreeze({
       "accent-1": "#4Eb4ca",
       "accent-2": "#3E4548",
       "accent-3": "#0d181c",
+      "focus": "#acf5bf"
 
     },
 
