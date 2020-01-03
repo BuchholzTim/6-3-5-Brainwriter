@@ -62,8 +62,8 @@ export class TopicConfig extends Component {
       <Box fill align="center" justify="center" margin={{"top":"xlarge"}} direction="column" >
         <Form onSubmit={this.onSubmit}  style={{width:'50%'}}>
             <Box id="außenrum_topic" direction="row" width="matchparent" style={{"marginBottom":"2rem"}}>
-              <Text id="label" style={{width:"20%",marginRight:"10%"}} weight="bold">{t("topic")}</Text>
-              <FormField style={{"width":"70%"}}>
+              <Text id="label" style={{width:"15%",marginRight:"0%"}} weight="bold">{t("topic")}</Text>
+              <FormField style={{"width":"85%"}}>
                 <TextArea
                   id = "textarea" 
                   placeholder={t("topicName")}
@@ -81,7 +81,9 @@ export class TopicConfig extends Component {
               </FormField>
             </Box>
             <Box id="außenrum_time" direction="row" width="matchparent" style={{"marginBottom":"2rem"}}>
-              <Text id="label" style={{width:"20%",marginRight:"10%"}} weight="bold">{t("timePerRound")}</Text>
+              <Box style={{width:"15%","display":"grid", justifyContent: "left", alignContent: "space-evenly"}}> 
+                <Text id="label" weight="bold">{t("timePerRound")}</Text>
+              </Box>
               <FormField style={{"width":"5%"}}>
                 <MaskedInput
                 mask={[
