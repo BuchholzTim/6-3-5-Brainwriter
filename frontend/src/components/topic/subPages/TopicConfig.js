@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { TextArea, Form, TextInput, Button, FormField, Box, Text } from "grommet";
+import { TextArea, Form, MaskedInput,TextInput, Button, FormField, Box, Text } from "grommet";
 import { PREPARATION } from "../pages";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 import { setTopicData } from "../../../redux/actions/topicActions";
@@ -11,15 +11,31 @@ import { withTranslation } from "react-i18next";
 export class TopicConfig extends Component {
   state = {
     topic: "",
-    timePerRound: ""
+    timePerRound: "",
+    timePerRoundMin: "3",
+    timePerRoundSec: "0",
+    button: ""
   };
 
   setTopic = topic => {
     this.setState({ topic: topic });
   };
 
+  setTimeMin = timePerRoundMin => {
+    this.setState({ timePerRoundMin: timePerRoundMin });
+  };
+
+  setTimeSec = timePerRoundSec => {
+    this.setState({ timePerRoundSec: timePerRoundSec });
+  };
+
   setTime = timePerRound => {
-    this.setState({ timePerRound: timePerRound });
+    const { timePerRoundMin, timePerRoundSec } = this.state;
+    console.log(timePerRoundMin);
+    console.log(timePerRoundSec);
+    var timecalc = parseInt(timePerRoundMin)*60+parseInt(timePerRoundSec);
+    console.log(timecalc);
+    this.setState({ timePerRound: timecalc });
   };
 
   onSubmit = () => {
@@ -45,41 +61,87 @@ export class TopicConfig extends Component {
     return (
       <Box fill align="center" justify="center" margin={{"top":"xlarge"}} direction="column" >
         <Form onSubmit={this.onSubmit}  style={{width:'50%'}}>
-          <FormField
-         
-            placeholder={t("topicName")}
-            name="topic"
-            component={TextArea}
-            onChange={event => this.setTopic(event.target.value)}
-            resize={false}
-            required
-            margin={{"bottom":"medium"}}
-            error={t("errorTopic")}
-          >
-            <Box direction="row" gap="medium">
-              <Text weight="bold">{t("topic")}</Text>
-             <TextArea id="text-area" placeholder={t("topicName")} focusIndicator="true" />
-             </Box>
-          </FormField>
+            <Box id="außenrum_topic" direction="row" width="matchparent" style={{"marginBottom":"2rem"}}>
+              <Text id="label" style={{width:"20%",marginRight:"10%"}} weight="bold">{t("topic")}</Text>
+              <FormField style={{"width":"70%"}}>
+                <TextArea
+                  id = "textarea" 
+                  placeholder={t("topicName")}
+                  name="topic"
+                  component={TextArea}
+                  onChange={event => this.setTopic(event.target.value)}
+                  resize={false}
+                  required
+                  style={{"width":"100%"}}
+                  margin={{"bottom":"medium"}}
+                  focusIndicator={true}
+                  //error={t("errorTopic")}
+                  >
+                </TextArea>
+              </FormField>
+            </Box>
+            <Box id="außenrum_time" direction="row" width="matchparent" style={{"marginBottom":"2rem"}}>
+              <Text id="label" style={{width:"20%",marginRight:"10%"}} weight="bold">{t("timePerRound")}</Text>
+              <FormField style={{"width":"5%"}}>
+                <MaskedInput
+                mask={[
+                  {
+                    length: [1, 2],
+                    options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ],
+                    regexp: /^1[1-2]$|^[0-9]$/,
+                    placeholder: '3'
+                  }
+                ]}
+                  name="time-per-round-min"
+                  component={TextInput}
+                  onChange={event => this.setTimeMin(event.target.value)}
+                  validate={{
+                    regexp: /^\d*$/,
+                    message: t("onlyNumeric")
+                  }}
+                  margin={{"bottom":"large"}}
+                  style={{"width":"100%"}}
+                  focusIndicator={false}
+                  //error={t("errorTimePerRound")}
+                  >
+                </MaskedInput>
+              </FormField>
+              <Box style={{width:"5%","display":"grid", justifyContent: "space-evenly", alignContent: "space-evenly"}}>
+                <Text id="label" weight="bold"> min : </Text>
+              </Box>
+              
+              <FormField style={{"width":"5%"}}>
+                <MaskedInput
+                mask={[
+                  {
+                    length: [1, 2],
+                    options: ['0','10', '20', '30', '40', '50'],
+                    regexp: /^1[1-2]$|^[0-9]$/,
+                    placeholder: '0'
+                  }
+                ]}
+                  name="time-per-round-sec"
+                  component={TextInput}
+                  onChange={event => this.setTimeSec(event.target.value)}
+                  validate={{
+                    regexp: /^\d*$/,
+                    message: t("onlyNumeric")
+                  }}
+                  margin={{"bottom":"large"}}
+                  style={{"width":"100%"}}
+                  focusIndicator={false}
+                  //error={t("errorTimePerRound")}
+                  >
+                </MaskedInput>
+              </FormField>
 
-          <FormField
-            label={t("timePerRound")}
-            placeholder="180"
-            name="time-per-round"
-            component={TextInput}
-            onChange={event => this.setTime(event.target.value)}
-            required
-            validate={{
-              regexp: /^\d*$/,
-              message: t("onlyNumeric")
-            }}
-            margin={{"bottom":"large"}}
-            error={t("errorTimePerRound")}
-
-          />
-          <Box>
-          <Button type="submit" primary label={t("createRound")} alignSelf="center"/>
-          </Box>        
+              <Box style={{width:"5%","display":"grid", justifyContent: "space-evenly", alignContent: "space-evenly"}}>
+                <Text id="label" weight="bold"> sek </Text>
+              </Box>
+            </Box>
+            <Box>
+              <Button type="submit" primary label={t("createRound")} alignSelf="center" onClick={event => this.setTime()}/>
+            </Box>       
         </Form>
       </Box>
     );

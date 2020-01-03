@@ -167,6 +167,11 @@ export const hci2b = deepFreeze({
       weight: 600,
 
     },
+
+    textArea: { 
+        fontsize: "80px",
+        color: "red",
+    },
     border: false,
     margin: 0,
     width: "100%",
