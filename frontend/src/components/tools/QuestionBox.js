@@ -6,9 +6,9 @@ export class QuestionBox extends Component {
   render() {
     const { t, question } = this.props;
     return (
-      <Box direction="row" gap="small" justify="center">
-        <Text weight="bold">{t("topic")}</Text>
-        <Text>{question}</Text>
+      <Box direction="column" gap="small" justify="center">
+        <Text weight="bold" textAlign="center">{t("topic")}</Text>
+        <Text textAlign="center">{question}</Text>
       </Box>
     );
   }

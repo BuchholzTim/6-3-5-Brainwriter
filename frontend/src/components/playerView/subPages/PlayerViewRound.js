@@ -54,13 +54,18 @@ export class PlayerViewRound extends Component {
       );
     }
     return (
-      <Box direction="column" gap="small">
-        <Box direction="row" align="center" justify="center">
-          <QuestionBox question={topic} />
-          <Timer
-            timeInSeconds={timeForRound}
-            executeAfter={this.executeAfter}
-          />
+      <Box direction="column" gap="small" justify="center">
+        <Box direction="row" align="center" justify="evenly">
+          <Box id ="emptyBox" width="30%"/>
+          <Box width="30%">
+            <QuestionBox question={topic} />
+          </Box>
+          <Box width="30%" style={{"display":"grid", justifyContent: "right"}}>
+            <Timer
+              timeInSeconds={timeForRound}
+              executeAfter={this.executeAfter}
+            />
+          </Box>
         </Box>
         <IdeaTable authorID={authorID} />
         <Box direction="row" pad="small" gap="small">

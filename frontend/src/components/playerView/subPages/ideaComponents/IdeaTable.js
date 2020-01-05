@@ -90,7 +90,7 @@ export class IdeaTable extends Component {
     }
 
     return (
-      <DataTable size="medium" columns={column_configs} data={data}></DataTable>
+      <DataTable size="medium" columns={column_configs} data={data} align="center"></DataTable>
     );
   }
 }

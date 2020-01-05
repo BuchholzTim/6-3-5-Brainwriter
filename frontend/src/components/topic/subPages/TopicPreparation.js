@@ -69,7 +69,7 @@ export class TopicPreparation extends Component {
     }
     return (
       <Box id="wrapper" width="100%" align="center">  
-        <Box id="oben" fill align="center" justify="center" margin={{"top":"xlarge"}} direction="column" style={{width:"50%"}}> 
+        <Box id="oben" fill align="center" justify="center" margin={{"top":"5%"}} direction="column" style={{width:"50%"}}> 
           <Box direction="column" justify="center" align="center">
             <h1>JoinCode:</h1>
             <Text size="9rem" weight="bold">{joinCode}</Text>

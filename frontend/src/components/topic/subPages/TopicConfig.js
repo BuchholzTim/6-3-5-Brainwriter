@@ -68,7 +68,7 @@ export class TopicConfig extends Component {
         <Form onSubmit={this.onSubmit}  style={{width:'50%'}}>
             <Box id="außenrum_topic" direction="row" width="matchparent" style={{"marginBottom":"2rem"}}>
               <Text id="label" style={{width:"15%",marginRight:"0%"}} weight="bold">{t("topic")}</Text>
-              <FormField style={{"width":"85%"}}>
+              <FormField style={{"width":"84%"}}>
                 <TextArea
                   id = "textarea" 
                   placeholder={t("topicName")}
@@ -80,6 +80,7 @@ export class TopicConfig extends Component {
                   style={{"width":"100%"}}
                   margin={{"bottom":"medium"}}
                   focusIndicator={true}
+                  margin={{"left":"1%"}}
                   //error={t("errorTopic")}
                   >
                 </TextArea>
@@ -94,7 +95,7 @@ export class TopicConfig extends Component {
                 mask={[
                   {
                     length: [1, 2],
-                    options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ],
+                    options: ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ],
                     regexp: /^1[1-2]$|^[0-9]$/,
                     placeholder: '3'
                   }
@@ -107,6 +108,7 @@ export class TopicConfig extends Component {
                     message: t("onlyNumeric")
                   }}
                   margin={{"bottom":"large"}}
+                  margin={{"left":"1%"}}
                   style={{"width":"100%"}}
                   focusIndicator={false}
                   //error={t("errorTimePerRound")}
@@ -135,6 +137,7 @@ export class TopicConfig extends Component {
                     message: t("onlyNumeric")
                   }}
                   margin={{"bottom":"large"}}
+                  margin={{"left":"1%"}}
                   style={{"width":"100%"}}
                   focusIndicator={false}
                   //error={t("errorTimePerRound")}

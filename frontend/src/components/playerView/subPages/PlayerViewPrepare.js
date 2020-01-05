@@ -34,10 +34,10 @@ export class PlayerViewPrepare extends Component {
       this.executeBeforeStart();
     }
     return (
-      <Box direction="column" gap="small" align="center">
-        <Heading size="small">{t("aboutToStart")}</Heading>
+      <Box fill align="center" justify="center" margin={{"top":"5%"}} direction="column" style={{"width":"50%"}}>
+        <Heading size="small" textAlign="center">{t("aboutToStart")}</Heading>
         <QuestionBox question={topic} />
-        <Text>{t("waitingForParticipants")}</Text>
+        <Text margin={{"top":"5%"}}>{t("waitingForParticipants")}</Text>
       </Box>
     );
   }

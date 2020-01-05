@@ -67,14 +67,17 @@ export class PlayerViewAfterRound extends Component {
     }
 
     return (
-      <Box direction="column" gap="small" align="center">
+      <Box fill align="center" justify="center" margin={{"top":"5%"}} direction="column" style={{"width":"50%"}}>
         <Heading size="small">{t("aboutToContinue")}</Heading>
         <Timer
           timeInSeconds={timeBetweenRounds}
           executeAfter={this.executeAfter}
-        ></Timer>
-        <QuestionBox question={topic} />
+        ></Timer> 
+        <Box margin={{"top":"5%"}} align="center" direction="column">
+          <QuestionBox question={topic}/>
+        </Box>
       </Box>
+
     );
   }
 }
