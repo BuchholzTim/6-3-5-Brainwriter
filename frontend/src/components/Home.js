@@ -9,7 +9,7 @@ export class Home extends Component {
     const { t } = this.props;
     return (
       <Box direction="column" justify="center" gap="0px" width="100%">
-        <Box direction="row" className="wrapper" width="70%" alignSelf="center" margin={{"top":"xlarge"}}>
+        <Box direction="row" className="wrapper" width="70%" alignSelf="center" margin={{"top":"5%"}}>
           <Box direction="column" width="50%" paragraph="small">
             <Heading level="2" size="medium">
               {t("welcome")}

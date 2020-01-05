@@ -23,7 +23,7 @@ export class PlayerViewSummary extends Component {
     }
 
     return (
-      <Box direction="column" gap="medium" pad="small">
+      <Box style={{wordWrap: "break-word"}} direction="column" gap="medium" pad="small">
         <QuestionBox question={topic} />
         <Carousel>{tables}</Carousel>
       </Box>

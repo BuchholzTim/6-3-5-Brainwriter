@@ -59,7 +59,7 @@ export class TopicConfig extends Component {
   render() {
     const { t } = this.props;
     return (
-      <Box fill align="center" justify="center" margin={{"top":"xlarge"}} direction="column" >
+      <Box fill align="center" justify="center" margin={{"top":"5%"}} direction="column" >
         <Box align="center" justify="center" direction="column" width="50%" margin={{"bottom":"xlarge"}}>
         <h1>Schnelle Session erstellen</h1>
         <Text size="small" textAlign="center">{t("explSessionStart")}</Text>
