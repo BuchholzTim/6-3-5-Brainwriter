@@ -60,6 +60,11 @@ export class TopicConfig extends Component {
     const { t } = this.props;
     return (
       <Box fill align="center" justify="center" margin={{"top":"xlarge"}} direction="column" >
+        <Box align="center" justify="center" direction="column" width="50%" margin={{"bottom":"xlarge"}}>
+        <h1>Schnelle Session erstellen</h1>
+        <Text size="small" textAlign="center">{t("explSessionStart")}</Text>
+        </Box>
+      
         <Form onSubmit={this.onSubmit}  style={{width:'50%'}}>
             <Box id="außenrum_topic" direction="row" width="matchparent" style={{"marginBottom":"2rem"}}>
               <Text id="label" style={{width:"15%",marginRight:"0%"}} weight="bold">{t("topic")}</Text>
@@ -80,7 +85,7 @@ export class TopicConfig extends Component {
                 </TextArea>
               </FormField>
             </Box>
-            <Box id="außenrum_time" direction="row" width="matchparent" style={{"marginBottom":"2rem"}}>
+            <Box id="außenrum_time" direction="row" width="matchparent" style={{"marginBottom":"3rem"}}>
               <Box style={{width:"15%","display":"grid", justifyContent: "left", alignContent: "space-evenly"}}> 
                 <Text id="label" weight="bold">{t("timePerRound")}</Text>
               </Box>

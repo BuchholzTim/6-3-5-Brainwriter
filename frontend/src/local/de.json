@@ -23,9 +23,9 @@
     "userName": "Nutzer-Name",
     "userNamePlaceholder": "Dein Name",
     "timePerRound": "Zeit pro Runde:",
-    "participants": "Teilnehmer",
+    "participants": "Teilnehmer:",
     "topic": "Fragestellung:",
-    "status": "Status",
+    "status": "Status:",
     "aboutToStart": "Gleich geht es los!",
     "aboutToContinue": "Gleich geht es weiter!",
     "waitingForParticipants": "Warten bis alle beigetreten sind...",
@@ -33,6 +33,7 @@
     "notEnoughPlayers": "Es wird mindestens 1 Teilnehmer benötigt!",
     "onlyNumeric": "Nur numerische Werte sind erlaubt",
     "errorTopic": "Bitte eine Fragestellung eingeben",
-    "errorTimePerRound": "Bitte eine Zeit pro Runde eingeben"
+    "errorTimePerRound": "Bitte eine Zeit pro Runde eingeben", 
+    "explSessionStart": "Bevor es losgehen kann, muss nur noch eine Fragestellung eingeben und ggf. die Zeit pro Runde angepasst werden. Danach kann man die Session eröffnen und die Teilnehmer können mit dem JoinCode, der dann engezeigt wird, beitreten. Da die Teilnehmeranzahl variabel ist, kann die erste Runde gestartet werden, sobald alle der Session beigetreten sind."
   }
 }

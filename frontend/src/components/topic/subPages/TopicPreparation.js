@@ -68,28 +68,28 @@ export class TopicPreparation extends Component {
       });
     }
     return (
-      <Box direction="column" gap="xlarge" pad="small" >
-        <Box direction="row" gap="xlarge" pad="small" justify="center" >
-          <QuestionBox question={topic} />
-          <Box direction="row" gap="small">
-            <Text weight="bold">{t("joinCode")}</Text>
-            <Text>{joinCode}</Text>
+      <Box id="wrapper" width="100%" align="center">  
+        <Box id="oben" fill align="center" justify="center" margin={{"top":"xlarge"}} direction="column" style={{width:"50%"}}> 
+          <Box direction="column" justify="center" align="center">
+            <h1>JoinCode:</h1>
+            <Text size="9rem" weight="bold">{joinCode}</Text>
+            <h3>Fragestellung:</h3>
+            <Text size="large" weight="normal" textAlign="center"> {topic}</Text>
           </Box>
         </Box>
-
-        <Box direction="row" gap="large">
-          <PlayerList />
-
-          <Box direction="column" gap="medium" align="center">
-            <Box direction="column" gap="small" align="center">
-              <Text weight="bold">{t("status")}</Text>
-              <Text>{t("waitingForParticipants")}</Text>
+      
+          <Box id="Unten" direction="row" gap="small" justify="evenly" style={{width:"40%"}} margin={{"top":"xlarge"}}>
+            <PlayerList />
+            <Box direction="column" gap="medium" align="center">
+              <Box direction="column" gap="small" align="center">
+                <Text weight="bold">{t("status")}</Text>
+                <Text>{t("waitingForParticipants")}</Text>
+              </Box>
+              <Button primary label={t("startRound")} onClick={this.onSubmit} />
+              <Text color="status-critical">{displayMessage}</Text>
             </Box>
-            <Button primary label={t("startRound")} onClick={this.onSubmit} />
-            <Text color="status-critical">{displayMessage}</Text>
           </Box>
         </Box>
-      </Box>
     );
   }
 }
