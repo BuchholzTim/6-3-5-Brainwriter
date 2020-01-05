@@ -67,6 +67,7 @@ export class IdeaTable extends Component {
 
     for (let i = 0; i < numIdeas; i++) {
       const config = {
+        align: "center",
         property: `idea_${i + 1}`,
         header: `${t("idea")} ${i + 1}`
       };
