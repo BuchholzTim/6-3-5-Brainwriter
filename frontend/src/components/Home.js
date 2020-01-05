@@ -9,7 +9,7 @@ export class Home extends Component {
     const { t } = this.props;
     return (
       <Box direction="column" justify="center" gap="0px" width="100%">
-        <Box direction="row" className="wrapper" width="70%" alignSelf="center" margin={{"top":"5%"}}>
+        <Box direction="row" className="wrapper" alignSelf="center" margin={{"top":"5%"}}>
           <Box direction="column" width="50%" paragraph="small">
             <Heading level="2" size="medium">
               {t("welcome")}
@@ -26,41 +26,44 @@ export class Home extends Component {
           </Box>
         </Box>
         <Box
-          direction="row-responsive"
+          className="wrapper"
+          direction="row"
           justify="center"
-          pad="xlarge"
-          gap="medium"
-        >
+          style={{"padding-bottom":"112px"}}
+          gap="medium">
           <Box
-            pad="large"
+            pad="medium"
             align="center"
             background="light-6"
             round
-            gap="small"
-          >
+            gap="small"            
+            style={{"width":"40%"}}>
             <Group size="large" color="dark-2" />
-            <Link to="/topic">
-              <Button
-                primary
-                label="Schnelle Runde erstellen"
-                hoverIndicator="true"
-              />
-            </Link>
+              <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/topic" >
+                <Button
+                  primary label="Schnelle Runde erstellen"
+                  hoverIndicator="true"
+                  style={{"width":"100%"}}
+                />
+              </Link>
           </Box>
 
           <Box
-            pad="large"
+            pad="medium"
             align="center"
             background="light-6"
             round
             gap="small"
-           
-          >
+            style={{"width":"40%"}}>
             <Login size="large" color="dark-2" />
-            <Link to="/playerView">
-              <Button primary label="Runde beitreten" hoverIndicator="true" />
-            </Link>
-          </Box>
+              <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/playerView">
+                <Button 
+                  primary label="Runde beitreten" 
+                  hoverIndicator="true"
+                  style={{"width":"100%"}}
+                  />
+              </Link>
+            </Box>
         </Box>
         
         <Box
@@ -68,9 +71,10 @@ export class Home extends Component {
           justify="center"
           pad="large"
           width="100%"
-          background="accent-2"         
+          background="accent-2" 
+             
         >
-            <Box direction="column" className="wrapper" width="70%" alignSelf="center" >
+            <Box direction="column" className="wrapper" alignSelf="center" >
             <Paragraph size="small" paragraph="xxlarge">
               <h3>{t("about635")}</h3>
               {t("description635")}

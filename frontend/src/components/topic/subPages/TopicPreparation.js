@@ -68,19 +68,20 @@ export class TopicPreparation extends Component {
       });
     }
     return (
-      <Box id="wrapper" width="100%" align="center">  
-        <Box id="oben" fill align="center" justify="center" margin={{"top":"5%"}} direction="column" style={{width:"50%"}}> 
-          <Box direction="column" justify="center" align="center">
-            <h1>JoinCode:</h1>
-            <Text size="9rem" weight="bold">{joinCode}</Text>
-            <h3>Fragestellung:</h3>
-            <Text size="large" weight="normal" textAlign="center"> {topic}</Text>
+      <Box className="wrapper" align="center">  
+        <Box id="oben" fill align="center" justify="center" margin={{"top":"5%"}} direction="column"> 
+          <Box direction="column" justify="center" align="center" alignContent="center" wordWrap="break-word">
+            <h3 align="center">"{topic}"</h3>
+            <h1>JoinCode: {joinCode}</h1>
+            
           </Box>
         </Box>
       
-          <Box id="Unten" direction="row" gap="small" justify="evenly" style={{width:"40%"}} margin={{"top":"xlarge"}}>
-            <PlayerList />
-            <Box direction="column" gap="medium" align="center">
+          <Box id="Unten" direction="row" gap="small" justify="evenly" width="100%" margin={{"top":"xlarge"}}>
+            <Box direction="column" width="40%" gap="medium" align="center">
+              <PlayerList />
+            </Box>
+            <Box direction="column" width="40%" gap="medium" align="center">
               <Box direction="column" gap="small" align="center">
                 <Text weight="bold">{t("status")}</Text>
                 <Text>{t("waitingForParticipants")}</Text>

@@ -80,10 +80,10 @@ export class TopicControls extends Component {
     }
 
     return (
-      <Box fill align="center" justify="center" margin={{"top":"5%"}} direction="column" style={{"width":"50%"}}>
+      <Box fill align="center" justify="center" margin={{"top":"5%"}} direction="column" className="wrapper">
         <Box id="oben" style={{"width":"100%"}} alignContent="center">
-        <Text weight="bold" size="medium" textAlign="center">Fragestellung:</Text>
-        <Text size="large" weight="normal" textAlign="center"> {topic}</Text>
+          <Text weight="bold" size="medium" textAlign="center">Fragestellung:</Text>
+          <Text size="large" weight="normal" textAlign="center"> {topic}</Text>
         </Box>
 
         <Box id="unten" direction="row" gap="large" margin={{"top":"5%"}} justify="evenly" align="center" style={{"width":"100%"}}>
