@@ -20,7 +20,7 @@ export class Home extends Component {
             <img
               height="auto"
               width="100%"
-              src="635.png"
+              src="635_neu.png"
               alt="Bild 635 Methode"
             ></img>
           </Box>
@@ -41,7 +41,7 @@ export class Home extends Component {
             <Group size="large" color="dark-2" />
               <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/topic" >
                 <Button
-                  primary label="Schnelle Runde erstellen"
+                  primary label="Runde erstellen"
                   hoverIndicator="true"
                   style={{"width":"100%"}}
                 />
