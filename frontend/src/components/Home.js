@@ -9,7 +9,12 @@ export class Home extends Component {
     const { t } = this.props;
     return (
       <Box direction="column" justify="center" gap="0px" width="100%">
-        <Box direction="row" className="wrapper" alignSelf="center" margin={{"top":"5%"}}>
+        <Box
+          direction="row"
+          className="wrapper"
+          alignSelf="center"
+          margin={{ top: "5%" }}
+        >
           <Box direction="column" width="50%" paragraph="small">
             <Heading level="2" size="medium">
               {t("welcome")}
@@ -29,16 +34,19 @@ export class Home extends Component {
           className="wrapper"
           direction="row"
           justify="center"
-          style={{"padding-bottom":"112px"}}
-          gap="medium">
+          style={{ "padding-bottom": "112px" }}
+          gap="medium"
+        >
           <Box
             pad="medium"
             align="center"
             background="light-6"
             round
-            gap="small"            
-            style={{"width":"40%"}}>
+            gap="small"
+            style={{ width: "40%" }}
+          >
             <Group size="large" color="dark-2" />
+<<<<<<< HEAD
               <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/topic" >
                 <Box>
                   <Button
@@ -49,6 +57,23 @@ export class Home extends Component {
                   />
                 </Box>
               </Link>
+=======
+            <Link
+              style={{
+                width: "90%",
+                "margin-left": "auto",
+                "margin-right": "auto"
+              }}
+              to="/topic"
+            >
+              <Button
+                primary
+                label={t("createRound")}
+                hoverIndicator="true"
+                style={{ width: "100%" }}
+              />
+            </Link>
+>>>>>>> Jule_Testcenter
           </Box>
 
           <Box
@@ -57,8 +82,10 @@ export class Home extends Component {
             background="light-6"
             round
             gap="small"
-            style={{"width":"40%"}}>
+            style={{ width: "40%" }}
+          >
             <Login size="large" color="dark-2" />
+<<<<<<< HEAD
               <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/playerView">
                 <Button 
                   primary
@@ -69,17 +96,34 @@ export class Home extends Component {
                   />
               </Link>
             </Box>
+=======
+            <Link
+              style={{
+                width: "90%",
+                "margin-left": "auto",
+                "margin-right": "auto"
+              }}
+              to="/playerView"
+            >
+              <Button
+                primary
+                label={t("joinRound")}
+                hoverIndicator="true"
+                style={{ width: "100%" }}
+              />
+            </Link>
+          </Box>
+>>>>>>> Jule_Testcenter
         </Box>
-        
+
         <Box
           direction="column"
           justify="center"
           pad="large"
           width="100%"
-          background="accent-2" 
-             
+          background="accent-2"
         >
-            <Box direction="column" className="wrapper" alignSelf="center" >
+          <Box direction="column" className="wrapper" alignSelf="center">
             <Paragraph size="small" paragraph="xxlarge">
               <h3>{t("about635")}</h3>
               {t("description635")}
@@ -90,7 +134,7 @@ export class Home extends Component {
             </Paragraph>
           </Box>
         </Box>
-        <Box background="accent-3" >
+        <Box background="accent-3">
           <Box
             id="footer"
             pad="medium"
