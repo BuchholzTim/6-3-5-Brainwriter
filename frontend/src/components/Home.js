@@ -41,7 +41,7 @@ export class Home extends Component {
             <Group size="large" color="dark-2" />
               <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/topic" >
                 <Button
-                  primary label="Runde erstellen"
+                  primary label={t(createRound)}
                   hoverIndicator="true"
                   style={{"width":"100%"}}
                 />
@@ -58,7 +58,7 @@ export class Home extends Component {
             <Login size="large" color="dark-2" />
               <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/playerView">
                 <Button 
-                  primary label="Runde beitreten" 
+                  primary label={t(joinRound)}
                   hoverIndicator="true"
                   style={{"width":"100%"}}
                   />

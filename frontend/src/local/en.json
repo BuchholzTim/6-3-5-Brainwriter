@@ -1,20 +1,20 @@
 {
   "translation": {
     "welcome": "Welcome to the online-Tool to conduct a 6-3-5 Session.",
-    "descriptionWelcome": "With this tool it takes only a few steps to develop great ideas as a team. To get started sach participant simply needs to bring their own device.",
+    "descriptionWelcome": "With this tool it takes only a few steps to develop great ideas as a team. To get started each participant only needs to bring their own device.",
     "privacyPolicy": "Data privacy statement",
     "legalNotice": "Legal notice",
     "about635": "About the 6-3-5 Method",
-    "description635": "The 6-3-5 method can be used to develop ideas together in a set amount of time. Usually a session is conducted with 6 participants, each developing 3 ideas within 3 minutes per round. After these 3 minutes, the sheet is passed on to the next participant, and another 3 minutes are given to complement the predecessor's ideas with their own ideas and annotations. This porcess is done 5 times in total, thus 6-3-5 method.",
+    "description635": "The 6-3-5 Method can be used to develop ideas in a set amount of time as a team. Usually a Session is  conducted with 6 participants. Each participant is given 3 minutes to develop 3 initial ideas and writes them in a table. When 3 minutes have elapsed, the table is passed on to the next participant, and another 3 minutes are given to complement the predecessor's ideas with their own ideas and annotations. This process is repeated 5 times in total (with 6 participants), thus the name 6-3-5.",
     "aboutTool": "About the tool",
-    "descriptionTool": "With our tool it's easy to conduct a 6-3-5 session with any number of participants and any amount of time per round. Each participants simply needs to bring their own device and needs access to the internet. To begin, simply start a quick round, enter the question or topic and adjust the time per round if necessary, then the session is opened. On the following page the Code for the participants to join will be shown. After entering the code and a name, the participant joins the virtual round and once everyone joined the room, the session can be started. The process then is analog to the paper version. Each participant enters their ideas. The timer starts as soon as the session is started, synchonized and visible to each participant. After the (default) 3 minutes have passed, the sheet is automatically passed to the next participant, and the next row can be filled in. At the end of the session, the completed tables are collected automatically, and the one who created the session can view them all and navigate between the diffrent tables.",
+    "descriptionTool": "With our tool it's easy to conduct a 6-3-5 session with any number of participants and any amount of time per round. The participants merely need to bring their own devices and need access to the internet. To begin, the moderator creates a session by entering the question or topic and the desired amount of time per round, after that the session can be opened. The number of participants is variable, but with a larger group we recommend splitting into smaller teams. A page with a code will then be shown. Each participant (including the moderator) visits 635online.com:3000, chooses \"join Session\", enters the code and their name, and the entry is complete. The process then is analog to the previously described version on paper. Once all participants have joined, the session can be started by the moderator. This starts the timer, which is synchronized and visible to each participant. After the (default) 3 minutes, the table is automatically passed on to the next participant and the next row can be filled in. When the session is concluded, the filled in tables are collected automatically and the moderator can navigate between the different tables.",
     "applicationName": "6-3-5 Brainwriter",
-    "createQuickRound": "Create quick round",
-    "createRound": "Create round",
-    "joinRound": "Join round",
-    "startRound": "Start round",
-    "pauseRound": "Pause round",
-    "resumeRound": "Continue round",
+    "createQuickRound": "Create session",
+    "createRound": "Create session",
+    "joinRound": "Join session",
+    "startRound": "Start session",
+    "pauseRound": "Pause session",
+    "resumeRound": "Continue session",
     "topicName": "How might we ... ?",
     "idea": "Idea",
     "ideaPlaceholder": "Your first idea",
@@ -33,6 +33,7 @@
     "notEnoughPlayers": "At least one participant is needed!",
     "onlyNumeric": "Only numeric values permitted",
     "errorTopic": "Please enter a topic",
-    "errorTimePerRound": "Please enter time per round"
+    "errorTimePerRound": "Please enter time per round",
+    "explSessionStart": "A topic is required to get started and if  needed the time per round can be adjusted, then the session can be opened. A code will be shown, which participants need to join the session. The number of participants is variable and the number of rounds changes according to the number of participants. Once everyone has joined the session, the first round can be started."
   }
 }
