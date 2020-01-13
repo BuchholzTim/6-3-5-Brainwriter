@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Box } from "grommet";
+import { Box, InfiniteScroll } from "grommet";
 import IdeaInput from "./ideaComponents/IdeaInput";
 import IdeaTable from "./ideaComponents/IdeaTable";
 import Timer from "../../tools/Timer";

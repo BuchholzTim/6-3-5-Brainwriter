@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Box, Carousel } from "grommet";
+import { Box, Carousel, InfiniteScroll } from "grommet";
 import IdeaTable from "../playerView/subPages/ideaComponents/IdeaTable";
 import QuestionBox from "./QuestionBox";
 
@@ -23,9 +23,9 @@ export class PlayerViewSummary extends Component {
     }
 
     return (
-      <Box style={{wordWrap: "break-word"}} direction="column" gap="medium" pad="small">
+      <Box style={{wordWrap: "break-word"}} direction="column" gap="medium" pad="small" overflow={{ horizontal: "auto" }}>
         <QuestionBox question={topic} />
-        <Carousel>{tables}</Carousel>
+        <Carousel fill>{tables}</Carousel>
       </Box>
     );
   }

@@ -61,7 +61,7 @@ export class TopicConfig extends Component {
     return (
       <Box fill align="center" className="wrapper" justify="center" margin={{"top":"5%"}} direction="column" >
         <Box align="center" justify="center" direction="column" width="100%" margin={{"bottom":"xlarge"}}>
-        <h1>Schnelle Session erstellen</h1>
+        <h1>{t("createRound")}</h1>
         <Text size="small" textAlign="center">{t("explSessionStart")}</Text>
         </Box>
       
