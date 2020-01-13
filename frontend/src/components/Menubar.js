@@ -31,6 +31,9 @@ export class Menubar extends Component {
         gap="small"
         style={{ zIndex: "1000" }}
       >
+        <Box 
+        hoverIndicator= "#3E4548"
+        onClick={this.goToHome}>
         <Heading
           level={3}
           margin="none"
@@ -40,6 +43,7 @@ export class Menubar extends Component {
         >
           {t("applicationName")}
         </Heading>
+        </Box>
         <Box direction="row" gap="small">
           <DropButton
             dropAlign={{ top: "bottom", right: "right" }}

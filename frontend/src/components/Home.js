@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Box, Paragraph, Heading } from "grommet";
+import { Button, Box, Paragraph, Heading, Anchor } from "grommet";
 import { Group, Login } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { withTranslation } from "react-i18next";
@@ -40,11 +40,14 @@ export class Home extends Component {
             style={{"width":"40%"}}>
             <Group size="large" color="dark-2" />
               <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/topic" >
-                <Button
-                  primary label={t(createRound)}
-                  hoverIndicator="true"
-                  style={{"width":"100%"}}
-                />
+                <Box>
+                  <Button
+                    primary
+                    label={t("createRound")}
+                    hoverIndicator="true"
+                    style={{"width":"100%"}}
+                  />
+                </Box>
               </Link>
           </Box>
 
@@ -58,9 +61,11 @@ export class Home extends Component {
             <Login size="large" color="dark-2" />
               <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/playerView">
                 <Button 
-                  primary label={t(joinRound)}
+                  primary
+                  label={t("joinRound")}
                   hoverIndicator="true"
                   style={{"width":"100%"}}
+                  background ="brand"
                   />
               </Link>
             </Box>

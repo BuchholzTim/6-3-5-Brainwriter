@@ -175,9 +175,6 @@ export const hci2b = deepFreeze({
     margin: 0,
     width: "100%",
   },
-  email: "juha0010@stud.hs-kl.de",
-  date: "2019-11-27T21:09:50.159Z",
-
   button: {
     color: "white",
     border: {
