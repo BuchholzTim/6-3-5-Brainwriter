@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Box, InfiniteScroll } from "grommet";
+import { Box } from "grommet";
 import IdeaInput from "./ideaComponents/IdeaInput";
 import IdeaTable from "./ideaComponents/IdeaTable";
 import Timer from "../../tools/Timer";
@@ -56,11 +56,11 @@ export class PlayerViewRound extends Component {
     return (
       <Box direction="column" gap="small" justify="center">
         <Box direction="row" align="center" justify="evenly">
-          <Box id ="emptyBox" width="30%"/>
+          <Box id="emptyBox" width="30%" />
           <Box width="30%">
             <QuestionBox question={topic} />
           </Box>
-          <Box width="30%" style={{"display":"grid", justifyContent: "right"}}>
+          <Box width="30%" style={{ display: "grid", justifyContent: "right" }}>
             <Timer
               timeInSeconds={timeForRound}
               executeAfter={this.executeAfter}

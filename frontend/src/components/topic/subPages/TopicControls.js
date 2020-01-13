@@ -4,7 +4,6 @@ import { Box, Button, Text } from "grommet";
 import PlayerList from "./topicComponents/PlayerList";
 import RoundState from "./topicComponents/RoundState";
 import Timer from "../../tools/Timer";
-import QuestionBox from "../../tools/QuestionBox";
 import { setTopicPage } from "../../../redux/actions/pageActions";
 import { emitPause, emitResume } from "../../../socket/socket";
 import { setCurrentRound } from "../../../redux/actions/configActions";
@@ -80,22 +79,47 @@ export class TopicControls extends Component {
     }
 
     return (
-      <Box fill align="center" justify="center" margin={{"top":"5%"}} direction="column" className="wrapper">
-        <Box id="oben" style={{"width":"100%"}} alignContent="center">
-          <Text weight="bold" size="medium" textAlign="center">Fragestellung:</Text>
-          <Text size="large" weight="normal" textAlign="center"> {topic}</Text>
+      <Box
+        fill
+        align="center"
+        justify="center"
+        margin={{ top: "5%" }}
+        direction="column"
+        className="wrapper"
+      >
+        <Box id="oben" style={{ width: "100%" }} alignContent="center">
+          <Text weight="bold" size="medium" textAlign="center">
+            Fragestellung:
+          </Text>
+          <Text size="large" weight="normal" textAlign="center">
+            {" "}
+            {topic}
+          </Text>
         </Box>
 
-        <Box id="unten" direction="row" gap="large" margin={{"top":"5%"}} justify="evenly" align="center" style={{"width":"100%"}}>
+        <Box
+          id="unten"
+          direction="row"
+          gap="large"
+          margin={{ top: "5%" }}
+          justify="evenly"
+          align="center"
+          style={{ width: "100%" }}
+        >
           <Box width="20%" direction="column" align="center">
-            <PlayerList/>
+            <PlayerList />
           </Box>
           <Box width="20%" gap="xsmall" direction="column" align="center">
             <RoundState />
             <Timer timeInSeconds={time} executeAfter={this.executeAfter} />
           </Box>
-          <Box width="20%" direction="column" justify="center" align="center"> 
-            <Button style={{"width":"100%"}} primary label={buttonLabel} onClick={this.togglePause} />
+          <Box width="20%" direction="column" justify="center" align="center">
+            <Button
+              style={{ width: "100%" }}
+              primary
+              label={buttonLabel}
+              onClick={this.togglePause}
+            />
           </Box>
         </Box>
       </Box>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Box, Paragraph, Heading, Anchor } from "grommet";
+import { Button, Box, Paragraph, Heading } from "grommet";
 import { Group, Login } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { withTranslation } from "react-i18next";

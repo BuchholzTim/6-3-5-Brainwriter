@@ -1,5 +1,4 @@
 import { deepFreeze } from "grommet/utils";
-import reducers from "../redux/reducers";
 
 export const hci2b = deepFreeze({
   name: "hci2b",
@@ -55,13 +54,13 @@ export const hci2b = deepFreeze({
       "accent-1": "#4Eb4ca",
       "accent-2": "#3E4548",
       "accent-3": "#0d181c",
-      "focus": "#acf5bf"
-
+      focus: "#acf5bf"
     },
 
-    "font": {
-      family: "\"Oxygen\"",
-      face: "/* latin-ext */\n@font-face {\n  font-family: 'Oxygen';\n  font-style: normal;\n  font-weight: 400;\n  src: local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v9/2sDfZG1Wl4LcnbuKgE0mV0Q.woff2) format('woff2');\n  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Oxygen';\n  font-style: normal;\n  font-weight: 400;\n  src: local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v9/2sDfZG1Wl4LcnbuKjk0m.woff2) format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n",
+    font: {
+      family: '"Oxygen"',
+      face:
+        "/* latin-ext */\n@font-face {\n  font-family: 'Oxygen';\n  font-style: normal;\n  font-weight: 400;\n  src: local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v9/2sDfZG1Wl4LcnbuKgE0mV0Q.woff2) format('woff2');\n  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Oxygen';\n  font-style: normal;\n  font-weight: 400;\n  src: local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v9/2sDfZG1Wl4LcnbuKjk0m.woff2) format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n",
       size: "21px",
       height: "28px",
       maxWidth: "588px"
@@ -163,17 +162,16 @@ export const hci2b = deepFreeze({
       color: "accent-3",
       size: "medium",
       margin: { vertical: "0", bottom: "small", horizontal: "0" },
-      weight: 600,
-
+      weight: 600
     },
 
-    textArea: { 
-        fontsize: "80px",
-        color: "red",
+    textArea: {
+      fontsize: "80px",
+      color: "red"
     },
     border: false,
     margin: 0,
-    width: "100%",
+    width: "100%"
   },
   button: {
     color: "white",
@@ -181,9 +179,6 @@ export const hci2b = deepFreeze({
       radius: "8px"
     }
   },
-  
-
-  
 
   carousel: {
     animation: {
@@ -300,7 +295,7 @@ export const hci2b = deepFreeze({
         medium: {
           size: "39.66666666666667px",
           height: "46.66666666666667px",
-          maxWidth:"100%"
+          maxWidth: "100%"
         },
         large: {
           size: "58.333333333333336px",
@@ -401,7 +396,7 @@ export const hci2b = deepFreeze({
       }
     }
   },
-  
+
   paragraph: {
     small: {
       size: "16.333333333333332px",

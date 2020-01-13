@@ -35,18 +35,16 @@ export class Menubar extends Component {
         gap="small"
         style={{ zIndex: "1000" }}
       >
-        <Box 
-        hoverIndicator= "#3E4548"
-        onClick={this.goToHome}>
-        <Heading
-          level={3}
-          margin="none"
-          color="white"
-          align="end"
-          onClick={this.goToHome}
-        >
-          {t("applicationName")}
-        </Heading>
+        <Box hoverIndicator="#3E4548" onClick={this.goToHome}>
+          <Heading
+            level={3}
+            margin="none"
+            color="white"
+            align="end"
+            onClick={this.goToHome}
+          >
+            {t("applicationName")}
+          </Heading>
         </Box>
         <Box direction="row" gap="small">
           <DropButton
@@ -88,13 +86,13 @@ export class Menubar extends Component {
           >
             <Box height="44px" width="44px">
               <img
-                width="inherit"
-                height="inherit"
+                width="44px"
+                height="44px"
                 src="HCI2b_Logo.png"
+                alt="HCI Logo"
               ></img>
-            </Box> 
-          </Button>  
-
+            </Box>
+          </Button>
         </Box>
       </Box>
     );
