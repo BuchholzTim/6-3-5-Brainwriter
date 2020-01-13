@@ -9,8 +9,8 @@ export class RoundState extends Component {
     const { currentRound, maxRounds, t } = this.props;
     return (
       <Box direction="column" gap="xsmall">
-        <Text weight="bold">{t("status")}</Text>
-        <Text>
+        <Text weight="bold" textAlign="center">{t("status")}</Text>
+        <Text textAlign="center">
           {t("roundCurrentlyRunning", {
             currentRound: currentRound,
             maxRounds: maxRounds

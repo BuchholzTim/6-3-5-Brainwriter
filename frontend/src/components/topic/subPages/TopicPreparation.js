@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Box, Text, Button } from "grommet";
 import PlayerList from "./topicComponents/PlayerList";
-import QuestionBox from "../../tools/QuestionBox";
 import { CONTROLS } from "../pages";
 import { setPlayers } from "../../../redux/actions/topicActions";
 import { setMaxRounds } from "../../../redux/actions/configActions";
@@ -68,19 +67,39 @@ export class TopicPreparation extends Component {
       });
     }
     return (
-      <Box direction="column" gap="xlarge" pad="small">
-        <Box direction="row" gap="xlarge" pad="small" justify="center">
-          <QuestionBox question={topic} />
-          <Box direction="row" gap="small">
-            <Text weight="bold">{t("joinCode")}</Text>
-            <Text>{joinCode}</Text>
+      <Box className="wrapper" align="center">
+        <Box
+          id="oben"
+          fill
+          align="center"
+          justify="center"
+          margin={{ top: "5%" }}
+          direction="column"
+        >
+          <Box
+            direction="column"
+            justify="center"
+            align="center"
+            alignContent="center"
+            wordWrap="break-word"
+          >
+            <h3 align="center">"{topic}"</h3>
+            <h1>JoinCode: {joinCode}</h1>
           </Box>
         </Box>
 
-        <Box direction="row" gap="large">
-          <PlayerList />
-
-          <Box direction="column" gap="medium" align="center">
+        <Box
+          id="Unten"
+          direction="row"
+          gap="small"
+          justify="evenly"
+          width="100%"
+          margin={{ top: "xlarge" }}
+        >
+          <Box direction="column" width="40%" gap="medium" align="center">
+            <PlayerList />
+          </Box>
+          <Box direction="column" width="40%" gap="medium" align="center">
             <Box direction="column" gap="small" align="center">
               <Text weight="bold">{t("status")}</Text>
               <Text>{t("waitingForParticipants")}</Text>

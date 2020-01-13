@@ -29,6 +29,7 @@ a {
 
 a:visited{
   color: #cccccc;
+  text-decoration: none;
 }
 
 a:hover{
@@ -36,7 +37,8 @@ a:hover{
 }
 
 .wrapper{
-  max-width: 1140px;
-  margin:auto;
-  padding: 4rem 0px 0px 0px;
+  width: 100%;
+  max-width: 1140px !important;
+  margin: auto;
+  padding: 4rem 1rem 0px 1rem;
 }

@@ -8,6 +8,10 @@ export class Menubar extends Component {
     window.open("https://github.com/BuchholzTim/6-3-5-Brainwriter", "_blank");
   };
 
+  goToHci2b = () => {
+    window.open("https://hci.hs-kl.de/", "_blank");
+  };
+
   goToHome = () => {
     window.open("/", "_self");
   };
@@ -31,15 +35,17 @@ export class Menubar extends Component {
         gap="small"
         style={{ zIndex: "1000" }}
       >
-        <Heading
-          level={3}
-          margin="none"
-          color="white"
-          align="end"
-          onClick={this.goToHome}
-        >
-          {t("applicationName")}
-        </Heading>
+        <Box hoverIndicator="#3E4548" onClick={this.goToHome}>
+          <Heading
+            level={3}
+            margin="none"
+            color="white"
+            align="end"
+            onClick={this.goToHome}
+          >
+            {t("applicationName")}
+          </Heading>
+        </Box>
         <Box direction="row" gap="small">
           <DropButton
             dropAlign={{ top: "bottom", right: "right" }}
@@ -70,7 +76,22 @@ export class Menubar extends Component {
               size="large"
               color="white"
               alignmentBaseline="center"
-            ></Github>
+            />
+          </Button>
+          <Button
+            onClick={this.goToHci2b}
+            size="large"
+            color="white"
+            alignmentBaseline="center"
+          >
+            <Box height="44px" width="44px">
+              <img
+                width="44px"
+                height="44px"
+                src="HCI2B_Logo.png"
+                alt="HCI Logo"
+              />
+            </Box>
           </Button>
         </Box>
       </Box>

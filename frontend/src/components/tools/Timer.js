@@ -73,7 +73,7 @@ export class Timer extends Component {
   render() {
     const { meterValue, timeAsText } = this.state;
     return (
-      <Box align="center" pad="large">
+      <Box align="center" pad="small">
         <Stack anchor="center">
           <Meter
             type="circle"

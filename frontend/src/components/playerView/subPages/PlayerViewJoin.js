@@ -55,7 +55,7 @@ export class PlayerViewJoin extends Component {
   render() {
     const { t } = this.props;
     return (
-      <Box fill align="center" justify="center">
+      <Box fill align="center" justify="center" margin={{"top":"5%"}} direction="column" style={{"width":"50%"}}>
         <Form onSubmit={this.onSubmit}>
           <FormField
             label={t("userName")}
@@ -64,6 +64,8 @@ export class PlayerViewJoin extends Component {
             component={TextInput}
             onChange={event => this.setUserName(event.target.value)}
             required
+            margin={{"bottom":"medium"}}
+            border="true"
           />
           <FormField
             label={t("joinCode")}
@@ -72,6 +74,7 @@ export class PlayerViewJoin extends Component {
             component={TextInput}
             onChange={event => this.setJoinCode(event.target.value)}
             required
+            margin={{"bottom":"medium"}} 
           />
           <Button type="submit" label={t("joinRound")} primary />
         </Form>
