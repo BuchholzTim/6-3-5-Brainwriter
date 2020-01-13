@@ -42,7 +42,7 @@ export class TopicConfig extends Component {
         const {timePerRoundMin, timePerRoundSec} = this.state;
         console.log(timePerRoundMin);
         console.log(timePerRoundSec);
-        var timecalc = parseInt(timePerRoundMin) * 60 + parseInt(timePerRoundSec);
+        const timecalc = parseInt(timePerRoundMin) * 60 + parseInt(timePerRoundSec);
         console.log(timecalc);
         this.setState({timePerRound: timecalc});
     };
