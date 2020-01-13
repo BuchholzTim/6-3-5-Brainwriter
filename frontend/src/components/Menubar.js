@@ -8,6 +8,10 @@ export class Menubar extends Component {
     window.open("https://github.com/BuchholzTim/6-3-5-Brainwriter", "_blank");
   };
 
+  goToHci2b = () => {
+    window.open("https://hci.hs-kl.de/", "_blank");
+  };
+
   goToHome = () => {
     window.open("/", "_self");
   };
@@ -76,6 +80,21 @@ export class Menubar extends Component {
               alignmentBaseline="center"
             ></Github>
           </Button>
+          <Button
+            onClick={this.goToHci2b}
+            size="large"
+            color="white"
+            alignmentBaseline="center"
+          >
+            <Box height="44px" width="44px">
+              <img
+                width="inherit"
+                height="inherit"
+                src="HCI2b_Logo.png"
+              ></img>
+            </Box> 
+          </Button>  
+
         </Box>
       </Box>
     );
