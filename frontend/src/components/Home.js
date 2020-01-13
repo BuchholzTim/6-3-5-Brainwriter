@@ -46,18 +46,6 @@ export class Home extends Component {
             style={{ width: "40%" }}
           >
             <Group size="large" color="dark-2" />
-<<<<<<< HEAD
-              <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/topic" >
-                <Box>
-                  <Button
-                    primary
-                    label={t("createRound")}
-                    hoverIndicator="true"
-                    style={{"width":"100%"}}
-                  />
-                </Box>
-              </Link>
-=======
             <Link
               style={{
                 width: "90%",
@@ -73,7 +61,6 @@ export class Home extends Component {
                 style={{ width: "100%" }}
               />
             </Link>
->>>>>>> Jule_Testcenter
           </Box>
 
           <Box
@@ -85,18 +72,6 @@ export class Home extends Component {
             style={{ width: "40%" }}
           >
             <Login size="large" color="dark-2" />
-<<<<<<< HEAD
-              <Link style={{"width":"90%","margin-left":"auto","margin-right":"auto"}} to="/playerView">
-                <Button 
-                  primary
-                  label={t("joinRound")}
-                  hoverIndicator="true"
-                  style={{"width":"100%"}}
-                  background ="brand"
-                  />
-              </Link>
-            </Box>
-=======
             <Link
               style={{
                 width: "90%",
@@ -113,7 +88,6 @@ export class Home extends Component {
               />
             </Link>
           </Box>
->>>>>>> Jule_Testcenter
         </Box>
 
         <Box
