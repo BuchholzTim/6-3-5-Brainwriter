@@ -1,14 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Box, Carousel } from "grommet";
+import { Box, Button } from "grommet";
 import IdeaTable from "../playerView/subPages/ideaComponents/IdeaTable";
 import QuestionBox from "./QuestionBox";
 
 export class PlayerViewSummary extends Component {
+  state = {
+    shownTable: 0
+  };
+
   showSummary = () => {};
+
+  showNextTable = () => {
+    const { players } = this.props;
+    const { shownTable } = this.state;
+    this.setState({
+      shownTable: (shownTable + 1) % players.length
+    });
+  };
 
   render() {
     const { topic, players } = this.props;
+    const { shownTable } = this.state;
 
     const tables = [];
 
@@ -31,7 +44,14 @@ export class PlayerViewSummary extends Component {
         overflow={{ horizontal: "auto" }}
       >
         <QuestionBox question={topic} />
-        <Carousel fill>{tables}</Carousel>
+        {tables[shownTable]}
+        <Button
+          primary
+          hoverIndicator="true"
+          style={{ width: "100%" }}
+          onClick={this.showNextTable}
+          label="Next"
+        />
       </Box>
     );
   }
