@@ -1,0 +1,51 @@
+version: '3.2'
+
+services:
+  brainwriter-database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: brainwriter
+      POSTGRES_PASSWORD: brainwriter
+      POSTGRES_DB: brainwriter
+    networks:
+      - brainwriter-network
+    container_name: brainwriter-db
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  brainwriter-backend:
+    build: ../backend
+    restart: always
+    ports:
+      - "3001:3001"
+    networks:
+      - brainwriter-network
+    depends_on:
+      - brainwriter-database
+    environment:
+      DB_HOST: brainwriter-db
+      DB_NAME: brainwriter
+      DB_USERNAME: brainwriter
+      DB_PASSWORD: brainwriter
+      DB_DIALECT: postgres
+      DB_PORT: 5432
+      SERVER_PORT: 3001
+
+  brainwriter-frontend:
+    build: ../frontend
+    container_name: brainwriter-frontend
+    ports:
+      - "3000:80"
+
+
+networks:
+  brainwriter-network:
+    external: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.88.88/16
+
+volumes:
+  my_dbdata:
