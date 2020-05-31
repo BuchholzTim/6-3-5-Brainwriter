@@ -3,7 +3,7 @@ const express = require("express");
 const models = require("../models/models");
 const router = express.Router();
 
-router.post("/create", async function(req, res, next) {
+router.post("/create", async function (req, res, next) {
   const topic = req.body.topic;
   const timePerRound = req.body.timePerRound;
 
@@ -26,13 +26,13 @@ router.post("/create", async function(req, res, next) {
     topic: topic,
     timePerRound: timePerRound,
     joinCode: joinCode,
-    active: true
+    active: true,
   };
 
-  models.Topic.create(Topic).then(Topic => res.json({ topic: Topic }));
+  models.Topic.create(Topic).then((Topic) => res.json({ topic: Topic }));
 });
 
-router.get("/get", async function(req, res, next) {
+router.get("/get", async function (req, res, next) {
   const joinCode = req.query.joinCode;
   const existingTopic = await getTopic(joinCode);
 
@@ -44,7 +44,7 @@ router.get("/get", async function(req, res, next) {
   }
 });
 
-router.post("/join", async function(req, res, next) {
+router.post("/join", async function (req, res, next) {
   const codeLength = 4;
 
   const joinCode = req.body.joinCode;
@@ -55,28 +55,28 @@ router.post("/join", async function(req, res, next) {
 
   // If topic is null or undefined
   if (!existingTopic) {
-    res.status(400);
+    res.status(400).send("Topic is undefined");
     res.end();
     return;
   }
 
   const Author = {
     userName: userName,
-    topicID: existingTopic.id
+    topicID: existingTopic.id,
   };
 
-  models.Author.create(Author).then(Author =>
+  models.Author.create(Author).then((Author) =>
     res.json({ topic: existingTopic, author: Author })
   );
 });
 
-router.post("/getPlayers", async function(req, res, next) {
+router.post("/getPlayers", async function (req, res, next) {
   const id = req.body.id;
 
   const players = await models.Author.findAll({
     where: {
-      topicID: id
-    }
+      topicID: id,
+    },
   });
 
   if (tools.checkExistence(players)) {
@@ -87,13 +87,13 @@ router.post("/getPlayers", async function(req, res, next) {
   }
 });
 
-router.post("/getPlayerCount", async function(req, res, next) {
+router.post("/getPlayerCount", async function (req, res, next) {
   const id = req.body.id;
 
   const players = await models.Author.findAll({
     where: {
-      topicID: id
-    }
+      topicID: id,
+    },
   });
 
   if (tools.checkExistence(players)) {
@@ -108,8 +108,8 @@ router.post("/getPlayerCount", async function(req, res, next) {
 async function getTopic(joinCode) {
   const topic = await models.Topic.findOne({
     where: {
-      joinCode: joinCode
-    }
+      joinCode: joinCode,
+    },
   });
 
   if (tools.checkExistence(topic)) {
