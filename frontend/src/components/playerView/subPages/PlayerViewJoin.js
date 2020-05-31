@@ -13,18 +13,25 @@ import { withTranslation } from "react-i18next";
 export class PlayerViewJoin extends Component {
   state = {
     userName: "",
-    joinCode: ""
+    joinCode: "",
+    errorMessage: "",
   };
 
-  setUserName = userName => {
+  setUserName = (userName) => {
     this.setState({
-      userName: userName
+      userName: userName,
     });
   };
 
-  setJoinCode = joinCode => {
+  setJoinCode = (joinCode) => {
     this.setState({
-      joinCode: joinCode
+      joinCode: joinCode,
+    });
+  };
+
+  setErrorMessage = (errorMessage) => {
+    this.setState({
+      errorMessage: errorMessage,
     });
   };
 
@@ -32,7 +39,7 @@ export class PlayerViewJoin extends Component {
     const { userName, joinCode } = this.state;
 
     joinTopic({ userName, joinCode })
-      .then(response => {
+      .then((response) => {
         const topic = response.topic;
         const author = response.author;
         this.props.setTopicData(topic);
@@ -45,6 +52,9 @@ export class PlayerViewJoin extends Component {
       })
       .then(() => {
         this.nextPage();
+      })
+      .catch((error) => {
+        this.setErrorMessage(error.response.data);
       });
   };
 
@@ -55,16 +65,23 @@ export class PlayerViewJoin extends Component {
   render() {
     const { t } = this.props;
     return (
-      <Box fill align="center" justify="center" margin={{"top":"5%"}} direction="column" style={{"width":"50%"}}>
+      <Box
+        fill
+        align="center"
+        justify="center"
+        margin={{ top: "5%" }}
+        direction="column"
+        style={{ width: "50%" }}
+      >
         <Form onSubmit={this.onSubmit}>
           <FormField
             label={t("userName")}
             placeholder={t("userNamePlaceholder")}
             name="userName"
             component={TextInput}
-            onChange={event => this.setUserName(event.target.value)}
+            onChange={(event) => this.setUserName(event.target.value)}
             required
-            margin={{"bottom":"medium"}}
+            margin={{ bottom: "medium" }}
             border="true"
           />
           <FormField
@@ -72,9 +89,10 @@ export class PlayerViewJoin extends Component {
             placeholder={t("joinCodePlaceholder")}
             name="joinCode"
             component={TextInput}
-            onChange={event => this.setJoinCode(event.target.value)}
+            onChange={(event) => this.setJoinCode(event.target.value)}
             required
-            margin={{"bottom":"medium"}} 
+            error={this.state.errorMessage}
+            margin={{ bottom: "medium" }}
           />
           <Button type="submit" label={t("joinRound")} primary />
         </Form>
@@ -83,12 +101,12 @@ export class PlayerViewJoin extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = {
   setPage: setPlayerPage,
   setTopicData: setTopicData,
-  setAuthorData: setAuthorData
+  setAuthorData: setAuthorData,
 };
 
 export default withTranslation()(
