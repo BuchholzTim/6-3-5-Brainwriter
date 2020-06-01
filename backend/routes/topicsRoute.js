@@ -105,14 +105,14 @@ router.post("/join", async function (req, res, next) {
 
   // If topic is null or undefined
   if (!existingTopic) {
-    res.status(400).send("Topic is undefined");
+    res.status(400).send("Join-Code is wrong");
     res.end();
     return;
   }
 
   // If topic is not active
   if (!existingTopic.active) {
-    res.status(400).send("Topic is not active anymore");
+    res.status(403).send("Topic is not active anymore");
     res.end();
   }
 
