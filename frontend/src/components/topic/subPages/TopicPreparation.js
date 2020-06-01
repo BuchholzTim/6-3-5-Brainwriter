@@ -7,7 +7,7 @@ import { setPlayers } from "../../../redux/actions/topicActions";
 import { setMaxRounds } from "../../../redux/actions/configActions";
 import { setPlayerInterval } from "../../../redux/actions/controlActions";
 import { setTopicPage } from "../../../redux/actions/pageActions";
-import { getPlayers } from "../../../axios/apiCalls";
+import { getPlayers, updateTopic } from "../../../axios/apiCalls";
 import { emitStart } from "../../../socket/socket";
 
 import { withTranslation } from "react-i18next";
@@ -16,12 +16,12 @@ export class TopicPreparation extends Component {
   state = {
     players: [],
     errorMessage: "Es sind noch keine Spieler beigetreten!",
-    displayMessage: ""
+    displayMessage: "",
   };
 
   refreshPlayers = () => {
     const { topicID } = this.props;
-    getPlayers(topicID).then(data => {
+    getPlayers(topicID).then((data) => {
       this.setState({ players: data });
       const { players } = this.state;
       const { propPlayers } = this.props;
@@ -37,10 +37,12 @@ export class TopicPreparation extends Component {
       this.props.setMaxRounds(propPlayers.length);
       clearInterval(playerListInterval);
       emitStart(joinCode);
+      // Update param in DB to false so players cannot join anymore after start signal
+      updateTopic({ joinCode, active: "false" });
       this.nextPage();
     } else {
       this.setState({
-        displayMessage: t("notEnoughPlayers")
+        displayMessage: t("notEnoughPlayers"),
       });
     }
   };
@@ -55,7 +57,7 @@ export class TopicPreparation extends Component {
 
     if (players.length > 0 && displayMessage !== "") {
       this.setState({
-        displayMessage: ""
+        displayMessage: "",
       });
     }
 
@@ -63,7 +65,7 @@ export class TopicPreparation extends Component {
       const interval = setInterval(() => this.refreshPlayers(), 1500);
       this.props.setPlayerInterval({
         playerListInterval: interval,
-        playerListIntervalStarted: true
+        playerListIntervalStarted: true,
       });
     }
     return (
@@ -113,19 +115,19 @@ export class TopicPreparation extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   topic: state.topicReducer.topic,
   topicID: state.topicReducer.id,
   joinCode: state.topicReducer.joinCode,
   playerListInterval: state.controlReducer.playerListInterval,
   playerListIntervalStarted: state.controlReducer.playerListIntervalStarted,
-  propPlayers: state.topicReducer.players
+  propPlayers: state.topicReducer.players,
 });
 const mapDispatchToProps = {
   setPage: setTopicPage,
   setPlayers: setPlayers,
   setPlayerInterval: setPlayerInterval,
-  setMaxRounds: setMaxRounds
+  setMaxRounds: setMaxRounds,
 };
 
 export default withTranslation()(
