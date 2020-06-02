@@ -32,6 +32,56 @@ router.post("/create", async function (req, res, next) {
   models.Topic.create(Topic).then((Topic) => res.json({ topic: Topic }));
 });
 
+router.post("/update", async function (req, res) {
+  const joinCode = req.body.joinCode;
+  const topic = req.body.topic;
+  const timePerRound = req.body.timePerRound;
+  const active = req.body.active;
+
+  // Get the topic with the specific joinCode
+  let existingTopic = await getTopic(joinCode);
+
+  // Check if the topic with the joinCode really exists
+  if (existingTopic) {
+    // Check which params are set in the Request and replace them with the old ones
+    existingTopic.joinCode = joinCode;
+    if (tools.checkExistence(topic)) {
+      existingTopic.topic = topic;
+    }
+
+    if (tools.timePerRound(topic)) {
+      existingTopic.timePerRound = timePerRound;
+    }
+
+    if (tools.timePerRound(active)) {
+      existingTopic.active = active;
+    }
+
+    const Topic = {
+      topic: existingTopic.topic,
+      joinCode: existingTopic.joinCode,
+      timePerRound: existingTopic.timePerRound,
+      active: existingTopic.active,
+    };
+
+    // Update Topic in the DB with the corresponding joinCode
+    models.Topic.update(Topic, { where: { joinCode: Topic.joinCode } }).then(
+      (Topic) =>
+        res.json({
+          joinCode: existingTopic.joinCode,
+          topic: existingTopic.topic,
+          timePerRound: existingTopic.timePerRound,
+          active: existingTopic.active,
+        })
+    );
+  } else {
+    res
+      .status(404)
+      .send('Topic with "joinCode": ' + '"' + joinCode + '" Not Found');
+    res.end();
+  }
+});
+
 router.get("/get", async function (req, res, next) {
   const joinCode = req.query.joinCode;
   const existingTopic = await getTopic(joinCode);
@@ -55,9 +105,15 @@ router.post("/join", async function (req, res, next) {
 
   // If topic is null or undefined
   if (!existingTopic) {
-    res.status(400).send("Topic is undefined");
+    res.status(400).send("Join-Code is wrong");
     res.end();
     return;
+  }
+
+  // If topic is not active
+  if (!existingTopic.active) {
+    res.status(403).send("Topic is not active anymore");
+    res.end();
   }
 
   const Author = {
