@@ -45,15 +45,15 @@ router.post("/update", async function (req, res) {
   if (existingTopic) {
     // Check which params are set in the Request and replace them with the old ones
     existingTopic.joinCode = joinCode;
-    if (topic != null) {
+    if (tools.checkExistence(topic)) {
       existingTopic.topic = topic;
     }
 
-    if (timePerRound != null) {
+    if (tools.timePerRound(topic)) {
       existingTopic.timePerRound = timePerRound;
     }
 
-    if (active != null) {
+    if (tools.timePerRound(active)) {
       existingTopic.active = active;
     }
 
