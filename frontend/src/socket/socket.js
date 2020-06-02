@@ -1,15 +1,13 @@
 import io from "socket.io-client";
-import "../config/config";
-import { backend_ip, backend_port } from "../config/config";
 import store from "../redux/store";
 import { SET_TIME, START_ROUND } from "../redux/actions/types";
 
-const setTimeStopped = stopped => {
+const setTimeStopped = (stopped) => {
   store.dispatch({
     type: SET_TIME,
     payload: {
-      timeIsStopped: stopped
-    }
+      timeIsStopped: stopped,
+    },
   });
 };
 
@@ -17,12 +15,13 @@ const startRound = () => {
   store.dispatch({
     type: START_ROUND,
     payload: {
-      roundStarted: true
-    }
+      roundStarted: true,
+    },
   });
 };
 
-const SOCKET_IO_URL = backend_ip + backend_port;
+const SOCKET_IO_URL =
+  process.env.REACT_APP_BACKEND_IP + process.env.REACT_APP_BACKEND_PORT;
 export const socket = io(SOCKET_IO_URL);
 
 socket.on("start", () => {
@@ -40,18 +39,18 @@ socket.on("resume", () => {
   setTimeStopped(false);
 });
 
-export const emitStart = joinCode => {
+export const emitStart = (joinCode) => {
   socket.emit("start", { joinCode: joinCode });
 };
-export const emitPause = joinCode => {
+export const emitPause = (joinCode) => {
   setTimeStopped(true);
   socket.emit("pause", { joinCode: joinCode });
 };
-export const emitResume = joinCode => {
+export const emitResume = (joinCode) => {
   setTimeStopped(false);
   socket.emit("resume", { joinCode: joinCode });
 };
 
-export const emitJoin = joinCode => {
+export const emitJoin = (joinCode) => {
   socket.emit("join", { joinCode: joinCode });
 };
