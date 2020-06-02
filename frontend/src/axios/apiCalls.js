@@ -1,7 +1,7 @@
-import { backend_ip, backend_port } from "../config/config";
 import axios from "axios";
 
-const APIURL = backend_ip + backend_port;
+const APIURL =
+  process.env.REACT_APP_BACKEND_IP + process.env.REACT_APP_BACKEND_PORT;
 
 // Define Endpoints
 const topicURL = APIURL + "/topics";

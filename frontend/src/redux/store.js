@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
-import { production_build } from "../config/config";
 
 const initialState = {};
 const middleware = [thunk];
-const store = production_build
+const store = process.env.REACT_APP_DISABLE_REDUX_DEV
   ? createStore(
       rootReducer,
       initialState,
