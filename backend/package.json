@@ -15,7 +15,7 @@
     "@babel/node": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "cors": "^2.8.5",
-    "debug": "~2.6.9",
+    "debug": "~4.1.1",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
