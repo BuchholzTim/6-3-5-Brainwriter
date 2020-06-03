@@ -23,21 +23,14 @@ services:
       - brainwriter-network
     depends_on:
       - brainwriter-database
-    environment:
-      DB_HOST: brainwriter-db
-      DB_NAME: brainwriter
-      DB_USERNAME: brainwriter
-      DB_PASSWORD: brainwriter
-      DB_DIALECT: postgres
-      DB_PORT: 5432
-      SERVER_PORT: 3001
 
   brainwriter-frontend:
     build: ../frontend
     container_name: brainwriter-frontend
     ports:
       - "3000:80"
-
+    networks:
+      - brainwriter-network
 
 networks:
   brainwriter-network:
