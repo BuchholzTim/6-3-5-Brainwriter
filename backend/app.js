@@ -7,6 +7,11 @@ const cors = require("cors");
 const tools = require("./tools/generalTools");
 const app = express();
 
+// Swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // Test DB-Connection
 db.authenticate()
   .then(() => console.log("Database connected!"))

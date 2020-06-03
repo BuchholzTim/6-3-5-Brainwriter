@@ -1,0 +1,65 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "defaultTitle",
+    "description" : "defaultDescription",
+    "version" : "0.1"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:3001"
+  } ],
+  "paths" : {
+    "/topics/update/" : {
+      "post" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "topic" : {
+                    "type" : "string"
+                  },
+                  "active" : {
+                    "type" : "boolean"
+                  },
+                  "timePerRound" : {
+                    "type" : "integer"
+                  },
+                  "joinCode" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\n\"joinCode\": \"D1nj8Z\",\n\"topic\": \"topic\",\n\"timePerRound\": 20,\n\"active\": false\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://localhost:3001"
+        } ]
+      },
+      "servers" : [ {
+        "url" : "http://localhost:3001"
+      } ]
+    }
+  }
+}
