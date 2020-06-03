@@ -37,7 +37,8 @@ services:
     container_name: brainwriter-frontend
     ports:
       - "3000:80"
-
+    networks:
+      - brainwriter-network
 
 networks:
   brainwriter-network:
