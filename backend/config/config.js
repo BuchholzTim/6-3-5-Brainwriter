@@ -1,4 +1,3 @@
-require("dotenv").config();
 const pg = require("pg");
 pg.defaults.poolIdleTimeout = 3000;
 
@@ -11,6 +10,7 @@ const dbDialect = process.env.DB_DIALECT;
 
 const Sequelize = require("sequelize");
 
+// Establish Connection via Sequelize to PostgresDB
 module.exports = new Sequelize(dbName, dbUsername, dbPassword, {
   host: dbHost,
   dialect: dbDialect,

@@ -1,5 +1,10 @@
 module.exports = {
-  generateCode: function(length) {
+  /**
+   * Generates a Random Code consisting of all letters aA-zZ and 0-1
+   *
+   * @param {Number} length - Length of Code
+   */
+  generateCode: function (length) {
     let result = "";
     let characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -9,7 +14,18 @@ module.exports = {
     }
     return result;
   },
-  checkExistence: function(variable) {
+  checkExistence: function (variable) {
     return variable != null && variable;
-  }
+  },
+  convertStringToBoolean: function (string) {
+    if (typeof string === "string") {
+      let stringLowerCase = string.toLowerCase();
+      if (stringLowerCase === "true") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  },
 };
