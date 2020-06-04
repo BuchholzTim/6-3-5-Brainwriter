@@ -1,10 +1,11 @@
+import { convertStringToBoolean } from "../tools/tools";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 
 const initialState = {};
 const middleware = [thunk];
-const store = process.env.REACT_APP_DISABLE_REDUX_DEV
+const store = convertStringToBoolean(process.env.REACT_APP_DISABLE_REDUX_DEV)
   ? createStore(
       rootReducer,
       initialState,

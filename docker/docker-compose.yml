@@ -1,4 +1,4 @@
-version: '3.2'
+version: "3.2"
 
 services:
   brainwriter-database:
@@ -29,8 +29,6 @@ services:
     container_name: brainwriter-frontend
     ports:
       - "3000:80"
-    networks:
-      - brainwriter-network
 
 networks:
   brainwriter-network:
