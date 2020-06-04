@@ -49,11 +49,11 @@ router.post("/update", async function (req, res) {
       existingTopic.topic = topic;
     }
 
-    if (tools.timePerRound(topic)) {
+    if (tools.checkExistence(timePerRound)) {
       existingTopic.timePerRound = timePerRound;
     }
 
-    if (tools.timePerRound(active)) {
+    if (tools.checkExistence(active)) {
       existingTopic.active = active;
     }
 
