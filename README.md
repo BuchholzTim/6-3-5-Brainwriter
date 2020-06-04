@@ -22,10 +22,9 @@ But basically you can build and deploy the project yourself by following our [Ge
 
 Using docker you could start the app using following commands:
 
-  ```sh
-  > git clone https://github.com/BuchholzTim/6-3-5-Brainwriter.git
-  > cd docker
-  > docker-compose build
-  > docker-compose up
-  ```
-
+```sh
+> git clone https://github.com/BuchholzTim/6-3-5-Brainwriter.git
+> cd docker/deploy
+> docker-compose build
+> docker-compose up
+```
