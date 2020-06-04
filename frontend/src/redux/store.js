@@ -5,7 +5,7 @@ import rootReducer from "./reducers";
 
 const initialState = {};
 const middleware = [thunk];
-const store = convertStringToBoolean(process.env.REACT_APP_DISABLE_REDUX_DEV)
+const store = convertStringToBoolean(process.env.REACT_APP_PRODUCTION_BUILD)
   ? createStore(
       rootReducer,
       initialState,
