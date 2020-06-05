@@ -1,0 +1,47 @@
+Project Brainwriter {
+database_type: 'PostgreSQL'
+note: '''
+# Brainwriter Database
+
+### Topics
+
+One Round of Brainwriting consists of exactly one topic. 
+It defines which problem will be discussed, how much time per round is available and how to join.
+
+### ChatMessages
+
+Every Comment in each column during a round of Brainwriting resembles a ChatMessage.
+It is called "ChatMessage" because the App at its core is basically a chatroom with restrictions.
+
+### Authors
+An Author is everyone who joins a Session and may write messages/ideas.
+'''
+}
+
+Table Topics {
+ id int [pk, increment]
+ topic varchar
+ joinCode varchar [unique]
+ timePerRound int [not null, default: 180]
+ active boolean [not null]
+ createdAt timestamp [not null, default: `now()`]
+ updatedAt timestamp [not null, default: `now()`]
+}
+
+Table ChatMessages {
+  id int [pk, increment]
+  authorID int [ref: > Authors.id]
+  content varchar [not null]
+  column int [not null]
+  row int [not null]
+  createdAt timestamp [not null, default: `now()`] 
+  updatedAt timestamp [not null, default: `now()`]
+}
+
+Table Authors {
+  id int [pk, increment]
+  userName varchar [unique]
+  topicID int [ref: > Topics.id]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
+}
