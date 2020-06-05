@@ -16,16 +16,4 @@ Our project aims to solve those problems, by not allowing the user to write with
 
 You can read more about everything in the [Wiki on Github](https://github.com/BuchholzTim/6-3-5-Brainwriter/wiki).
 
-But basically you can build and deploy the project yourself by following our [Getting-Started Walkthrough](https://github.com/BuchholzTim/6-3-5-Brainwriter/wiki/Getting-started).
-
-### Docker installation
-
-Using docker you could start the app using following commands:
-
-  ```sh
-  > git clone https://github.com/BuchholzTim/6-3-5-Brainwriter.git
-  > cd docker
-  > docker-compose build
-  > docker-compose up
-  ```
-
+But basically you can build and deploy the project yourself by following our [Setup Guide](https://github.com/BuchholzTim/6-3-5-Brainwriter/wiki/Getting-started), which covers the option to deploy everything automatically for you using docker or everything manually.
