@@ -3,7 +3,7 @@ FROM node:lts-alpine
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
-ENV DB_HOST="brainwriter-db"
+ENV DB_HOST="brainwriter-database"
 ENV DB_NAME="brainwriter"
 ENV DB_USERNAME="brainwriter"
 ENV DB_PASSWORD="brainwriter"

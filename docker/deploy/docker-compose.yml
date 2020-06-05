@@ -17,7 +17,7 @@ services:
       - ../init.sql:/docker-entrypoint-initdb.d/init.sql
 
   brainwriter-backend:
-    build: ../backend
+    build: ../../backend
     container_name: brainwriter-backend
     restart: always
     ports:
@@ -28,7 +28,7 @@ services:
       - brainwriter-database
 
   brainwriter-frontend:
-    build: ../frontend
+    build: ../../frontend
     container_name: brainwriter-frontend
     ports:
       - "3000:80"
