@@ -1,0 +1,20 @@
+# This File is used for Development
+# It only created a Docker-Container for the needed Database and exposes Port 5432 outside of the container
+version: "3.2"
+
+services:
+  brainwriter-database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: brainwriter
+      POSTGRES_PASSWORD: brainwriter
+      POSTGRES_DB: brainwriter
+    container_name: brainwriter-database
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  my_dbdata:
