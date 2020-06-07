@@ -55,13 +55,13 @@ export class Menubar extends Component {
             items={[
               {
                 label: <Text color="white">en</Text>,
-                onclick: () => {
+                onClick: () => {
                   this.changeLanguage("en");
                 },
               },
               {
                 label: <Text color="white">de</Text>,
-                onclick: () => {
+                onClick: () => {
                   this.changeLanguage("de");
                 },
               },
