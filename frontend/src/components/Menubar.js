@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Box, Heading, DropButton, Text, Button } from "grommet";
+import { Box, Heading, Button, Menu, Text } from "grommet";
 import { Github, Language } from "grommet-icons";
 import { withTranslation } from "react-i18next";
 
@@ -16,7 +16,7 @@ export class Menubar extends Component {
     window.open("/", "_self");
   };
 
-  changeLanguage = language => {
+  changeLanguage = (language) => {
     const { i18n } = this.props;
     i18n.changeLanguage(language);
   };
@@ -47,29 +47,26 @@ export class Menubar extends Component {
           </Heading>
         </Box>
         <Box direction="row" gap="small">
-          <DropButton
-            dropAlign={{ top: "bottom", right: "right" }}
-            dropContent={
-              <Box background="light-2">
-                <Text
-                  onClick={() => {
-                    this.changeLanguage("de");
-                  }}
-                >
-                  de
-                </Text>
-                <Text
-                  onClick={() => {
-                    this.changeLanguage("en");
-                  }}
-                >
-                  en
-                </Text>
-              </Box>
+          <Menu
+            dropBackground="brand"
+            icon={
+              <Language size="large" color="white" alignmentBaseline="center" />
             }
-          >
-            <Language size="large" color="white" alignmentBaseline="center" />
-          </DropButton>
+            items={[
+              {
+                label: <Text color="white">en</Text>,
+                onclick: () => {
+                  this.changeLanguage("en");
+                },
+              },
+              {
+                label: <Text color="white">de</Text>,
+                onclick: () => {
+                  this.changeLanguage("de");
+                },
+              },
+            ]}
+          ></Menu>
           <Button>
             <Github
               onClick={this.goToGithub}
