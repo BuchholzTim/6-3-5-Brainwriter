@@ -43,3 +43,13 @@ a:hover {
   margin: auto;
   padding: 4rem 1rem 0px 1rem;
 }
+
+#languageMenu:hover {
+  color: white !important;
+  background: #4eb4ca !important;
+  box-shadow: 0px 0px 0px 2px #4eb4ca !important;
+  border-top-color: #38454c !important;
+  border-left-color: #38454c !important;
+  border-right-color: #38454c !important;
+  border-bottom-color: #38454c !important;
+}

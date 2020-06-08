@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Box, Heading, Button, Menu, Text } from "grommet";
 import { Github, Language } from "grommet-icons";
 import { withTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export class Menubar extends Component {
   goToGithub = () => {
@@ -10,10 +11,6 @@ export class Menubar extends Component {
 
   goToHci2b = () => {
     window.open("https://hci.hs-kl.de/", "_blank");
-  };
-
-  goToHome = () => {
-    window.open("/", "_self");
   };
 
   changeLanguage = (language) => {
@@ -35,23 +32,17 @@ export class Menubar extends Component {
         gap="small"
         style={{ zIndex: "1000" }}
       >
-        <Box hoverIndicator="#3E4548" onClick={this.goToHome}>
-          <Heading
-            level={3}
-            margin="none"
-            color="white"
-            align="end"
-            onClick={this.goToHome}
-          >
+        <Link href="/" target="_self">
+          <Heading level={3} margin="none" color="white" align="end">
             {t("applicationName")}
           </Heading>
-        </Box>
-        <Box direction="row" gap="small">
+        </Link>
+        <Box direction="row" gap="none" align="center">
           <Menu
+            id="languageMenu"
             dropBackground="brand"
-            icon={
-              <Language size="large" color="white" alignmentBaseline="center" />
-            }
+            alignmentBaseline="center"
+            icon={<Language size="large" color="white" />}
             items={[
               {
                 label: <Text color="white">en</Text>,
@@ -67,28 +58,38 @@ export class Menubar extends Component {
               },
             ]}
           ></Menu>
+          <Box margin={{ vertical: "none", left: "none", right: "small" }}>
+            <Link
+              href="https://github.com/BuchholzTim/6-3-5-Brainwriter"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button>
+                <Github size="large" color="white" alignmentBaseline="center" />
+              </Button>
+            </Link>
+          </Box>
           <Button>
-            <Github
-              onClick={this.goToGithub}
-              size="large"
-              color="white"
-              alignmentBaseline="center"
-            />
-          </Button>
-          <Button
-            onClick={this.goToHci2b}
-            size="large"
-            color="white"
-            alignmentBaseline="center"
-          >
-            <Box height="44px" width="44px">
-              <img
-                width="44px"
+            <Link
+              href="https://hci.hs-kl.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Box
+                size="large"
+                color="white"
+                alignmentBaseline="center"
                 height="44px"
-                src="HCI2B_Logo.png"
-                alt="HCI Logo"
-              />
-            </Box>
+                width="44px"
+              >
+                <img
+                  width="44px"
+                  height="44px"
+                  src="HCI2B_Logo.png"
+                  alt="HCI Logo"
+                />
+              </Box>
+            </Link>
           </Button>
         </Box>
       </Box>
