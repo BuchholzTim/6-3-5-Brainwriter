@@ -82,6 +82,14 @@ router.post("/update", async function (req, res) {
   }
 });
 
+/**
+ * @swagger
+ * /get:
+ * get:
+ *  description: Use to get a topic
+ *  responses:
+ *      '200': A successful response
+ */
 router.get("/get", async function (req, res, next) {
   const joinCode = req.query.joinCode;
   const existingTopic = await getTopic(joinCode);
