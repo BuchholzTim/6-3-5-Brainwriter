@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Box, Heading, Button, Menu, Text } from "grommet";
+import { Box, Heading, Menu, Text } from "grommet";
 import { Github, Language } from "grommet-icons";
 import { withTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 
 export class Menubar extends Component {
   goToGithub = () => {
@@ -32,11 +31,11 @@ export class Menubar extends Component {
         gap="small"
         style={{ zIndex: "1000" }}
       >
-        <Link href="/" target="_self">
+        <a href="/" target="_self">
           <Heading level={3} margin="none" color="white" align="end">
             {t("applicationName")}
           </Heading>
-        </Link>
+        </a>
         <Box direction="row" gap="none" align="center">
           <Menu
             id="languageMenu"
@@ -59,38 +58,34 @@ export class Menubar extends Component {
             ]}
           ></Menu>
           <Box margin={{ vertical: "none", left: "none", right: "small" }}>
-            <Link
+            <a
               href="https://github.com/BuchholzTim/6-3-5-Brainwriter"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button>
-                <Github size="large" color="white" alignmentBaseline="center" />
-              </Button>
-            </Link>
+              <Github size="large" color="white" alignmentBaseline="center" />
+            </a>
           </Box>
-          <Button>
-            <Link
-              href="https://hci.hs-kl.de/"
-              target="_blank"
-              rel="noopener noreferrer"
+          <a
+            href="https://hci.hs-kl.de/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Box
+              size="large"
+              color="white"
+              alignmentBaseline="center"
+              height="44px"
+              width="44px"
             >
-              <Box
-                size="large"
-                color="white"
-                alignmentBaseline="center"
-                height="44px"
+              <img
                 width="44px"
-              >
-                <img
-                  width="44px"
-                  height="44px"
-                  src="HCI2B_Logo.png"
-                  alt="HCI Logo"
-                />
-              </Box>
-            </Link>
-          </Button>
+                height="44px"
+                src="HCI2B_Logo.png"
+                alt="HCI Logo"
+              />
+            </Box>
+          </a>
         </Box>
       </Box>
     );
