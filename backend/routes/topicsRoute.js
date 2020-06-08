@@ -85,10 +85,17 @@ router.post("/update", async function (req, res) {
 /**
  * @swagger
  * /get:
- * get:
- *  description: Use to get a topic
- *  responses:
- *      '200': A successful response
+ *   get:
+ *     description: Returns users
+ *     produces:
+ *      - application/json
+ *     responses:
+ *       200:
+ *         description: users
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/User'
  */
 router.get("/get", async function (req, res, next) {
   const joinCode = req.query.joinCode;
