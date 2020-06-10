@@ -120,7 +120,8 @@ export class Home extends Component {
             <Box
               direction="row"
               width="auto"
-              style={{ marginLeft: "auto", marginRight: "auto" }}
+              align="center"
+              style={{ marginLeft: "auto", marginRight: "auto"}}
             >
               <img
                 style={{ marginLeft: "auto", marginRight: "20px" }}
