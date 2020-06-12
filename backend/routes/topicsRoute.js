@@ -26,7 +26,7 @@ router.post("/create", async function (req, res, next) {
     topic: topic,
     timePerRound: timePerRound,
     joinCode: joinCode,
-    active: true,
+    joinable: true,
   };
 
   models.Topic.create(Topic).then((Topic) => res.json({ topic: Topic }));
@@ -36,7 +36,7 @@ router.post("/update", async function (req, res) {
   const joinCode = req.body.joinCode;
   const topic = req.body.topic;
   const timePerRound = req.body.timePerRound;
-  const active = req.body.active;
+  const joinable = req.body.joinable;
 
   // Get the topic with the specific joinCode
   let existingTopic = await getTopic(joinCode);
@@ -53,15 +53,15 @@ router.post("/update", async function (req, res) {
       existingTopic.timePerRound = timePerRound;
     }
 
-    if (tools.checkExistence(active)) {
-      existingTopic.active = active;
+    if (tools.checkExistence(joinable)) {
+      existingTopic.joinable = joinable;
     }
 
     const Topic = {
       topic: existingTopic.topic,
       joinCode: existingTopic.joinCode,
       timePerRound: existingTopic.timePerRound,
-      active: existingTopic.active,
+      joinable: existingTopic.joinable,
     };
 
     // Update Topic in the DB with the corresponding joinCode
@@ -71,7 +71,7 @@ router.post("/update", async function (req, res) {
           joinCode: existingTopic.joinCode,
           topic: existingTopic.topic,
           timePerRound: existingTopic.timePerRound,
-          active: existingTopic.active,
+          joinable: existingTopic.joinable,
         })
     );
   } else {
@@ -110,9 +110,9 @@ router.post("/join", async function (req, res, next) {
     return;
   }
 
-  // If topic is not active
-  if (!existingTopic.active) {
-    res.status(403).send("Topic is not active anymore");
+  // If topic is not joinable
+  if (!existingTopic.joinable) {
+    res.status(403).send("Topic is not joinable anymore");
     res.end();
   }
 

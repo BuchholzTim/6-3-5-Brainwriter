@@ -23,7 +23,7 @@ Table Topics {
  topic varchar
  joinCode varchar [unique]
  timePerRound int [not null, default: 180]
- active boolean [not null]
+ joinable boolean [not null]
  createdAt timestamp [not null, default: `now()`]
  updatedAt timestamp [not null, default: `now()`]
 }

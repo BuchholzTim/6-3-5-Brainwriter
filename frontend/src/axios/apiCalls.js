@@ -41,7 +41,7 @@ export const updateTopic = (data) =>
       joinCode: data.joinCode,
       topic: data.topic,
       timePerRound: data.timePerRound,
-      active: data.active,
+      joinable: data.joinable,
     })
     .then((response) => {
       const data = response.data;

@@ -8,11 +8,11 @@ const Topic = db.define(
     topic: DataTypes.STRING,
     joinCode: DataTypes.STRING,
     timePerRound: DataTypes.INTEGER,
-    active: DataTypes.BOOLEAN
+    joinable: DataTypes.BOOLEAN,
   },
   {}
 );
-Topic.associate = function(models) {
+Topic.associate = function (models) {
   // associations can be defined here
 };
 
