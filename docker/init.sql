@@ -3,7 +3,7 @@ CREATE TABLE "Topics" (
   "topic" varchar,
   "joinCode" varchar UNIQUE,
   "timePerRound" int NOT NULL DEFAULT 180,
-  "active" boolean NOT NULL,
+  "joinable" boolean NOT NULL,
   "createdAt" timestamp NOT NULL DEFAULT (now()),
   "updatedAt" timestamp NOT NULL DEFAULT (now())
 );

@@ -38,7 +38,7 @@ export class TopicPreparation extends Component {
       clearInterval(playerListInterval);
       emitStart(joinCode);
       // Update param in DB to false so players cannot join anymore after start signal
-      updateTopic({ joinCode, active: "false" });
+      updateTopic({ joinCode, joinable: "false" });
       this.nextPage();
     } else {
       this.setState({
