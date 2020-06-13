@@ -5,7 +5,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 ENV REACT_APP_BACKEND_IP="http://localhost:"
 ENV REACT_APP_BACKEND_PORT="3001"
-ENV REACT_APP_PRODUCTION_BUILD=false
+ENV REACT_APP_PRODUCTION_BUILD=true
+ENV REACT_APP_SAFARI=false
 
 COPY package.json /app/package.json
 RUN npm install --silent

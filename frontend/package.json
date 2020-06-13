@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "remote-redux-devtools": "^0.5.16",
     "socket.io-client": "^2.3.0"
   },
   "dependencies": {
