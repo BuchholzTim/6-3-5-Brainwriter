@@ -32,6 +32,31 @@ const router = express.Router();
  *           active: true
  *           createdAt: 2020-06-12 09:20:47.273000
  *           updatedAt: 2020-06-12 09:20:47.273000
+ *
+ *      Author:
+ *        type: object
+ *        properties:
+ *           id:
+ *             type: number
+ *           userName:
+ *             type: string
+ *           topicID:
+ *             type: number
+ *           createdAt:
+ *             type: string
+ *           updatedAt:
+ *             type: string
+ *        example:
+ *           id: 1
+ *           userName: undefined_YnEe
+ *           topicID: 1
+ *           createdAt: 2020-06-22T09:23:12.163Z
+ *           updatedAt: 2020-06-22T09:23:12.163Z
+ *
+ *      Authors:
+ *        type: array
+ *        items:
+ *          $ref: '#/components/schemas/Author'
  */
 
 router.post("/create", async function (req, res, next) {
@@ -137,6 +162,8 @@ router.post("/update", async function (req, res) {
  *            application/json:
  *              schema:
  *                 $ref: '#/components/schemas/Topic'
+ *       400:
+ *         description: Bad Request
  */
 router.get("/get", async function (req, res, next) {
   const joinCode = req.query.joinCode;
@@ -174,6 +201,11 @@ router.get("/get", async function (req, res, next) {
  *            application/json:
  *              schema:
  *                 $ref: '#/components/schemas/Topic'
+ *       400:
+ *         description: Bad Request - Join-Code is wrong
+ *
+ *       403:
+ *         description: Forbidden - Topic is not active anymore
  */
 router.post("/join", async function (req, res, next) {
   const codeLength = 4;
@@ -207,6 +239,33 @@ router.post("/join", async function (req, res, next) {
   );
 });
 
+/**
+ * @swagger
+ * /topics/getPlayers/:
+ *   post:
+ *     summary: Gets all players/authors to the TopicID
+ *     tags:
+ *      - topics
+ *     requestBody:
+ *        description: Unique id of the topic to get players from
+ *        content:
+ *          application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Topic'
+ *             example:
+ *               id: 1
+ *     produces:
+ *      - application/json:
+ *     responses:
+ *       200:
+ *         description: returns a list of players/authors the joined topic and the created author data
+ *         content:
+ *            application/json:
+ *              schema:
+ *                 $ref: '#/components/schemas/Authors'
+ *       400:
+ *         description: Bad Request - No topic with that id
+ */
 router.post("/getPlayers", async function (req, res, next) {
   const id = req.body.id;
 
