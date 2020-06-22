@@ -3,6 +3,37 @@ const express = require("express");
 const models = require("../models/models");
 const router = express.Router();
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *      Topic:
+ *        type: object
+ *        properties:
+ *           id:
+ *             type: number
+ *           topic:
+ *             type: string
+ *           joinCode:
+ *             type: string
+ *           timePerRound:
+ *             type: number
+ *           active:
+ *             type: boolean
+ *           createdAt:
+ *             type: string
+ *           updatedAt:
+ *             type: string
+ *        example:
+ *           id: 1
+ *           topic: This is the name of the topic
+ *           joinCode: XwzhXn
+ *           timePerRound: 10
+ *           active: true
+ *           createdAt: 2020-06-12 09:20:47.273000
+ *           updatedAt: 2020-06-12 09:20:47.273000
+ */
+
 router.post("/create", async function (req, res, next) {
   const topic = req.body.topic;
   const timePerRound = req.body.timePerRound;
@@ -84,18 +115,28 @@ router.post("/update", async function (req, res) {
 
 /**
  * @swagger
- * /get:
+ * /topics/get/:
  *   get:
- *     description: Returns users
+ *     summary: Returns a topic to the corresponding joinCode
+ *     tags:
+ *      - topics
+ *     parameters:
+ *      - in: query
+ *        name: joinCode
+ *        schema:
+ *          type: string
+ *          required: true
+ *          description: Specific joinCode of the topic to get
+ *          example: XwzhXn
  *     produces:
  *      - application/json
  *     responses:
  *       200:
- *         description: users
- *         schema:
- *           type: array
- *           items:
- *             $ref: '#/definitions/User'
+ *         description: returns a topic
+ *         content:
+ *            application/json:
+ *              schema:
+ *                 $ref: '#/components/schemas/Topic'
  */
 router.get("/get", async function (req, res, next) {
   const joinCode = req.query.joinCode;
@@ -109,6 +150,31 @@ router.get("/get", async function (req, res, next) {
   }
 });
 
+/**
+ * @swagger
+ * /topics/join/:
+ *   post:
+ *     summary: Joins a Topic with the corresponding joinCode
+ *     tags:
+ *      - topics
+ *     requestBody:
+ *        description: Specific joinCode of the topic to join
+ *        content:
+ *          application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Topic'
+ *             example:
+ *               joinCode: XwzhXn
+ *     produces:
+ *      - application/json
+ *     responses:
+ *       200:
+ *         description: returns a the joined topic and the created author data
+ *         content:
+ *            application/json:
+ *              schema:
+ *                 $ref: '#/components/schemas/Topic'
+ */
 router.post("/join", async function (req, res, next) {
   const codeLength = 4;
 
