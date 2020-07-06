@@ -85,6 +85,7 @@ const router = express.Router();
  *        uniqueItems: true
  */
 
+<<<<<<< HEAD
 /**
  * @swagger
  * /topics/create/:
@@ -111,6 +112,8 @@ const router = express.Router();
  *              schema:
  *                 $ref: '#/components/schemas/Topic'
  */
+=======
+>>>>>>> swagger
 router.post("/create", async function (req, res, next) {
   const topic = req.body.topic;
   const timePerRound = req.body.timePerRound;
