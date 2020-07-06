@@ -33,6 +33,30 @@ const router = express.Router();
  *           createdAt: 2020-06-12 09:20:47.273000
  *           updatedAt: 2020-06-12 09:20:47.273000
  *
+ *      ChangedTopic:
+ *        type: object
+ *        properties:
+ *           id:
+ *             type: number
+ *           topic:
+ *             type: string
+ *           joinCode:
+ *             type: string
+ *           timePerRound:
+ *             type: number
+ *           active:
+ *             type: boolean
+ *           createdAt:
+ *             type: string
+ *           updatedAt:
+ *             type: string
+ *        example:
+ *           id: 2
+ *           topic: NewName
+ *           joinCode: oS8WO6
+ *           timePerRound: 180
+ *           active: true
+ *
  *      Author:
  *        type: object
  *        properties:
@@ -47,16 +71,18 @@ const router = express.Router();
  *           updatedAt:
  *             type: string
  *        example:
- *           id: 1
- *           userName: undefined_YnEe
- *           topicID: 1
- *           createdAt: 2020-06-22T09:23:12.163Z
- *           updatedAt: 2020-06-22T09:23:12.163Z
+ *             id: 2
+ *             userName: Marc_8viO
+ *             topicID: 2
+ *             createdAt: 2020-07-06T08:29:53.659Z
+ *             updatedAt: 2020-07-06T08:29:53.659Z
  *
  *      Authors:
  *        type: array
  *        items:
- *          $ref: '#/components/schemas/Author'
+ *          allOf:
+ *          - $ref: '#/components/schemas/Author'
+ *        uniqueItems: true
  */
 
 router.post("/create", async function (req, res, next) {
@@ -88,6 +114,38 @@ router.post("/create", async function (req, res, next) {
   models.Topic.create(Topic).then((Topic) => res.json({ topic: Topic }));
 });
 
+/**
+ * @swagger
+ * /topics/update/:
+ *   post:
+ *     summary: Updates a Topic with all possible values (id, topic, timePerRound, active) with the corresponding joinCode
+ *     tags:
+ *      - topics
+ *     requestBody:
+ *        description: Specific joinCode of the topic to update
+ *        content:
+ *          application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Topic'
+ *             example:
+ *               id: 2
+ *               topic: NewName
+ *               joinCode: oS8WO6
+ *               timePerRound: 180
+ *               active: true
+ *     produces:
+ *      - application/json
+ *     responses:
+ *       200:
+ *         description: returns a the joined topic and the created author data
+ *         content:
+ *            application/json:
+ *              schema:
+ *                 $ref: '#/components/schemas/ChangedTopic'
+ *
+ *       404:
+ *         description: Not Found - Topic with that Join-Code doesn't exist
+ */
 router.post("/update", async function (req, res) {
   const joinCode = req.body.joinCode;
   const topic = req.body.topic;
@@ -253,7 +311,7 @@ router.post("/join", async function (req, res, next) {
  *             schema:
  *               $ref: '#/components/schemas/Topic'
  *             example:
- *               id: 1
+ *                id: 1
  *     produces:
  *      - application/json:
  *     responses:
@@ -283,6 +341,35 @@ router.post("/getPlayers", async function (req, res, next) {
   }
 });
 
+/**
+ * @swagger
+ * /topics/getPlayerCount/:
+ *   post:
+ *     summary: Gets the playerCount to the corresponding TopicID
+ *     tags:
+ *      - topics
+ *     requestBody:
+ *        description: Unique id of the topic to get the players count from
+ *        content:
+ *          application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Topic'
+ *             example:
+ *                id: 2
+ *     produces:
+ *      - application/json:
+ *     responses:
+ *       200:
+ *         description: returns a list of players/authors the joined topic and the created author data
+ *         content:
+ *            text/plain:
+ *               schema:
+ *                type: string
+ *                example: 2
+ *
+ *       400:
+ *         description: Bad Request - No topic with that id
+ */
 router.post("/getPlayerCount", async function (req, res, next) {
   const id = req.body.id;
 
