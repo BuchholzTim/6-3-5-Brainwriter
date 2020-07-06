@@ -7,31 +7,6 @@ const cors = require("cors");
 const tools = require("./tools/generalTools");
 const app = express();
 
-// Swagger
-const swaggerUi = require("swagger-ui-express");
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerDefinition = {
-  components: {},
-  openapi: "3.0.0",
-  info: {
-    title: "Brainwriter Backend",
-    description: "Brainwriter API Information",
-    contact: {
-      name: "6-3-5 Brainwriter",
-      url: "https://github.com/BuchholzTim/6-3-5-Brainwriter",
-    },
-    servers: ["http://localhost:3001"],
-  },
-};
-
-const swaggerOptions = {
-  swaggerDefinition,
-  apis: ["./routes/*.js"],
-};
-
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
 // Test DB-Connection
 db.authenticate()
   .then(() => console.log("Database connected!"))
@@ -86,5 +61,30 @@ const chatMessagesRouter = require("./routes/chatMessagesRoute");
 // Setup Routers to use
 app.use("/topics", topicsRouter);
 app.use("/messages", chatMessagesRouter);
+
+// Swagger
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerDefinition = {
+  components: {},
+  openapi: "3.0.0",
+  info: {
+    title: "Brainwriter Backend",
+    description: "Brainwriter API Information",
+    contact: {
+      name: "6-3-5 Brainwriter",
+      url: "https://github.com/BuchholzTim/6-3-5-Brainwriter",
+    },
+    servers: ["http://" + process.env.DB_HOST + ":" + process.env.SERVER_PORT],
+  },
+};
+
+const swaggerOptions = {
+  swaggerDefinition,
+  apis: ["./routes/*.js"],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 module.exports = app;
