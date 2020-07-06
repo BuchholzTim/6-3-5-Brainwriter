@@ -85,6 +85,32 @@ const router = express.Router();
  *        uniqueItems: true
  */
 
+/**
+ * @swagger
+ * /topics/create/:
+ *   post:
+ *     summary: Creates a Topic with a name and a timePerRound in the DB
+ *     tags:
+ *      - topics
+ *     requestBody:
+ *        description: name and the timePerRound of the topic to create
+ *        content:
+ *          application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Topic'
+ *             example:
+ *               topic: This is the name of the topic
+ *               timePerRound: 10
+ *     produces:
+ *      - application/json
+ *     responses:
+ *       200:
+ *         description: returns a the created topic and new created values
+ *         content:
+ *            application/json:
+ *              schema:
+ *                 $ref: '#/components/schemas/Topic'
+ */
 router.post("/create", async function (req, res, next) {
   const topic = req.body.topic;
   const timePerRound = req.body.timePerRound;
