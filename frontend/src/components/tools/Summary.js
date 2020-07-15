@@ -52,8 +52,8 @@ export class PlayerViewSummary extends Component {
     return (
       <div>
         <div>
-          <QuestionBox question={topic} />
-          {tables[shownTable]}
+            <QuestionBox question={topic} />
+            {tables[shownTable]}
         </div>
 
         <Box
@@ -88,6 +88,7 @@ export class PlayerViewSummary extends Component {
               width: "100%",
               backgroundColor: "red"
             }}
+            onClick={this.exportPDFWithComponent}
             label="Export PDF"
           />
 
@@ -98,6 +99,7 @@ export class PlayerViewSummary extends Component {
               width: "100%",
               backgroundColor: "red"
             }}
+            onClick={this.exportALLWithComponent}
             label="Export all"
           />
         </Box>
