@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Box, Button } from "grommet";
+import { Box, Button, Heading, ResponsiveContext } from "grommet";
 import IdeaTable from "../playerView/subPages/ideaComponents/IdeaTable";
 import QuestionBox from "./QuestionBox";
 import { DocumentPdf } from 'grommet-icons'
@@ -52,60 +52,56 @@ export class PlayerViewSummary extends Component {
     return (
       <div>
         <div>
-          <Box
-            style={{ wordWrap: "break-word" }}
-            direction="column"
-            gap="medium"
-            pad="small"
-            overflow={{ horizontal: "auto" }}
-          >
-            <QuestionBox question={topic} />
-            {tables[shownTable]}
-          </Box>
+          <QuestionBox question={topic} />
+          {tables[shownTable]}
         </div>
 
         <Box
+        direction="column"
+        align="center"
+        gap="medium"
+        pad="small"
+        overflow={{
+          horizontal: "auto"
+        }}
+      >
+        <Button
+          primary
+          hoverIndicator="true"
+          style={{
+            width: "100%"
+          }}
+          label="Next"
+        />
+        <Box
           direction="column"
-          align="center"
-          gap="medium"
-          pad="small"
-          overflow={{
-            horizontal: "auto"
+          gap="small"
+          style={{
+            alignItems: "center",
+            justifyContent: "center"
           }}
         >
           <Button
             primary
-            hoverIndicator="true"
-            style={{ width: "100%" }}
-            onClick={this.showNextTable}
-            label="Next"
-          />
-          <Button
-            primary
             icon={<DocumentPdf color="white" />}
-            style={
-              {
-                width: "30%",
-                background: "red"
-              }
-            }
-            onClick={this.exportPDFWithComponent}
+            style={{
+              width: "100%",
+              backgroundColor: "red"
+            }}
             label="Export PDF"
           />
 
           <Button
             primary
             icon={<DocumentPdf color="white" />}
-            style={
-              {
-                width: "30%",
-                background: "red"
-              }
-            }
-            onClick={this.exportALLWithComponent}
+            style={{
+              width: "100%",
+              backgroundColor: "red"
+            }}
             label="Export all"
           />
         </Box>
+      </Box>
 
         {/* 
         This is a hacky solution: 
