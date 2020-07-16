@@ -52,19 +52,10 @@ export class PlayerViewSummary extends Component {
     return (
       <div>
         <div>
-            <QuestionBox question={topic} />
-            {tables[shownTable]}
+          <QuestionBox question={topic} />
+          {tables[shownTable]}
         </div>
 
-        <Box
-        direction="column"
-        align="center"
-        gap="medium"
-        pad="small"
-        overflow={{
-          horizontal: "auto"
-        }}
-      >
         <Button
           primary
           hoverIndicator="true"
@@ -73,37 +64,45 @@ export class PlayerViewSummary extends Component {
           }}
           label="Next"
         />
-        <Box
-          direction="column"
-          gap="small"
-          style={{
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          <Button
-            primary
-            icon={<DocumentPdf color="white" />}
-            style={{
-              width: "100%",
-              backgroundColor: "red"
-            }}
-            onClick={this.exportPDFWithComponent}
-            label="Export PDF"
-          />
 
-          <Button
-            primary
-            icon={<DocumentPdf color="white" />}
-            style={{
-              width: "100%",
-              backgroundColor: "red"
-            }}
-            onClick={this.exportALLWithComponent}
-            label="Export all"
-          />
-        </Box>
-      </Box>
+        <ResponsiveContext.Consumer>
+          {size => (
+            <Box
+              direction={size === "small" ? "column" : "row"}
+              align="center"
+              margin="0 auto"
+              gap="medium"
+              pad="small"
+              overflow={{
+                horizontal: "auto"
+              }}
+              width={size === "small" ? "400px" : "100%"}
+            >
+              <Button
+                primary
+                icon={<DocumentPdf color="white" />}
+                style={{
+                  width:`${size === "small" ? "100%" : "50%"}`,
+                  backgroundColor: "red"
+
+                }}
+                onClick={this.exportPDFWithComponent}
+                label="Export PDF"
+              />
+
+              <Button
+                primary
+                icon={<DocumentPdf color="white" />}
+                style={{
+                  width:`${size === "small" ? "100%" : "50%"}`,
+                  backgroundColor: "red"
+                }}
+                onClick={this.exportALLWithComponent}
+                label="Export all"
+              />
+            </Box>
+          )}
+        </ResponsiveContext.Consumer>
 
         {/* 
         This is a hacky solution: 
