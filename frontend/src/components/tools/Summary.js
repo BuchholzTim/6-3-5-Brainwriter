@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Box, Button } from "grommet";
+import { Box, Button, Heading, ResponsiveContext } from "grommet";
 import IdeaTable from "../playerView/subPages/ideaComponents/IdeaTable";
 import QuestionBox from "./QuestionBox";
+import { DocumentPdf } from 'grommet-icons'
+import { PDFExport } from '@progress/kendo-react-pdf';
 
 export class PlayerViewSummary extends Component {
+
+  pdfExportComponent;
+  pdfExportAllComponent;
+
   state = {
     shownTable: 0
   };
 
-  showSummary = () => {};
+  showSummary = () => { };
 
   showNextTable = () => {
     const { players } = this.props;
@@ -18,6 +24,14 @@ export class PlayerViewSummary extends Component {
       shownTable: (shownTable + 1) % players.length
     });
   };
+
+  exportPDFWithComponent = () => {
+    this.pdfExportComponent.save();
+  }
+
+  exportALLWithComponent = () => {
+    this.pdfExportAllComponent.save();
+  }
 
   render() {
     const { topic, players } = this.props;
@@ -36,23 +50,108 @@ export class PlayerViewSummary extends Component {
     }
 
     return (
-      <Box
-        style={{ wordWrap: "break-word" }}
-        direction="column"
-        gap="medium"
-        pad="small"
-        overflow={{ horizontal: "auto" }}
-      >
-        <QuestionBox question={topic} />
-        {tables[shownTable]}
+      <div>
+        <div>
+          <QuestionBox question={topic} />
+          {tables[shownTable]}
+        </div>
+
         <Button
           primary
           hoverIndicator="true"
-          style={{ width: "100%" }}
-          onClick={this.showNextTable}
+          style={{
+            width: "100%"
+          }}
           label="Next"
         />
-      </Box>
+
+        <ResponsiveContext.Consumer>
+          {size => (
+            <Box
+              direction={size === "small" ? "column" : "row"}
+              align="center"
+              margin="0 auto"
+              gap="medium"
+              pad="small"
+              overflow={{
+                horizontal: "auto"
+              }}
+              width={size === "small" ? "400px" : "100%"}
+            >
+              <Button
+                primary
+                icon={<DocumentPdf color="white" />}
+                style={{
+                  width:`${size === "small" ? "100%" : "50%"}`,
+                  backgroundColor: "red"
+
+                }}
+                onClick={this.exportPDFWithComponent}
+                label="Export PDF"
+              />
+
+              <Button
+                primary
+                icon={<DocumentPdf color="white" />}
+                style={{
+                  width:`${size === "small" ? "100%" : "50%"}`,
+                  backgroundColor: "red"
+                }}
+                onClick={this.exportALLWithComponent}
+                label="Export all"
+              />
+            </Box>
+          )}
+        </ResponsiveContext.Consumer>
+
+        {/* 
+        This is a hacky solution: 
+        In order to export a custom pdf file 
+        which has content the user should not see on screen 
+        we have to do it that way 
+        */}
+        <div style={{ position: "absolute", left: "-1000px", top: 0, width: "500px" }}>
+          <PDFExport
+            ref={(component) => this.pdfExportComponent = component}
+            paperSize="A4"
+            fileName={`${topic}`}
+          >
+            <Box
+              style={{
+                wordWrap: "break-word"
+              }}
+              direction="column"
+              gap="medium"
+              pad="small"
+              overflow={{ horizontal: "auto" }}
+            >
+              <QuestionBox question={topic} />
+              {tables[shownTable]}
+            </Box>
+          </PDFExport>
+        </div>
+
+        <div style={{ position: "absolute", left: "-1000px", top: 0, width: "500px" }}>
+          <PDFExport
+            ref={(component) => this.pdfExportAllComponent = component}
+            paperSize="A4"
+            fileName={`${topic}`}
+          >
+            <Box
+              style={{
+                wordWrap: "break-word"
+              }}
+              direction="column"
+              gap="medium"
+              pad="small"
+              overflow={{ horizontal: "auto" }}
+            >
+              <QuestionBox question={topic} />
+              {tables}
+            </Box>
+          </PDFExport>
+        </div>
+      </div>
     );
   }
 }
