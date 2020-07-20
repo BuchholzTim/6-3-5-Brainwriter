@@ -7,6 +7,7 @@
     "socket.io-client": "^2.3.0"
   },
   "dependencies": {
+    "@progress/kendo-drawing": "^1.8.1",
     "axios": "^0.19.2",
     "grommet": "^2.13.0",
     "grommet-icons": "^4.4.0",
