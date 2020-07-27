@@ -34,6 +34,7 @@
     "onlyNumeric": "Only numeric values permitted",
     "errorTopic": "Please enter a topic",
     "errorTimePerRound": "Please enter time per round",
+    "next": "Next table",
     "explSessionStart": "A topic is required to get started and if  needed the time per round can be adjusted, then the session can be opened. A code will be shown, which participants need to join the session. The number of participants is variable and the number of rounds changes according to the number of participants. Once everyone has joined the session, the first round can be started."
   }
 }
