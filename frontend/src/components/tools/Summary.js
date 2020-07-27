@@ -5,6 +5,7 @@ import IdeaTable from "../playerView/subPages/ideaComponents/IdeaTable";
 import QuestionBox from "./QuestionBox";
 import { DocumentPdf } from 'grommet-icons'
 import { PDFExport } from '@progress/kendo-react-pdf';
+import { withTranslation } from "react-i18next";
 
 export class PlayerViewSummary extends Component {
 
@@ -34,7 +35,7 @@ export class PlayerViewSummary extends Component {
   }
 
   render() {
-    const { topic, players } = this.props;
+    const { topic, players, t } = this.props;
     const { shownTable } = this.state;
 
     const tables = [];
@@ -62,7 +63,7 @@ export class PlayerViewSummary extends Component {
           style={{
             width: "100%"
           }}
-          label="Next"
+          label={t("next")}
         />
 
         <ResponsiveContext.Consumer>
@@ -162,4 +163,6 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = null;
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerViewSummary);
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(PlayerViewSummary)
+);
