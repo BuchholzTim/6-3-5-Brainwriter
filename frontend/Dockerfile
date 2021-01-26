@@ -1,5 +1,5 @@
 # build environment
-FROM node:lts-alpine as brainwriter-frontend-build
+FROM node:14-alpine as brainwriter-frontend-build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
@@ -9,12 +9,13 @@ ENV REACT_APP_PRODUCTION_BUILD=true
 ENV REACT_APP_SAFARI=false
 
 COPY package.json /app/package.json
-RUN npm install --silent
+COPY yarn.lock /app/yarn.lock
+RUN yarn install
 COPY . /app
-RUN npm run-script build
+RUN yarn build
 
 # production environment
-FROM nginx:stable-alpine
+FROM nginx:1.19.6-alpine
 COPY --from=brainwriter-frontend-build /app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

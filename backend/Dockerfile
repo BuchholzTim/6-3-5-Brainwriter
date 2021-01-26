@@ -1,5 +1,5 @@
 # build environment
-FROM node:lts-alpine
+FROM node:14-alpine
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
@@ -16,6 +16,7 @@ ENV CORS_USE_WHITELIST="false"
 ENV CORS_WHITELIST=""
 
 COPY package.json /app/package.json
-RUN npm install --silent
+COPY yarn.lock /app/yarn.lock
+RUN yarn install
 COPY . /app
-CMD ["npm", "run-script", "babel-node"]
+CMD ["yarn", "babel-node"]
