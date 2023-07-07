@@ -64,6 +64,7 @@ export class PlayerViewSummary extends Component {
             width: "100%"
           }}
           label={t("next")}
+          onClick={this.showNextTable}
         />
 
         <ResponsiveContext.Consumer>
